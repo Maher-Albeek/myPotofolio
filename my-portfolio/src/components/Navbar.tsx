@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-scroll";
-
 const navLinks = [
   { label: "Home", to: "hero" },
   { label: "About", to: "about" },
@@ -12,7 +11,6 @@ const navLinks = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
@@ -21,18 +19,18 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 
-      ${scrolled ? "bg-gray-900 shadow-lg" : "bg-gray-900/90"}`}
+      className="fixed top-0 w-full z-50 transition-all duration-300 rotate-0 md:mr-8 md:-right-6/12 md:rotate-90"
+      
     >
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
 
         {/* Logo */}
-        <span className="text-white text-xl font-bold tracking-widest uppercase">
-          Maher Albeek
+        <span className={`text-white text-xl font-bold  uppercase -rotate-90 tracking-widest `}>
+            Maher Albeek
         </span>
 
         {/* Desktop Links */}
-        <ul className="hidden md:flex gap-8">
+        <ul className="hidden md:flex gap-8 ">
           {navLinks.map((link) => (
             <li key={link.to}>
               <Link
@@ -40,7 +38,7 @@ const Navbar = () => {
                 smooth={true}
                 duration={500}
                 offset={-70}
-                className="text-gray-300 hover:text-white cursor-pointer 
+                className="text-gray-300 hover:text-white  cursor-pointer
                 transition-colors duration-200 text-sm uppercase tracking-wider"
                 activeClass="text-white font-semibold border-b-2 border-white pb-1"
                 spy={true}
@@ -67,7 +65,7 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div className={`md:hidden transition-all duration-300 overflow-hidden 
+      <div className={`md:hidden transition-all duration-300 overflow-hidden
         ${isOpen ? "max-h-96 pb-4" : "max-h-0"}`}>
         <ul className="flex flex-col items-center gap-4 bg-gray-900">
           {navLinks.map((link) => (

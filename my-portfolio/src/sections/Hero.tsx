@@ -5,7 +5,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative w-full h-screen flex items-center justify-center"
+      className=" w-full h-screen flex items-center justify-center"
     >
       {/* Background Image */}
       <div
