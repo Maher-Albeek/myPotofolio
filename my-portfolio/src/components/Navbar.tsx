@@ -10,24 +10,29 @@ const navLinks = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    
+    const handleScroll = () => {
+      // Handle scroll logic here if needed
+    };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+
   }, []);
 
   return (
     <nav
-      className="fixed top-0 w-full z-50 transition-all duration-300 rotate-0 md:mr-8 md:-right-6/12 md:rotate-90"
+      className="fixed top-0 w-full z-50 transition-all  "
       
     >
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
 
         {/* Logo */}
-        <span className={`text-white text-xl font-bold  uppercase -rotate-90 tracking-widest `}>
-            Maher Albeek
-        </span>
+        <img
+          src="/images/logo.svg"
+          alt="Maher Albeek logo"
+          className="h-10 w-auto"
+        />
 
         {/* Desktop Links */}
         <ul className="hidden md:flex gap-8 ">
