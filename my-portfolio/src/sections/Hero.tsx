@@ -9,9 +9,8 @@ const Hero = () => {
     >
       {/* Background Image */}
       <div
-        className="heroimg absolute inset-0 bg-contain bg-no-repeat bg-left md:bg-position-[200px] "
-        style={{ backgroundImage: "url('/images/hero-bg.png')" }}
-      />
+/*         className="heroimg absolute inset-0 bg-contain bg-no-repeat bg-left md:bg-position-[200px] "
+ */      />
 
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/30" />

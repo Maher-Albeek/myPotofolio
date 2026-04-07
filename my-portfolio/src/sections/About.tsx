@@ -2,12 +2,12 @@ const About = () => {
   return (
     <section
       id="about"
-      className="w-full min-h-screen bg-gray-950 flex items-center justify-center px-6 py-24"
+      className="w-full min-h-screen  flex items-end justify-end px-6 py-24"
     >
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <div className="w-full grid grid-cols-6 gap-4 items-center">
 
         {/* Text Column */}
-        <div className="flex flex-col items-start text-left gap-8">
+        <div className="flex flex-col col-span-3 col-end-7">
 
           {/* Section Label */}
           <span className="text-xs uppercase tracking-[0.3em] text-gray-500">
@@ -42,13 +42,7 @@ const About = () => {
 
         </div>
 
-        {/* Image Column */}
-        <div className="flex items-center justify-center">
-          <div className="w-72 h-96 md:w-80 md:h-[480px] rounded-2xl overflow-hidden border border-white/10 bg-gray-800 flex items-center justify-center">
-            {/* Replace src with your actual image path */}
-            <span className="text-gray-600 text-sm">Your Photo</span>
-          </div>
-        </div>
+       
 
       </div>
       
