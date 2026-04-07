@@ -5,12 +5,14 @@ const Hero = () => {
   return (
     <section
       id="hero"
+      data-bg-section="hero"
       className="relative w-full h-screen flex items-center justify-center overflow-hidden"
     >
       {/* Background Image */}
       <div
-/*         className="heroimg absolute inset-0 bg-contain bg-no-repeat bg-left md:bg-position-[200px] "
- */      />
+        className="heroimg absolute inset-0"
+        
+      />
 
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/30" />
