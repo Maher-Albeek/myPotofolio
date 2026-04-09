@@ -25,15 +25,9 @@ const Navbar = () => {
       className="fixed top-0 w-full z-50 transition-all  "
       
     >
-      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between inset-y-0 left-0">
 
-        {/* Logo */}
-        <img
-          src="/images/logo.svg"
-          alt="Maher Albeek logo"
-          className="h-10 w-auto"
-        />
-
+    
         {/* Desktop Links */}
         <ul className="hidden md:flex gap-8 ">
           {navLinks.map((link) => (
@@ -67,7 +61,17 @@ const Navbar = () => {
           <span className={`block w-6 h-0.5 bg-white transition-all duration-300 
             ${isOpen ? "-rotate-45 -translate-y-2" : ""}`} />
         </button>
+          {/* Logo */}
+          <img
+          src="/images/logo.svg"
+          alt="Maher Albeek logo"
+          className="h-7 w-auto"
+        />
+
+        
       </div>
+          
+      
 
       {/* Mobile Menu */}
       <div className={`md:hidden transition-all duration-300 overflow-hidden

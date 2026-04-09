@@ -9,6 +9,22 @@ const Contact = () => {
                 <li>LinkedIn: <a href="https://www.linkedin.com/in/example">example</a></li>
                 <li>GitHub: <a href="https://github.com/example">example</a></li>
             </ul>
+            <div className="scroll-container scroll-y">
+                <div className="scroll-content grid square-grid">
+                    <div className="scroll-section padded">
+                    <div className="large centered row">
+                        <div className="label">scroll down</div>
+                    </div>
+                    </div>
+                    <div className="scroll-section padded">
+                    <div className="large row">
+                        <div className="square"></div>
+                    </div>
+                    </div>
+                    <div className="scroll-section">
+                    </div>
+                </div>
+                </div>
         </section>
     );
 };
