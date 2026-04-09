@@ -13,7 +13,7 @@ const Navbar = () => {
   useEffect(() => {
     
     const handleScroll = () => {
-      // Handle scroll logic here if needed
+ 
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -22,14 +22,14 @@ const Navbar = () => {
 
   return (
     <nav
-      className="fixed top-0 w-full z-50 transition-all  "
+      className="fixed top-0 w-full  transition-all  "
       
     >
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between inset-y-0 left-0">
 
     
         {/* Desktop Links */}
-        <ul className="hidden md:flex gap-8 ">
+        <ul className="hidden md:flex gap-8  ">
           {navLinks.map((link) => (
             <li key={link.to}>
               <Link
@@ -37,7 +37,7 @@ const Navbar = () => {
                 smooth={true}
                 duration={500}
                 offset={-70}
-                className="text-gray-300 hover:text-white  cursor-pointer
+                className="text-gray-300 hover:text-white  cursor-pointer 
                 transition-colors duration-200 text-sm uppercase tracking-wider"
                 activeClass="text-white font-semibold border-b-2 border-white pb-1"
                 spy={true}

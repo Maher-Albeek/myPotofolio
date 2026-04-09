@@ -22,7 +22,7 @@ const About = () => {
           </h2>
 
           {/* Divider */}
-          <div className="w-16 h-0.5 bg-white/30" />
+          <div className="w-16 h-0.5  bg-white/30" />
 
           {/* Bio Text */}
           <p className="text-gray-400 text-base md:text-lg leading-relaxed">
@@ -38,9 +38,9 @@ const About = () => {
           </p>
 
           {/* Quote */}
-          <p className="text-white/40 text-sm md:text-base italic mt-2">
+       {/*    <p className="text-white/40 text-sm md:text-base italic mt-2">
             "Every frame tells a story. Every line of code builds a world."
-          </p>
+          </p> */}
 
         </div>
 
