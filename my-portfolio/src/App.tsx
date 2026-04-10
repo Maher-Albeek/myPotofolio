@@ -2,11 +2,13 @@ import "./App.css";
 import { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./sections/Hero";
+import Services from "./sections/Services";
 import About from "./sections/About";
 import Skills from "./sections/Skills";
 import Portfolio from "./sections/Portfolio";
 import Contact from "./sections/Contact";
 import Footer from "./components/Footer";
+
 
 
 
@@ -18,6 +20,7 @@ function App() {
     const body = document.body;
     const sectionToImageVar: Record<string, string> = {
       hero: "var(--bg-image-hero)",
+      services: "var(--bg-image-services)",
       about: "var(--bg-image-about)",
       skills: "var(--bg-image-skills)",
       portfolio: "var(--bg-image-portfolio)",
@@ -79,6 +82,7 @@ function App() {
     <>
       <Navbar />
       <Hero  />
+      <Services />
       <About />
       <Skills />
       <Portfolio />

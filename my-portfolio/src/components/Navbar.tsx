@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-scroll";
 const navLinks = [
   { label: "Home", to: "hero" },
+  { label: "Services", to: "services" },
   { label: "About", to: "about" },
   { label: "Skills", to: "skills" },
   { label: "Portfolio", to: "portfolio" },

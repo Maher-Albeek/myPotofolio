@@ -3,10 +3,10 @@ const About = () => {
     <section
       id="about"
       data-bg-section="about"
-      className="w-full min-h-screen  flex items-end  bg-black/30 justify-end px-6 py-24 "
+      className="w-full min-h-screen  flex items-end  bg-black/30 justify-center px-6 py-24 "
       
     >
-      <div className="w-full grid grid-cols-6 gap-4 items-center ">
+      <div className="w-full grid grid-cols-6 gap-4 items-center  justify-center">
 
         {/* Text Column */}
         <div className="flex flex-col col-span-3 col-end-7">
