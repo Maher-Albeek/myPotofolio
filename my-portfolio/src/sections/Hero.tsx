@@ -6,8 +6,8 @@ const Hero = () => {
   return (
     <>
       {/* Right-side Neon Glow (global fixed background effect) */}
-      <div className="pointer-events-none fixed inset-0 -z-10" aria-hidden="true">
-        <div className="fixed right-[-55%] top-1/2 h-[56vw] w-[56vw] min-h-70 min-w-70 -translate-y-1/2 rounded-full bg-orange-500 blur-3xl" />
+      <div className="pointer-events-none fixed inset-0 -z-990" aria-hidden="true">
+        <div className="fixed left-[-55%] top-1/2 h-[56vw] w-[56vw] min-h-70 min-w-70 -translate-y-1/2 rounded-full bg-orange-500 blur-[100px]" />
       </div>
 
       <section
@@ -17,8 +17,8 @@ const Hero = () => {
         data-reveal
         className="relative w-full h-screen flex items-center justify-center overflow-hidden"
       >
-        {/* Dark Overlay */}
-        <div className="" />
+       
+      
 
         {/* Content */}
         <div className="relative z-10 text-center px-6 flex flex-col items-center gap-6">

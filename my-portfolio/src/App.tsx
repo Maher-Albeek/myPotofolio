@@ -1,5 +1,6 @@
 import "./App.css";
 import { useEffect, useRef } from "react";
+import { animate } from "animejs";
 import Navbar from "./components/Navbar";
 import Hero from "./sections/Hero";
 import Services from "./sections/Services";
@@ -17,6 +18,7 @@ function App() {
   const isAnimatingRef = useRef(false);
   const lastTriggerTimeRef = useRef(0);
   const touchStartYRef = useRef<number | null>(null);
+  const scrollAnimationRef = useRef<ReturnType<typeof animate> | null>(null);
 
   useEffect(() => {
     const revealTargets = document.querySelectorAll<HTMLElement>("[data-reveal]");
@@ -50,7 +52,7 @@ function App() {
 
   useEffect(() => {
     const SECTION_SELECTOR = "[data-scroll-section]";
-    const SCROLL_COOLDOWN_MS = 750;
+    const SCROLL_COOLDOWN_MS = 650;
     const SWIPE_THRESHOLD_PX = 60;
 
     const getSections = () =>
@@ -84,11 +86,29 @@ function App() {
       activeSectionIndexRef.current = clampedIndex;
       lastTriggerTimeRef.current = Date.now();
 
-      target.scrollIntoView({ behavior: "auto", block: "start" });
+      const startY = window.scrollY;
+      const targetY = target.offsetTop;
 
-      window.setTimeout(() => {
+      if (Math.abs(targetY - startY) < 1) {
         isAnimatingRef.current = false;
-      }, 700);
+        return;
+      }
+
+      scrollAnimationRef.current?.cancel();
+
+      const scrollState = { y: startY };
+      scrollAnimationRef.current = animate(scrollState, {
+        y: targetY,
+        duration: 880,
+        ease: "inOutCirc",
+        onUpdate: () => {
+          window.scrollTo({ top: scrollState.y, behavior: "auto" });
+        },
+        onComplete: () => {
+          window.scrollTo({ top: targetY, behavior: "auto" });
+          isAnimatingRef.current = false;
+        },
+      });
     };
 
     const attemptMove = (direction: 1 | -1) => {
@@ -182,6 +202,7 @@ function App() {
     window.addEventListener("touchend", onTouchEnd, { passive: true });
 
     return () => {
+      scrollAnimationRef.current?.cancel();
       window.removeEventListener("wheel", onWheel);
       window.removeEventListener("keydown", onKeyDown);
       window.removeEventListener("touchstart", onTouchStart);
