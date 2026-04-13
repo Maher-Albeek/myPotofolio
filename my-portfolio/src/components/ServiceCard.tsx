@@ -1,13 +1,13 @@
-import "./ProjectCard.css"
+import "./ServiceCard.css"
 const services = [
   { title: " Frontend Development", discreption: "Building responsive and modern websites."},
   { title: "Backend Development", discreption: "Building robust and scalable server-side applications."},
-  { title: "UI/UX Design", discreption: "Designing user-friendly interfaces and experiences."},
+  { title: "UI/UX Web Design", discreption: "Designing user-friendly interfaces and experiences."},
   { title: "REST API Integration", discreption: "Integrating RESTful APIs for seamless data exchange."},
 ];
 
 
-const ProjectCard = () => {
+const ServiceCard = () => {
     return ( 
         <>
         
@@ -27,4 +27,4 @@ const ProjectCard = () => {
     );
 };
     
-export default ProjectCard;
+export default ServiceCard;
