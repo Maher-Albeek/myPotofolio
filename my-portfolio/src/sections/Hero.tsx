@@ -37,9 +37,13 @@ const Hero = () => {
               {/* Typing Animation - Job Title */}
               <TypeAnimation
                 sequence={[
-                  "Web Developer",
+                  "Full-Stack Web Projects",
                   2000,
                   "Frontend Developer",
+                  2000,
+                  " REST API Integration",
+                  2000,
+                  "UI/UX Web Design",
                   2000,
                 ]}
                 wrapper="span"

@@ -1,8 +1,8 @@
 
 const Portfolio = () => {
     return (
-        <section id="portfolio" data-scroll-section data-bg-section="portfolio" data-reveal className="flex  w-full items-center justify-end">
-            <div className=" w-full max-w-6xl text-center  bg-black/60 backdrop-blur-sm  py-16">
+        <>
+            <div id="portfolio" data-scroll-section data-bg-section="portfolio" data-reveal>
 
                 <h2 className="text-3xl md:text-5xl font-bold text-white uppercase tracking-widest">Portfolio</h2>
                 <p className="text-gray-400 text-base md:text-lg leading-relaxed">Here are some of my projects:</p>
@@ -13,7 +13,7 @@ const Portfolio = () => {
                     <li>Project 4</li>
                 </ul>
             </div>
-        </section>
+        </>
     );
 };
 

@@ -215,11 +215,15 @@ function App() {
     <>
       <Navbar />
       <Hero  />
-      <Services />
-      <About />
-      <Skills />
-      <Portfolio />
-      <Contact />
+      <section className="flex rounded-3xl w-full items-center justify-end " >
+        <div className="w-full max-w-6xl text-center  bg-black/60 backdrop-blur-sm  py-16">
+          <Services />
+          <About />
+          <Skills />
+          <Portfolio />
+          <Contact />
+        </div>
+      </section>
       <Footer />
 
     </>
