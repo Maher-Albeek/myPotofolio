@@ -89,6 +89,10 @@ body::before {
   opacity: 1;
 }
 
+[data-scroll-section] {
+  min-height: 100svh;
+}
+
 [data-reveal] {
   --reveal-ratio: 0;
   opacity: 0;

@@ -2,9 +2,10 @@ const About = () => {
   return (
     <section
       id="about"
+      data-scroll-section
       data-bg-section="about"
       data-reveal
-      className="flex  w-full items-center justify-end   "
+      className="flex min-h-screen w-full items-center justify-end"
       
     >
       <div className="w-full max-w-6xl text-center  bg-black/60 backdrop-blur-sm  py-16">

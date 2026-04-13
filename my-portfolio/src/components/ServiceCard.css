@@ -54,17 +54,6 @@
   letter-spacing: 0.1em;
 }
 
-.container .box div strong {
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-.container .box div p {
-  margin: 0;
-  font-size: 0.9em;
-  font-weight: 300;
-  letter-spacing: 0.1em;
-}
 
 .container .box div span {
   font-size: 0.7rem;

@@ -1,9 +1,9 @@
 import "./ServiceCard.css"
 const services = [
-  { title: " Frontend Development", discreption: "Building responsive and modern websites."},
-  { title: "Backend Development", discreption: "Building robust and scalable server-side applications."},
-  { title: "UI/UX Web Design", discreption: "Designing user-friendly interfaces and experiences."},
-  { title: "REST API Integration", discreption: "Integrating RESTful APIs for seamless data exchange."},
+  { title: " Frontend Development", discreption: "Entwicklung moderner, performanter Benutzeroberflächen mit React, Next.js, TypeScript und Tailwind CSS."},
+  { title: "Full-Stack Development", discreption: "Umsetzung kompletter Webprojekte – von der Datenbankstruktur bis zum fertigen Interface."},
+  { title: "UI/UX Web Design", discreption: "GUmsetzung von UI/UX-Konzepten mit Fokus auf Benutzerfreundlichkeit, Responsiveness und sauberem Code."},
+  { title: "REST API Integration", discreption: "Anbindung und Entwicklung von REST-APIs, Datenintegration und CRUD-Anwendungen mit MySQL."},
 ];
 
 

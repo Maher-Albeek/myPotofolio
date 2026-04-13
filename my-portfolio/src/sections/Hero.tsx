@@ -1,25 +1,8 @@
-import { useEffect, useState } from "react";
 import { TypeAnimation } from "react-type-animation";
 import { Link } from "react-scroll";
 
 
 const Hero = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setIsScrolled(scrollY > 10);
-    };
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
     <>
       {/* Right-side Neon Glow (global fixed background effect) */}
@@ -29,6 +12,7 @@ const Hero = () => {
 
       <section
         id="hero"
+        data-scroll-section
         data-bg-section="hero"
         data-reveal
         className="relative w-full h-screen flex items-center justify-center overflow-hidden"
@@ -41,9 +25,10 @@ const Hero = () => {
 
             {/* Name */}
             <h1
-              className="hero-name font-bold text-white uppercase transition-all duration-500 ease-out "
+              className="hero-name  text-white transition-all duration-500 ease-out flex flex-col items-center gap-4 justify-end"
             >
-              Maher Albeek
+              <span className="mb-20">Maher</span>
+              <span>Albeek</span>
             </h1>
 
             {/* Divider */}

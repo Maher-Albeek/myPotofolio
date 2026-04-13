@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./sections/Hero";
 import Services from "./sections/Services";
@@ -13,6 +13,11 @@ import Footer from "./components/Footer";
 
 
 function App() {
+  const activeSectionIndexRef = useRef(0);
+  const isAnimatingRef = useRef(false);
+  const lastTriggerTimeRef = useRef(0);
+  const touchStartYRef = useRef<number | null>(null);
+
   useEffect(() => {
     const revealTargets = document.querySelectorAll<HTMLElement>("[data-reveal]");
     if (!revealTargets.length) return;
@@ -40,6 +45,148 @@ function App() {
 
     return () => {
       observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    const SECTION_SELECTOR = "[data-scroll-section]";
+    const SCROLL_COOLDOWN_MS = 750;
+    const SWIPE_THRESHOLD_PX = 60;
+
+    const getSections = () =>
+      Array.from(document.querySelectorAll<HTMLElement>(SECTION_SELECTOR));
+
+    const getClosestSectionIndex = (sections: HTMLElement[]) => {
+      const probeY = window.scrollY + window.innerHeight * 0.35;
+      let closestIndex = 0;
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      sections.forEach((section, index) => {
+        const distance = Math.abs(section.offsetTop - probeY);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      return closestIndex;
+    };
+
+    const scrollToSection = (targetIndex: number) => {
+      const sections = getSections();
+      if (!sections.length) return;
+
+      const clampedIndex = Math.min(Math.max(targetIndex, 0), sections.length - 1);
+      const target = sections[clampedIndex];
+      if (!target) return;
+
+      isAnimatingRef.current = true;
+      activeSectionIndexRef.current = clampedIndex;
+      lastTriggerTimeRef.current = Date.now();
+
+      target.scrollIntoView({ behavior: "auto", block: "start" });
+
+      window.setTimeout(() => {
+        isAnimatingRef.current = false;
+      }, 700);
+    };
+
+    const attemptMove = (direction: 1 | -1) => {
+      const now = Date.now();
+      if (isAnimatingRef.current || now - lastTriggerTimeRef.current < SCROLL_COOLDOWN_MS) {
+        return;
+      }
+
+      const sections = getSections();
+      if (!sections.length) return;
+
+      const currentIndex = getClosestSectionIndex(sections);
+      activeSectionIndexRef.current = currentIndex;
+
+      const nextIndex = Math.min(
+        Math.max(activeSectionIndexRef.current + direction, 0),
+        sections.length - 1
+      );
+
+      if (nextIndex === activeSectionIndexRef.current) return;
+      scrollToSection(nextIndex);
+    };
+
+    const onWheel = (event: WheelEvent) => {
+      if (Math.abs(event.deltaY) < 8) return;
+      event.preventDefault();
+      attemptMove(event.deltaY > 0 ? 1 : -1);
+    };
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      const targetElement = event.target as HTMLElement | null;
+      const tag = targetElement?.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || targetElement?.isContentEditable) {
+        return;
+      }
+
+      const sections = getSections();
+      if (!sections.length) return;
+
+      if (["ArrowDown", "PageDown", " "].includes(event.key)) {
+        event.preventDefault();
+        attemptMove(1);
+      }
+
+      if (["ArrowUp", "PageUp"].includes(event.key)) {
+        event.preventDefault();
+        attemptMove(-1);
+      }
+
+      if (event.key === "Home") {
+        event.preventDefault();
+        scrollToSection(0);
+      }
+
+      if (event.key === "End") {
+        event.preventDefault();
+        scrollToSection(sections.length - 1);
+      }
+    };
+
+    const onTouchStart = (event: TouchEvent) => {
+      touchStartYRef.current = event.touches[0]?.clientY ?? null;
+    };
+
+    const onTouchMove = (event: TouchEvent) => {
+      if (touchStartYRef.current !== null) {
+        event.preventDefault();
+      }
+    };
+
+    const onTouchEnd = (event: TouchEvent) => {
+      if (touchStartYRef.current === null) return;
+
+      const endY = event.changedTouches[0]?.clientY;
+      if (typeof endY !== "number") {
+        touchStartYRef.current = null;
+        return;
+      }
+
+      const deltaY = touchStartYRef.current - endY;
+      touchStartYRef.current = null;
+
+      if (Math.abs(deltaY) < SWIPE_THRESHOLD_PX) return;
+      attemptMove(deltaY > 0 ? 1 : -1);
+    };
+
+    window.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("keydown", onKeyDown);
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: false });
+    window.addEventListener("touchend", onTouchEnd, { passive: true });
+
+    return () => {
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", onTouchEnd);
     };
   }, []);
 
