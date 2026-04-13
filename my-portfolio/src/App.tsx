@@ -10,9 +10,6 @@ import Portfolio from "./sections/Portfolio";
 import Contact from "./sections/Contact";
 import Footer from "./components/Footer";
 
-
-
-
 function App() {
   const activeSectionIndexRef = useRef(0);
   const isAnimatingRef = useRef(false);
@@ -99,7 +96,7 @@ function App() {
       const scrollState = { y: startY };
       scrollAnimationRef.current = animate(scrollState, {
         y: targetY,
-        duration: 880,
+        duration: 800,
         ease: "inOutCirc",
         onUpdate: () => {
           window.scrollTo({ top: scrollState.y, behavior: "auto" });
@@ -210,22 +207,74 @@ function App() {
       window.removeEventListener("touchend", onTouchEnd);
     };
   }, []);
-
   return (
     <>
       <Navbar />
-      <Hero  />
-      <section className="flex rounded-3xl w-full items-center justify-end " >
-        <div className="w-full max-w-6xl text-center  bg-black/60 backdrop-blur-sm  py-16">
-          <Services />
-          <About />
-          <Skills />
-          <Portfolio />
-          <Contact />
-        </div>
-      </section>
-      <Footer />
+      <Hero />
 
+      <main>
+        <section
+          id="services"
+          data-scroll-section
+          data-bg-section="services"
+          data-reveal
+          className="post-hero-step"
+        >
+          <div className="post-hero-panel">
+            <Services />
+          </div>
+        </section>
+
+        <section
+          id="about"
+          data-scroll-section
+          data-bg-section="about"
+          data-reveal
+          className="post-hero-step"
+        >
+          <div className="post-hero-panel">
+            <About />
+          </div>
+        </section>
+
+        <section
+          id="skills"
+          data-scroll-section
+          data-bg-section="skills"
+          data-reveal
+          className="post-hero-step"
+        >
+          <div className="post-hero-panel">
+            <Skills />
+          </div>
+        </section>
+
+        <section
+          id="portfolio"
+          data-scroll-section
+          data-bg-section="portfolio"
+          data-reveal
+          className="post-hero-step"
+        >
+          <div className="post-hero-panel">
+            <Portfolio />
+          </div>
+        </section>
+
+        <section
+          id="contact"
+          data-scroll-section
+          data-bg-section="contact"
+          data-reveal
+          className="post-hero-step"
+        >
+          <div className="post-hero-panel">
+            <Contact />
+          </div>
+        </section>
+      </main>
+
+      <Footer />
     </>
   );
 }

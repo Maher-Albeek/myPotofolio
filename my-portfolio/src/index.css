@@ -10,7 +10,7 @@
   --accent-bg: rgba(170, 59, 255, 0.1);
   --accent-border: rgba(170, 59, 255, 0.5);
   --social-bg: rgba(244, 243, 236, 0.5);
-  --bg-image-hero: linear-gradient(rgba(8, 6, 13, 0.35), rgba(8, 6, 13, 0.35)),
+  --bg-image-hero: 
     url('/images/hero-bg.png');
   --bg-image-fixed: var(--bg-image-hero);
   --shadow:
@@ -73,6 +73,7 @@ body {
   min-height: 100svh;
   position: relative;
   background-color: #0a0a0f;
+  z-index: 1;
 }
 
 body::before {
@@ -80,17 +81,17 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-position: left center;
+  background-position: left bottom;
   background-repeat: no-repeat;
-  background-size: auto 85svh;
+  background-size: auto 90svh;
   background-image: var(--bg-image-fixed);
-  z-index: 0;
+  z-index: 2;
   pointer-events: none;
   opacity: 1;
 }
 
 [data-scroll-section] {
-  min-height: 100svh;
+  min-height: 50svh;
 }
 
 [data-reveal] {

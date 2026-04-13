@@ -2,7 +2,7 @@
 const Portfolio = () => {
     return (
         <>
-            <div id="portfolio" data-scroll-section data-bg-section="portfolio" data-reveal>
+            <div>
 
                 <h2 className="text-3xl md:text-5xl font-bold text-white uppercase tracking-widest">Portfolio</h2>
                 <p className="text-gray-400 text-base md:text-lg leading-relaxed">Here are some of my projects:</p>

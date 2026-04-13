@@ -8,7 +8,7 @@
 .container::before,
 .container::after {
   content: "";
-  background-color: #fa8805b9;
+  background-color: #fa5f05c0;
   position: absolute;
 }
 
@@ -16,8 +16,8 @@
   border-radius: 50%;
   width: 6rem;
   height: 6rem;
-  top: 30%;
-  right: 28%;
+  top: 20%;
+  right: -6%;
 }
 
 .container::after {
@@ -25,7 +25,7 @@
   position: absolute;
   height: 3rem;
   top: 8%;
-  right: 40%;
+  right: 15%;
   border: 1px solid;
 }
 

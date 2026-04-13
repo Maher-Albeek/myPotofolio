@@ -31,7 +31,7 @@ const Skills = () => {
     return (
         <>
         
-            <div id="skills" data-scroll-section data-bg-section="skills" data-reveal className="w-full max-w-6xl text-center  bg-black/60 backdrop-blur-sm  py-16">
+            <div>
                 <h2 className="text-3xl md:text-5xl font-bold text-white uppercase tracking-widest">Skills</h2>
                 <p className="mt-2 text-gray-400 text-base md:text-lg leading-relaxed">Here are some of my skills:</p>
                 <ul className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
