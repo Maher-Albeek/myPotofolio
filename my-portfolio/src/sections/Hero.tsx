@@ -21,27 +21,23 @@ const Hero = () => {
   }, []);
 
   return (
-    <section
-      id="hero"
-      data-bg-section="hero"
-      data-reveal
-      className="relative w-full h-screen flex items-center justify-center overflow-hidden"
-    >
+    <>
+      {/* Right-side Neon Glow (global fixed background effect) */}
+      <div className="pointer-events-none fixed inset-0 -z-10" aria-hidden="true">
+        <div className="fixed right-[-55%] top-1/2 h-[56vw] w-[56vw] min-h-70 min-w-70 -translate-y-1/2 rounded-full bg-orange-500 blur-3xl" />
+      </div>
 
+      <section
+        id="hero"
+        data-bg-section="hero"
+        data-reveal
+        className="relative w-full h-screen flex items-center justify-center overflow-hidden"
+      >
+        {/* Dark Overlay */}
+        <div className="" />
 
-      
-
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/30" />
-
-        {/* Right-side Neon Glow */}
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute right-[-55%] top-1/2 h-[56vw] w-[56vw] 
-          `min-h-280px` `min-w-280px` -translate-y-1/2 rounded-full bg-orange-500 blur-3xl"/></div>
-          
-
-          {/* Content */}
-          <div className="relative z-10 text-center px-6 flex flex-col items-center gap-6">
+        {/* Content */}
+        <div className="relative z-10 text-center px-6 flex flex-col items-center gap-6">
 
             {/* Name */}
             <h1
@@ -109,7 +105,8 @@ const Hero = () => {
           </Link>
 
         </div>
-    </section>
+      </section>
+    </>
   );
 };
 
