@@ -57,7 +57,7 @@
 
 #root {
   width: 100%;
-  max-width: 100%;
+  max-width: 80%;
   margin: 0 auto;
   text-align: center;
   min-height: 100svh;
@@ -74,20 +74,6 @@ body {
   position: relative;
   background-color: #0a0a0f;
   z-index: 1;
-}
-
-body::before {
-  
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-position: left bottom;
-  background-repeat: no-repeat;
-  background-size: auto 90svh;
-  background-image: var(--bg-image-fixed);
-  z-index: 2;
-  pointer-events: none;
-  opacity: 1;
 }
 
 [data-scroll-section] {

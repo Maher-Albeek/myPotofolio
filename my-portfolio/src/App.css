@@ -203,15 +203,17 @@
   align-items: center;
   justify-content: flex-end;
   padding: 1.5rem;
+  position: relative;
+  z-index: 2;
 }
 
 .post-hero-panel {
   position: sticky;
   top: 88px;
   width: min(1100px, 100%);
-  min-height: calc(100vh - 112px);
+  min-height: calc(100vh - 232px);
   border-radius: 0.75rem;
-  background: #46444475;
+  background: #1d151531;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   display: flex;
@@ -220,6 +222,88 @@
   text-align: center;
   padding: 1rem 2rem;
   overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 24px 70px rgba(62, 112, 114, 0.137), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  isolation: isolate;
+}
+
+.post-hero-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(110, 110, 109, 0.308), rgba(255, 255, 255, 0.02) 45%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.fixed-linear-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.fixed-linear-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  background-size: auto 90svh;
+  background-image: var(--bg-image-fixed);
+  z-index: 0;
+}
+
+
+.fixed-radial-glow {
+  position: absolute;
+  left: -60%;
+  top: 50%;
+  height: 70vw;
+  width: 70vw;
+  min-height: 70px;
+  min-width: 70px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: rgb(216, 101, 1);
+  filter: blur(100px);
+  z-index: -1;
+}
+
+.fixed-linear-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(55% 36% at 82% 22%, rgba(255, 130, 20, 0.16), transparent 70%);
+  animation: fixedGlowPulse 8s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes fixedLineSweep {
+  0% {
+    transform: translate3d(-8%, 0, 0) scaleX(0.92);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translate3d(8%, 0, 0) scaleX(1.05);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate3d(-8%, 0, 0) scaleX(0.92);
+    opacity: 0.35;
+  }
+}
+
+@keyframes fixedGlowPulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 @media (max-width: 768px) {
@@ -231,5 +315,13 @@
     top: 72px;
     min-height: calc(100vh - 88px);
     padding: 1.5rem 1.25rem;
+  }
+
+  .fixed-linear-line--primary {
+    top: 30%;
+  }
+
+  .fixed-linear-line--secondary {
+    top: 68%;
   }
 }

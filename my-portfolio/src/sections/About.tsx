@@ -1,6 +1,5 @@
 const About = () => {
   return (
-    <section className="flex min-h-screen w-full items-center justify-end">
       <div >
 
         {/* Text Column */}
@@ -38,7 +37,6 @@ const About = () => {
 
       </div>
       
-    </section>
   );
 };
 

@@ -5,10 +5,7 @@ import { Link } from "react-scroll";
 const Hero = () => {
   return (
     <>
-      {/* Right-side Neon Glow (global fixed background effect) */}
-      <div className="pointer-events-none fixed inset-0 -z-990" aria-hidden="true">
-        <div className="fixed left-[-55%] top-1/2 h-[70vw] w-[70vw] min-h-70 min-w-70 -translate-y-1/2 rounded-full bg-orange-500 blur-[100px]" />
-      </div>
+    
 
       <section
         id="hero"
