@@ -15,7 +15,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer data-scroll-section data-reveal className="relative z-10 bg-black text-gray-300 border-t border-gray-800" >
+    <footer data-scroll-section data-reveal className="relative z-10 bg-black/80 backdrop-blur-md text-gray-300 border-t border-gray-800" >
       <div className="max-w-6xl mx-auto px-6 py-12">
 
         {/* Top Grid */}
@@ -37,7 +37,7 @@ const Footer = () => {
             <h3 className="text-white font-semibold uppercase tracking-wider text-sm">
               Quick Links
             </h3>
-            <ul className="flex flex-col gap-2">
+            <ul className="flex-nowrap gap-2">
               {navLinks.map((link) => (
                 <li key={link.to}>
                   <Link

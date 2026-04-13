@@ -22,15 +22,12 @@ const About = () => {
             <p className="text-gray-400 text-base md:text-lg leading-relaxed px-22">
               Junior Softwareentwickler mit Fokus auf Webentwicklung und Backend-Systeme.
               Erfahrung in der Entwicklung von Webanwendungen mit PHP, MySQL und REST APIs sowie in der
-              Verarbeitung und Integration von Daten.
-            </p>
-
-            <p className="text-gray-400 text-base md:text-lg leading-relaxed px-22">
-              Grundkenntnisse in modernen Web-Technologien und
+              Verarbeitung und Integration von Daten. Grundkenntnisse in modernen Web-Technologien und
               Interesse an Frameworks wie Laravel und Vue.js.
               Strukturierte Arbeitsweise mit Fokus auf Performance, Code-Qualität und stabile Anwendungen.
             </p>
 
+            
           </div>
 
        

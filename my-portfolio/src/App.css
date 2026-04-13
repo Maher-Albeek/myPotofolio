@@ -203,7 +203,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 1.5rem;
+  /* padding: 1.5rem; */
   position: relative;
   z-index: 2;
 }
@@ -213,7 +213,7 @@
   top: 88px;
   width: min(1100px, 100%);
   min-height: calc(100vh - 232px);
-  border-radius: 0.75rem;
+  border-radius: 20px 0px 0px 20px;
   background: #1d151531;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
