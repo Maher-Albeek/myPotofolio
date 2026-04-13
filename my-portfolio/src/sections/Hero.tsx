@@ -1,18 +1,35 @@
+import { useEffect, useState } from "react";
 import { TypeAnimation } from "react-type-animation";
 import { Link } from "react-scroll";
 
+
 const Hero = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 10);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <section
       id="hero"
       data-bg-section="hero"
+      data-reveal
       className="relative w-full h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Background Image */}
-      <div
-        className="heroimg absolute inset-0"
-        
-      />
+
+
+      
 
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/30" />
@@ -27,7 +44,13 @@ const Hero = () => {
           <div className="relative z-10 text-center px-6 flex flex-col items-center gap-6">
 
             {/* Name */}
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-widest uppercase">
+            <h1
+              className={`hero-name font-bold text-white uppercase transition-all duration-500 ease-out ${
+                isScrolled
+                  ? "fixed bottom-5 left-5 md:bottom-7 md:left-7 text-xl md:text-2xl lg:text-xl tracking-wide z-50"
+                  : "text-4xl md:text-6xl lg:text-7xl tracking-widest"
+              }`}
+            >
               Maher Albeek
             </h1>
 

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Asimovian&display=swap');
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -10,16 +12,7 @@
   --social-bg: rgba(244, 243, 236, 0.5);
   --bg-image-hero: linear-gradient(rgba(8, 6, 13, 0.35), rgba(8, 6, 13, 0.35)),
     url('/images/hero-bg.png');
-  --bg-image-about: linear-gradient(rgba(8, 6, 13, 0.35), rgba(8, 6, 13, 0.35)),
-    url('/images/U.png');
-  --bg-image-skills: linear-gradient(rgba(8, 6, 13, 0.35), rgba(8, 6, 13, 0.35)),
-    url('/images/hero-bg.png');
-  --bg-image-portfolio: linear-gradient(rgba(8, 6, 13, 0.35), rgba(8, 6, 13, 0.35)),
-    url('/images/U.png');
-  --bg-image-contact: linear-gradient(rgba(8, 6, 13, 0.35), rgba(8, 6, 13, 0.35)),
-    url('/images/hero-bg.png');
-  --bg-image-a: var(--bg-image-hero);
-  --bg-image-b: var(--bg-image-hero);
+  --bg-image-fixed: var(--bg-image-hero);
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
@@ -82,45 +75,52 @@ body {
   background-color: #0a0a0f;
 }
 
-body::before,
-body::after {
+body::before {
   content: '';
   position: fixed;
   inset: 0;
   background-position: left center;
   background-repeat: no-repeat;
   background-size: auto 100svh;
+  background-image: var(--bg-image-fixed);
   z-index: 0;
   pointer-events: none;
-}
-
-body::before {
-  background-image: var(--bg-image-a);
-  opacity: 1;
-  transition: opacity 600ms ease;
-}
-
-body::after {
-  background-image: var(--bg-image-b);
-  z-index: 0;
-  opacity: 0;
-  transition: opacity 600ms ease;
-}
-
-body[data-bg-layer='a']::before {
   opacity: 1;
 }
 
-body[data-bg-layer='a']::after {
+[data-reveal] {
+  --reveal-ratio: 0;
   opacity: 0;
+  transform: translate3d(96px, 0, 0);
+  filter: blur(3px);
+  will-change: opacity, transform, filter;
+  transition:
+    opacity 650ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 700ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-body[data-bg-layer='b']::before {
-  opacity: 0;
-}
-
-body[data-bg-layer='b']::after {
+[data-reveal][data-reveal-state='in'] {
   opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+[data-reveal][data-reveal-state='out'] {
+  opacity: 0.08;
+  transform: translate3d(72px, 0, 0);
+  filter: blur(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  [data-reveal][data-reveal-state='in'],
+  [data-reveal][data-reveal-state='out'] {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transition: none;
+  }
 }
 
 h1,

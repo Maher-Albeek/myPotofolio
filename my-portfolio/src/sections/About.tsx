@@ -3,7 +3,8 @@ const About = () => {
     <section
       id="about"
       data-bg-section="about"
-      className="flex  w-full items-center justify-center px-80  "
+      data-reveal
+      className="flex  w-full items-center justify-end   "
       
     >
       <div className="w-full max-w-6xl text-center  bg-black/60 backdrop-blur-sm  py-16">

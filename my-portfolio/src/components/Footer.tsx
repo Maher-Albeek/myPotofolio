@@ -14,7 +14,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-900 text-gray-300 border-t border-gray-800">
+    <footer data-reveal className="bg-black  text-gray-300 border-t border-gray-800">
       <div className="max-w-6xl mx-auto px-6 py-12">
 
         {/* Top Grid */}

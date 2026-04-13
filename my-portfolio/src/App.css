@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+.hero-name {
+  font-family: 'Asimovian', sans-serif;
+  font-size: 150px;
+  justify-content: end;
+}
+
 .counter {
   font-size: 16px;
   padding: 5px 10px;
@@ -20,9 +26,9 @@
   }
 }
 
-.hero {
+#hero {
   position: relative;
-
+  
   .base,
   .framework,
   .vite {
