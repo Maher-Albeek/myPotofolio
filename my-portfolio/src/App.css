@@ -2,7 +2,8 @@
 
 .hero-name {
   font-family: 'Asimovian', sans-serif;
-  font-size: 150px;
+  font-size: clamp(3rem, 16vw, 9.375rem);
+  line-height: 0.9;
   justify-content: end;
 }
 
@@ -307,14 +308,67 @@
 }
 
 @media (max-width: 768px) {
+  [data-scroll-section] {
+    min-height: auto;
+  }
+
   .post-hero-step {
-    padding: 1rem;
+    min-height: auto;
+    display: block;
+    padding: 0;
+    align-items: stretch;
+    justify-content: stretch;
   }
 
   .post-hero-panel {
-    top: 72px;
-    min-height: calc(100vh - 88px);
-    padding: 1.5rem 1.25rem;
+    position: relative;
+    top: auto;
+    width: 100%;
+    min-height: auto;
+    border-radius: 0;
+    padding: 4.5rem 1.25rem 3rem;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: transparent;
+  }
+
+  .post-hero-panel::before {
+    display: none;
+  }
+
+  .fixed-linear-bg {
+    display: none;
+  }
+
+  #services.post-hero-step {
+    background: linear-gradient(180deg, #0b111d 0%, #111b2e 100%);
+  }
+
+  #about.post-hero-step {
+    background: linear-gradient(180deg, #1a1020 0%, #251530 100%);
+  }
+
+  #skills.post-hero-step {
+    background: linear-gradient(180deg, #10201f 0%, #14302d 100%);
+  }
+
+  #portfolio.post-hero-step {
+    background: linear-gradient(180deg, #20170d 0%, #312315 100%);
+  }
+
+  #contact.post-hero-step {
+    background: linear-gradient(180deg, #1c0f16 0%, #2e1725 100%);
+  }
+
+  #about .text-gray-400,
+  #services .text-gray-400,
+  #skills .text-gray-400,
+  #portfolio .text-gray-400,
+  #contact .text-gray-400 {
+    max-width: 42ch;
+    margin-inline: auto;
   }
 
   .fixed-linear-line--primary {

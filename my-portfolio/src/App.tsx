@@ -14,7 +14,6 @@ function App() {
   const activeSectionIndexRef = useRef(0);
   const isAnimatingRef = useRef(false);
   const lastTriggerTimeRef = useRef(0);
-  const touchStartYRef = useRef<number | null>(null);
   const scrollAnimationRef = useRef<ReturnType<typeof animate> | null>(null);
 
   useEffect(() => {
@@ -50,7 +49,11 @@ function App() {
   useEffect(() => {
     const SECTION_SELECTOR = "[data-scroll-section]";
     const SCROLL_COOLDOWN_MS = 650;
-    const SWIPE_THRESHOLD_PX = 60;
+
+    const desktopMediaQuery = window.matchMedia("(min-width: 1025px)");
+    if (!desktopMediaQuery.matches) {
+      return;
+    }
 
     const getSections = () =>
       Array.from(document.querySelectorAll<HTMLElement>(SECTION_SELECTOR));
@@ -166,45 +169,13 @@ function App() {
       }
     };
 
-    const onTouchStart = (event: TouchEvent) => {
-      touchStartYRef.current = event.touches[0]?.clientY ?? null;
-    };
-
-    const onTouchMove = (event: TouchEvent) => {
-      if (touchStartYRef.current !== null) {
-        event.preventDefault();
-      }
-    };
-
-    const onTouchEnd = (event: TouchEvent) => {
-      if (touchStartYRef.current === null) return;
-
-      const endY = event.changedTouches[0]?.clientY;
-      if (typeof endY !== "number") {
-        touchStartYRef.current = null;
-        return;
-      }
-
-      const deltaY = touchStartYRef.current - endY;
-      touchStartYRef.current = null;
-
-      if (Math.abs(deltaY) < SWIPE_THRESHOLD_PX) return;
-      attemptMove(deltaY > 0 ? 1 : -1);
-    };
-
     window.addEventListener("wheel", onWheel, { passive: false });
     window.addEventListener("keydown", onKeyDown);
-    window.addEventListener("touchstart", onTouchStart, { passive: true });
-    window.addEventListener("touchmove", onTouchMove, { passive: false });
-    window.addEventListener("touchend", onTouchEnd, { passive: true });
 
     return () => {
       scrollAnimationRef.current?.cancel();
       window.removeEventListener("wheel", onWheel);
       window.removeEventListener("keydown", onKeyDown);
-      window.removeEventListener("touchstart", onTouchStart);
-      window.removeEventListener("touchmove", onTouchMove);
-      window.removeEventListener("touchend", onTouchEnd);
     };
   }, []);
   return (
