@@ -41,11 +41,7 @@ const Hero = () => {
 
             {/* Name */}
             <h1
-              className={`hero-name font-bold text-white uppercase transition-all duration-500 ease-out ${
-                isScrolled
-                  ? "fixed bottom-5 left-5 md:bottom-7 md:left-7 text-xl md:text-2xl lg:text-xl tracking-wide z-50"
-                  : "text-4xl md:text-6xl lg:text-7xl tracking-widest"
-              }`}
+              className="hero-name font-bold text-white uppercase transition-all duration-500 ease-out "
             >
               Maher Albeek
             </h1>
