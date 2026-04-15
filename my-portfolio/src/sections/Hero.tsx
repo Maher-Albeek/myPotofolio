@@ -84,7 +84,7 @@ const Hero = () => {
 
             {/* CTA Button */}
             <Link
-              to="portfolio"
+              to="services"
               smooth={true}
               duration={500}
               offset={-70}
@@ -92,7 +92,7 @@ const Hero = () => {
               uppercase tracking-widest cursor-pointer hover:bg-white 
               hover:text-gray-900 transition-all duration-300"
             >
-              View My Work
+              Start
             </Link>
 
             {/* Scroll Down Arrow */}
@@ -122,20 +122,12 @@ const Hero = () => {
             {HERO_STATS.map((stat, index) => (
               <div
                 key={stat.label}
-                className="hero-stat-card relative overflow-hidden bg-black/20 backdrop-blur-sm rounded-full w-32 h-32 p-3 flex flex-col items-center justify-center text-center"
+                className="hero-stat-orbit border border-white/20 bg-black/20 backdrop-blur-sm rounded-full w-32 h-32 p-3 flex flex-col items-center justify-center text-center"
               >
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 rounded-full border border-white/20"
-                />
-                <span
-                  aria-hidden="true"
-                  className="hero-stat-border-light pointer-events-none absolute -inset-[1px] rounded-full"
-                />
-                <span className="relative z-10 block text-2xl font-semibold text-white leading-none">
+                <span className="block text-2xl font-semibold text-white leading-none">
                   + {counts[index]}
                 </span>
-                <span className="relative z-10 block mt-1 text-xs uppercase tracking-[0.2em] text-white/75">
+                <span className="block mt-1 text-xs uppercase tracking-[0.2em] text-white/75">
                   {stat.label}
                 </span>
               </div>
