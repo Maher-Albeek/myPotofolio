@@ -1,3 +1,103 @@
+import { useEffect, useRef, useState } from "react";
+import type { CSSProperties } from "react";
+import type { IconType } from "react-icons";
+import {
+  FaAngular,
+  FaBootstrap,
+  FaBug,
+  FaCode,
+  FaCss3Alt,
+  FaDatabase,
+  FaExchangeAlt,
+  FaFileCode,
+  FaGitAlt,
+  FaGithub,
+  FaJava,
+  FaJs,
+  FaLaravel,
+  FaLinux,
+  FaNodeJs,
+  FaPalette,
+  FaPhp,
+  FaProjectDiagram,
+  FaPython,
+  FaReact,
+  FaRobot,
+  FaTasks,
+  FaTools,
+  FaUserCheck,
+  FaVuejs,
+  FaWordpress,
+} from "react-icons/fa";
+import {
+  SiCplusplus,
+  SiSharp,
+  SiGithubcopilot,
+  SiJquery,
+  SiJson,
+  SiMysql,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiTypescript,
+  SiXampp,
+} from "react-icons/si";
+import { VscVscode } from "react-icons/vsc";
+
+type SkillItem = {
+  name: string;
+  level: number;
+};
+
+const skillIconMap: Record<string, IconType> = {
+  Java: FaJava,
+  JavaScript: FaJs,
+  PHP: FaPhp,
+  "Python (Grundkenntnisse)": FaPython,
+  "C# (Grundkenntnisse)": SiSharp,
+  "C++ (Grundkenntnisse)": SiCplusplus,
+  "REST APIs": FaExchangeAlt,
+  MySQL: SiMysql,
+  "CRUD Anwendungen": FaDatabase,
+  "API Integration": FaNodeJs,
+  OOP: FaProjectDiagram,
+  "Laravel (Grundkenntnisse)": FaLaravel,
+  "MVC (Grundkenntnisse)": FaFileCode,
+  React: FaReact,
+  "Next.js": SiNextdotjs,
+  TypeScript: SiTypescript,
+  "Tailwind CSS": SiTailwindcss,
+  HTML5: FaCode,
+  CSS3: FaCss3Alt,
+  AJAX: FaExchangeAlt,
+  "Responsive Webdesign": FaPalette,
+  Bootstrap: FaBootstrap,
+  "Angular (Grundkenntnisse)": FaAngular,
+  "Vue.js (Grundkenntnisse)": FaVuejs,
+  "jQuery (Grundkenntnisse)": SiJquery,
+  Git: FaGitAlt,
+  GitHub: FaGithub,
+  "CI/CD": FaTasks,
+  Linux: FaLinux,
+  "VS Code": VscVscode,
+  XAMPP: SiXampp,
+  WordPress: FaWordpress,
+  JSON: SiJson,
+  "CSV/XML Datenverarbeitung": FaDatabase,
+  "Reporting & Datenvisualisierung": FaTools,
+  Adobe: FaPalette,
+  "Client-Server-Architektur": FaProjectDiagram,
+  Versionskontrolle: FaGitAlt,
+  "Agile Zusammenarbeit": FaUserCheck,
+  Debugging: FaBug,
+  "Unit Testing": FaTasks,
+  "Software Testing (Grundlagen)": FaTasks,
+  "Moderne UI/UX Konzepte": FaPalette,
+  "GitHub Copilot": SiGithubcopilot,
+  ChatGPT: FaRobot,
+};
+
+const getSkillIcon = (skillName: string): IconType => skillIconMap[skillName] ?? FaCode;
+
 const skillGroups = [
   {
     title: "Programmiersprachen",
@@ -77,8 +177,33 @@ const skillGroups = [
 ];
 
 const Skills = () => {
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const target = sectionRef.current;
+
+    if (!target) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.25 }
+    );
+
+    observer.observe(target);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="w-full max-w-5xl">
+    <div ref={sectionRef} className="w-full max-w-5xl">
       <h2 className="text-3xl md:text-5xl font-bold text-white uppercase tracking-widest">
         Technische Kompetenzen
       </h2>
@@ -87,23 +212,33 @@ const Skills = () => {
       </p>
 
       <div className="mt-10 grid gap-6 lg:grid-cols-3">
-        {skillGroups.map((group) => (
+        {skillGroups.map((group, groupIndex) => (
           <article key={group.title} className="info-card text-left">
             <span className="info-card__eyebrow">{group.title}</span>
             <div className="mt-6 space-y-4">
-              {group.skills.map((skill) => (
+              {group.skills.map((skill: SkillItem, skillIndex) => {
+                const SkillIcon = getSkillIcon(skill.name);
+                const animationDelay = `${Math.min(groupIndex * 140 + skillIndex * 60, 1200)}ms`;
+                const fillStyle: CSSProperties = {
+                  width: isInView ? `${skill.level}%` : "0%",
+                  transitionDelay: animationDelay,
+                };
+
+                return (
                 <div key={skill.name}>
                   <div className="mb-2 flex items-center justify-between gap-4">
-                    <span className="text-sm uppercase tracking-[0.2em] text-white/85">
+                    <span className="flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-white/85">
+                      <SkillIcon className="text-base text-cyan-300" aria-hidden="true" />
                       {skill.name}
                     </span>
                     <span className="text-xs text-gray-400">{skill.level}%</span>
                   </div>
                   <div className="skill-bar">
-                    <span className="skill-bar__fill" style={{ width: `${skill.level}%` }} />
+                    <span className="skill-bar__fill" style={fillStyle} />
                   </div>
                 </div>
-              ))}
+                );
+              })}
             </div>
           </article>
         ))}

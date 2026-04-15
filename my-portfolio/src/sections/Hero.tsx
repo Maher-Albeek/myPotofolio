@@ -122,12 +122,20 @@ const Hero = () => {
             {HERO_STATS.map((stat, index) => (
               <div
                 key={stat.label}
-                className="border border-white/20 bg-black/20 backdrop-blur-sm rounded-full w-32 h-32 p-3 flex flex-col items-center justify-center text-center"
+                className="hero-stat-card relative overflow-hidden bg-black/20 backdrop-blur-sm rounded-full w-32 h-32 p-3 flex flex-col items-center justify-center text-center"
               >
-                <span className="block text-2xl font-semibold text-white leading-none">
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 rounded-full border border-white/20"
+                />
+                <span
+                  aria-hidden="true"
+                  className="hero-stat-border-light pointer-events-none absolute -inset-[1px] rounded-full"
+                />
+                <span className="relative z-10 block text-2xl font-semibold text-white leading-none">
                   + {counts[index]}
                 </span>
-                <span className="block mt-1 text-xs uppercase tracking-[0.2em] text-white/75">
+                <span className="relative z-10 block mt-1 text-xs uppercase tracking-[0.2em] text-white/75">
                   {stat.label}
                 </span>
               </div>

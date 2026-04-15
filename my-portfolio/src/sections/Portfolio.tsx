@@ -4,22 +4,26 @@ const projects = [
     stack: "Next.js, React, TypeScript, Tailwind, MySQL, REST API",
     description:
       "Full-stack photography site with Admin-CMS, CRUD APIs, Auth, AVIF pipeline",
+    demoLink: "https://example.com/fotografie-website",
   },
   {
     title: "Booking System",
     stack: "Java, Spring Boot, MySQL, Angular",
     description:
       "Vehicle booking system with REST API, DTOs, JPA, transaction locking",
+    demoLink: "https://example.com/booking-system",
   },
   {
     title: "Cyber Physical System",
     stack: "Python, Raspberry Pi, Arduino",
     description: "Embedded system for hardware-software integration",
+    demoLink: "https://example.com/cyber-physical-system",
   },
   {
     title: "Cyber Physical System",
     stack: "Python, Raspberry Pi, Arduino",
     description: "Embedded system for hardware-software integration",
+    demoLink: "https://example.com/cyber-physical-system-2",
   },
 ];
 
@@ -42,6 +46,14 @@ const Portfolio = () => {
               {project.stack}
             </p>
             <p className="mt-6 text-gray-300 leading-relaxed">{project.description}</p>
+            <a
+              href={project.demoLink}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-8 inline-flex items-center rounded-md border border-cyan-300/70 px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em] text-cyan-200 transition hover:border-cyan-200 hover:text-white"
+            >
+              View Demo
+            </a>
           </article>
         ))}
       </div>
