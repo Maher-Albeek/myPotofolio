@@ -34,8 +34,8 @@ const Portfolio = () => {
       </p>
 
       <div className="mt-10 grid gap-6 lg:grid-cols-3">
-        {projects.map((project) => (
-          <article key={project.title} className="info-card project-card text-left">
+        {projects.map((project, index) => (
+          <article key={`${project.title}-${index}`} className="info-card project-card text-left">
             <span className="info-card__eyebrow">Project</span>
             <h3 className="mt-3 text-2xl font-semibold text-white">{project.title}</h3>
             <p className="mt-4 text-sm uppercase tracking-[0.22em] text-white/55">

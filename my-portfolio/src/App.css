@@ -358,6 +358,57 @@
   background: linear-gradient(90deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.35));
 }
 
+.timeline {
+  position: relative;
+  display: grid;
+  gap: 1.25rem;
+  padding-left: 2.5rem;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  left: 0.875rem;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.timeline__item {
+  position: relative;
+}
+
+.timeline__item::before {
+  content: "";
+  position: absolute;
+  top: 1.4rem;
+  left: calc(-2.5rem + 0.3125rem);
+  width: 1.125rem;
+  height: 1.125rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 4px solid rgba(18, 18, 18, 0.72);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.timeline__detail {
+  list-style: none;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.timeline__detail::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7rem;
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
 @keyframes fixedLineSweep {
   0% {
     transform: translate3d(-8%, 0, 0) scaleX(0.92);
@@ -434,6 +485,14 @@
     background: linear-gradient(180deg, #10201f 0%, #14302d 100%);
   }
 
+  #experience.post-hero-step {
+    background: linear-gradient(180deg, #18140f 0%, #231b13 100%);
+  }
+
+  #education.post-hero-step {
+    background: linear-gradient(180deg, #14151d 0%, #1c1f2b 100%);
+  }
+
   #portfolio.post-hero-step {
     background: linear-gradient(180deg, #20170d 0%, #312315 100%);
   }
@@ -449,11 +508,21 @@
   #about .text-gray-400,
   #services .text-gray-400,
   #skills .text-gray-400,
+  #experience .text-gray-400,
+  #education .text-gray-400,
   #portfolio .text-gray-400,
   #certificates .text-gray-400,
   #contact .text-gray-400 {
     max-width: 42ch;
     margin-inline: auto;
+  }
+
+  .timeline {
+    padding-left: 2rem;
+  }
+
+  .timeline__item::before {
+    left: calc(-2rem + 0.3125rem);
   }
 
   .fixed-linear-line--primary {

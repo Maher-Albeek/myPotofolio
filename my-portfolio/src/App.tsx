@@ -5,6 +5,8 @@ import Navbar from "./components/Navbar";
 import Hero from "./sections/Hero";
 import Services from "./sections/Services";
 import About from "./sections/About";
+import Experience from "./sections/Experience";
+import Education from "./sections/Education";
 import Skills from "./sections/Skills";
 import Portfolio from "./sections/Portfolio";
 import Certificates from "./sections/Certificates";
@@ -15,6 +17,8 @@ const sectionIds = [
   "hero",
   "services",
   "about",
+  "experience",
+  "education",
   "skills",
   "portfolio",
   "certificates",
@@ -283,6 +287,30 @@ function App() {
         >
           <div className="post-hero-panel">
             <About />
+          </div>
+        </section>
+
+        <section
+          id="experience"
+          data-scroll-section
+          data-bg-section="experience"
+          data-reveal
+          className="post-hero-step"
+        >
+          <div className="post-hero-panel">
+            <Experience />
+          </div>
+        </section>
+
+        <section
+          id="education"
+          data-scroll-section
+          data-bg-section="education"
+          data-reveal
+          className="post-hero-step"
+        >
+          <div className="post-hero-panel">
+            <Education />
           </div>
         </section>
 
