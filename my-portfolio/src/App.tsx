@@ -246,7 +246,7 @@ function App() {
     <>
       <Navbar />
       <Hero />
-
+      
       <div className="fixed-linear-bg" aria-hidden="true">
         <span className="fixed-linear-glow" />
         <span className="fixed-radial-glow" />

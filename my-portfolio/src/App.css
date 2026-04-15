@@ -261,7 +261,7 @@
 
 .fixed-radial-glow {
   position: absolute;
-  left: -60%;
+  left: -65%;
   top: 50%;
   height: 70vw;
   width: 70vw;
@@ -269,7 +269,7 @@
   min-width: 70px;
   transform: translateY(-50%);
   border-radius: 50%;
-  background: rgb(216, 101, 1);
+  background: rgb(216, 98, 1);
   filter: blur(100px);
   z-index: -1;
 }

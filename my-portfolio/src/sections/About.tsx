@@ -19,7 +19,7 @@ const About = () => {
           <div className="w-16 h-0.5 mx-auto bg-white/30 " />
 
             {/* Bio Text */}
-            <p className="text-gray-400 text-base md:text-lg leading-relaxed px-22">
+            <p className="text-gray-400 text-base md:text-lg leading-relaxed " style={{ padding: '22px' }}>
               Junior Softwareentwickler mit Fokus auf Webentwicklung und Backend-Systeme.
               Erfahrung in der Entwicklung von Webanwendungen mit PHP, MySQL und REST APIs sowie in der
               Verarbeitung und Integration von Daten. Grundkenntnisse in modernen Web-Technologien und
