@@ -81,6 +81,23 @@ body {
   overflow-x: hidden;
 }
 
+@media (min-width: 1025px) {
+  html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+  }
+
+  body {
+    scroll-snap-type: y mandatory;
+  }
+
+  #hero,
+  .post-hero-step {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+}
+
 [data-scroll-section] {
   min-height: 50svh;
 }

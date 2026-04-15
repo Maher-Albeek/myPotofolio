@@ -203,9 +203,10 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  /* padding: 1.5rem; */
   position: relative;
   z-index: 2;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .post-hero-panel {
@@ -282,6 +283,81 @@
   z-index: 1;
 }
 
+.section-dots {
+  position: fixed;
+  top: 50%;
+  right: 28px;
+  transform: translateY(-50%);
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.18);
+  transition:
+    transform 220ms ease,
+    background-color 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.section-dot:hover {
+  transform: scale(1.08);
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.section-dot.is-active {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.08);
+}
+
+.info-card {
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    0 20px 55px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.info-card__eyebrow {
+  font-size: 0.7rem;
+  line-height: 1;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.project-card {
+  min-height: 280px;
+}
+
+.skill-bar {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.skill-bar__fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.35));
+}
+
 @keyframes fixedLineSweep {
   0% {
     transform: translate3d(-8%, 0, 0) scaleX(0.92);
@@ -310,6 +386,10 @@
 @media (max-width: 768px) {
   [data-scroll-section] {
     min-height: auto;
+  }
+
+  .section-dots {
+    display: none;
   }
 
   .post-hero-step {
@@ -358,6 +438,10 @@
     background: linear-gradient(180deg, #20170d 0%, #312315 100%);
   }
 
+  #certificates.post-hero-step {
+    background: linear-gradient(180deg, #14121c 0%, #1f1b2b 100%);
+  }
+
   #contact.post-hero-step {
     background: linear-gradient(180deg, #1c0f16 0%, #2e1725 100%);
   }
@@ -366,6 +450,7 @@
   #services .text-gray-400,
   #skills .text-gray-400,
   #portfolio .text-gray-400,
+  #certificates .text-gray-400,
   #contact .text-gray-400 {
     max-width: 42ch;
     margin-inline: auto;

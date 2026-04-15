@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { animate } from "animejs";
 import Navbar from "./components/Navbar";
 import Hero from "./sections/Hero";
@@ -7,10 +7,22 @@ import Services from "./sections/Services";
 import About from "./sections/About";
 import Skills from "./sections/Skills";
 import Portfolio from "./sections/Portfolio";
+import Certificates from "./sections/Certificates";
 import Contact from "./sections/Contact";
 import Footer from "./components/Footer";
 
+const sectionIds = [
+  "hero",
+  "services",
+  "about",
+  "skills",
+  "portfolio",
+  "certificates",
+  "contact",
+] as const;
+
 function App() {
+  const [activeSectionIndex, setActiveSectionIndex] = useState(0);
   const activeSectionIndexRef = useRef(0);
   const isAnimatingRef = useRef(false);
   const lastTriggerTimeRef = useRef(0);
@@ -84,6 +96,7 @@ function App() {
 
       isAnimatingRef.current = true;
       activeSectionIndexRef.current = clampedIndex;
+      setActiveSectionIndex(clampedIndex);
       lastTriggerTimeRef.current = Date.now();
 
       const startY = window.scrollY;
@@ -138,6 +151,15 @@ function App() {
       attemptMove(event.deltaY > 0 ? 1 : -1);
     };
 
+    const onScroll = () => {
+      const sections = getSections();
+      if (!sections.length) return;
+
+      const currentIndex = getClosestSectionIndex(sections);
+      activeSectionIndexRef.current = currentIndex;
+      setActiveSectionIndex(currentIndex);
+    };
+
     const onKeyDown = (event: KeyboardEvent) => {
       const targetElement = event.target as HTMLElement | null;
       const tag = targetElement?.tagName;
@@ -171,13 +193,51 @@ function App() {
 
     window.addEventListener("wheel", onWheel, { passive: false });
     window.addEventListener("keydown", onKeyDown);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
 
     return () => {
       scrollAnimationRef.current?.cancel();
       window.removeEventListener("wheel", onWheel);
       window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("scroll", onScroll);
     };
   }, []);
+
+  const scrollToSectionById = (sectionId: (typeof sectionIds)[number]) => {
+    const target = document.getElementById(sectionId);
+    if (!target) return;
+
+    const targetIndex = sectionIds.indexOf(sectionId);
+    const isDesktop = window.matchMedia("(min-width: 1025px)").matches;
+    const targetY = target.offsetTop;
+
+    activeSectionIndexRef.current = targetIndex;
+    setActiveSectionIndex(targetIndex);
+
+    if (!isDesktop) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+
+    isAnimatingRef.current = true;
+    scrollAnimationRef.current?.cancel();
+
+    const scrollState = { y: window.scrollY };
+    scrollAnimationRef.current = animate(scrollState, {
+      y: targetY,
+      duration: 800,
+      ease: "inOutCirc",
+      onUpdate: () => {
+        window.scrollTo({ top: scrollState.y, behavior: "auto" });
+      },
+      onComplete: () => {
+        window.scrollTo({ top: targetY, behavior: "auto" });
+        isAnimatingRef.current = false;
+      },
+    });
+  };
+
   return (
     <>
       <Navbar />
@@ -187,6 +247,19 @@ function App() {
         <span className="fixed-linear-glow" />
         <span className="fixed-radial-glow" />
       </div>
+
+      <nav className="section-dots" aria-label="Section navigation">
+        {sectionIds.map((sectionId, index) => (
+          <button
+            key={sectionId}
+            type="button"
+            className={`section-dot ${index === activeSectionIndex ? "is-active" : ""}`}
+            onClick={() => scrollToSectionById(sectionId)}
+            aria-label={`Go to ${sectionId}`}
+            aria-current={index === activeSectionIndex ? "true" : undefined}
+          />
+        ))}
+      </nav>
 
       <main>
         <section
@@ -234,6 +307,18 @@ function App() {
         >
           <div className="post-hero-panel">
             <Portfolio />
+          </div>
+        </section>
+
+        <section
+          id="certificates"
+          data-scroll-section
+          data-bg-section="certificates"
+          data-reveal
+          className="post-hero-step"
+        >
+          <div className="post-hero-panel">
+            <Certificates />
           </div>
         </section>
 

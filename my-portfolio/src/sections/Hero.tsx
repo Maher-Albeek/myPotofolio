@@ -83,7 +83,7 @@ const Hero = () => {
           </div>
 
         <div className="flex flex-col text-5xl justify-end gap-4 absolute center right-30 ">
-          <span className="mb-7">+ 40 Projekte</span>
+          <span className="mb-7 ">+ 40 Projekte</span>
           <span className="mb-7">+ 15 Techniken</span>
           <span className="mb-7">+ 2 Jahre Erfahrung</span>
         </div>
