@@ -252,18 +252,7 @@ function App() {
         <span className="fixed-radial-glow" />
       </div>
 
-      <nav className="section-dots" aria-label="Section navigation">
-        {sectionIds.map((sectionId, index) => (
-          <button
-            key={sectionId}
-            type="button"
-            className={`section-dot ${index === activeSectionIndex ? "is-active" : ""}`}
-            onClick={() => scrollToSectionById(sectionId)}
-            aria-label={`Go to ${sectionId}`}
-            aria-current={index === activeSectionIndex ? "true" : undefined}
-          />
-        ))}
-      </nav>
+
 
       <main>
         <section
