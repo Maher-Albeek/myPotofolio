@@ -188,10 +188,10 @@ main::before {
 .post-hero-step:first-of-type::before {
   content: "";
   position: fixed;
-  top: var(--hero-divider-current-y, var(--hero-divider-top, 200px));
+  top: var(--hero-divider-current-y, var(--hero-divider-top, 100px));
   left: 0;
   width: 100%;
-  height: 1px;
+  
   background: var(--border);
   pointer-events: none;
   z-index: 4;
@@ -199,9 +199,9 @@ main::before {
 
 .post-hero-panel {
   position: sticky;
-  top: var(--hero-divider-top, 200px);
+  top: var(--hero-divider-top, 100px);
   width: min(1100px, 100%);
-  min-height: calc(100vh - var(--hero-divider-top, 200px) - var(--post-hero-bottom-gap, 144px));
+  min-height: calc(100vh - var(--hero-divider-top, 100px) - var(--post-hero-bottom-gap, 144px));
   border-radius: 20px 0px 0px 20px;
  /*  background: #1d151531;
   backdrop-filter: blur(20px);

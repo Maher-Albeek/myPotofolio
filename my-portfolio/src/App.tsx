@@ -230,7 +230,7 @@ function App() {
         <span className="fixed-radial-glow" />
       </div>
 
-
+      
 
       <main>
        {sections ().map((section) => (
