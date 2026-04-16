@@ -1,3 +1,5 @@
+import "./Portfolio.css";
+
 const projects = [
   {
     title: "Fotografie Website",

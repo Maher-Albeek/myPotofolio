@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import type { IconType } from "react-icons";
+import "./Skills.css";
 import {
   FaAngular,
   FaBootstrap,

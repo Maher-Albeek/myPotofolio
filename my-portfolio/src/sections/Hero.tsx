@@ -1,6 +1,6 @@
 import { TypeAnimation } from "react-type-animation";
-import { Link } from "react-scroll";
 import { useEffect, useState } from "react";
+import "./Hero.css";
 
 const HERO_STATS = [
   { label: "Projekte", value: 40 },
@@ -83,7 +83,7 @@ const Hero = () => {
             />
 
             {/* CTA Button */}
-            <Link
+           {/*  <Link
               to="services"
               smooth={true}
               duration={500}
@@ -93,10 +93,10 @@ const Hero = () => {
               hover:text-gray-900 transition-all duration-300"
             >
               Start
-            </Link>
+            </Link> */}
 
             {/* Scroll Down Arrow */}
-            <Link
+           {/*  <Link
               to="about"
               smooth={true}
               duration={500}
@@ -114,7 +114,7 @@ const Hero = () => {
                   strokeWidth={2}
                   d="M19 9l-7 7-7-7"/>
               </svg>
-            </Link>
+            </Link> */}
 
           </div>
 

@@ -1,3 +1,5 @@
+import "./Education.css";
+
 const educationItems = [
   {
     period: "02.2023 - 11.2025",

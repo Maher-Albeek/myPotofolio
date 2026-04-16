@@ -1,0 +1,10 @@
+@media (max-width: 768px) {
+  #services.post-hero-step {
+    background: linear-gradient(180deg, #0b111d 0%, #111b2e 100%);
+  }
+
+  #services .text-gray-400 {
+    max-width: 42ch;
+    margin-inline: auto;
+  }
+}

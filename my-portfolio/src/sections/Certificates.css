@@ -1,0 +1,10 @@
+@media (max-width: 768px) {
+  #certificates.post-hero-step {
+    background: linear-gradient(180deg, #14121c 0%, #1f1b2b 100%);
+  }
+
+  #certificates .text-gray-400 {
+    max-width: 42ch;
+    margin-inline: auto;
+  }
+}

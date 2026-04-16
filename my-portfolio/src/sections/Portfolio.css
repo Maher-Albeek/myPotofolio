@@ -1,0 +1,14 @@
+.project-card {
+  min-height: 280px;
+}
+
+@media (max-width: 768px) {
+  #portfolio.post-hero-step {
+    background: linear-gradient(180deg, #20170d 0%, #312315 100%);
+  }
+
+  #portfolio .text-gray-400 {
+    max-width: 42ch;
+    margin-inline: auto;
+  }
+}

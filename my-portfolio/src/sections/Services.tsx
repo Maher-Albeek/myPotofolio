@@ -1,4 +1,5 @@
 import ServiceCards from "../components/ServiceCard";
+import "./Services.css";
 
 const Services = () => {
   return (

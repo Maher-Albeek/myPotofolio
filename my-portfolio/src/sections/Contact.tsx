@@ -1,3 +1,5 @@
+import "./Contact.css";
+
 const contactItems = [
   { label: "Phone", value: "0163-44 39 442", href: "tel:01634439442" },
   { label: "Email", value: "malbeek92@gmail.com", href: "mailto:malbeek92@gmail.com" },

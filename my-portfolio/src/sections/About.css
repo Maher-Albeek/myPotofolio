@@ -1,0 +1,14 @@
+.about-description {
+  padding: 22px;
+}
+
+@media (max-width: 768px) {
+  #about.post-hero-step {
+    background: linear-gradient(180deg, #1a1020 0%, #251530 100%);
+  }
+
+  #about .text-gray-400 {
+    max-width: 42ch;
+    margin-inline: auto;
+  }
+}

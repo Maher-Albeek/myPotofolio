@@ -1,3 +1,5 @@
+import "./Experience.css";
+
 const experiences = [
   {
     period: "05.2024 - 11.2024",

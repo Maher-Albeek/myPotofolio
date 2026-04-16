@@ -1,3 +1,5 @@
+import "./Certificates.css";
+
 const certificates = [
   { title: "IHK Abschluss", detail: "Anwendungsentwicklung", year: "2025" },
   { title: "LPIC-1", detail: "Linux", year: "2024" },

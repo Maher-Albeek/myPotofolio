@@ -30,9 +30,13 @@ function App() {
   const activeSectionIndexRef = useRef(0);
   const isAnimatingRef = useRef(false);
   const lastTriggerTimeRef = useRef(0);
+  const [isVisible, setIsVisible] = useState(true);
   const scrollAnimationRef = useRef<ReturnType<typeof animate> | null>(null);
 
   useEffect(() => {
+    const updateVisibility = () => {
+      setIsVisible(window.scrollY > 40);
+    };
     const revealTargets = document.querySelectorAll<HTMLElement>("[data-reveal]");
     if (!revealTargets.length) return;
 
@@ -245,6 +249,7 @@ function App() {
   return (
     <>
       <Navbar />
+      
       <Hero />
       
       <div className="fixed-linear-bg" aria-hidden="true">
