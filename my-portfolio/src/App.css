@@ -1,5 +1,29 @@
 @import "tailwindcss";
 
+:root {
+  --hero-divider-top: 300px;
+  --hero-divider-current-y: 100svh;
+  --hero-mask-opacity: 0;
+  --post-hero-bottom-gap: 144px;
+}
+
+main {
+  position: relative;
+  z-index: 2;
+}
+
+main::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--hero-divider-current-y, var(--hero-divider-top, 300px));
+  background: rgba(10, 10, 15, var(--hero-mask-opacity, 0));
+  pointer-events: none;
+  z-index: 3;
+}
+
 .counter {
   font-size: 16px;
   padding: 5px 10px;
@@ -157,11 +181,27 @@
   z-index: 2;
 }
 
+.post-hero-step:first-of-type {
+  border-top: none;
+}
+
+.post-hero-step:first-of-type::before {
+  content: "";
+  position: fixed;
+  top: var(--hero-divider-current-y, var(--hero-divider-top, 200px));
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+  pointer-events: none;
+  z-index: 4;
+}
+
 .post-hero-panel {
   position: sticky;
-  top: 88px;
+  top: var(--hero-divider-top, 200px);
   width: min(1100px, 100%);
-  min-height: calc(100vh - 232px);
+  min-height: calc(100vh - var(--hero-divider-top, 200px) - var(--post-hero-bottom-gap, 144px));
   border-radius: 20px 0px 0px 20px;
  /*  background: #1d151531;
   backdrop-filter: blur(20px);
@@ -187,8 +227,9 @@
 }
 
 .fixed-linear-bg {
-  position: fixed;
-  inset: 0;
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 100svh;
   z-index: 1;
   pointer-events: none;
   overflow: hidden;
@@ -204,8 +245,10 @@
   background-size: auto 90svh;
   background-image: var(--bg-image-fixed);
   transform-origin: left top;
-  transform: scale(var(--bg-scale, 1));
-  will-change: transform;
+  transform: translate3d(var(--bg-shift-x, 0), 0, 0) scale(var(--bg-scale, 1));
+  opacity: var(--bg-opacity, 1);
+  will-change: transform, opacity;
+  transition: opacity 120ms linear;
   z-index: 0;
 }
 

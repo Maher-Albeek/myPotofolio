@@ -55,7 +55,7 @@ const Hero = () => {
 
             {/* Name */}
             <h1
-              className="hero-name  text-white transition-all duration-500 ease-out flex flex-col items-center gap-4 justify-end"
+              className="hero-name text-white flex flex-col items-center gap-4 justify-end"
             >
               <span>Maher</span>
               <span>Albeek</span>
