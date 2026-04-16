@@ -49,7 +49,7 @@ const Hero = () => {
         data-scroll-section
         data-bg-section="hero"
         data-reveal
-        className="relative w-full min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6">
+        className="relative w-full h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6">
         {/* Content */}
           <div className="relative z-10 text-center w-full max-w-4xl flex flex-col items-center gap-5 sm:gap-6 pt-16 pb-20 sm:pt-8 sm:pb-16">
 

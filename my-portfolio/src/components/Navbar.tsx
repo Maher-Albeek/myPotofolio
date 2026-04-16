@@ -26,48 +26,34 @@ const navLinks = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-
   useEffect(() => {
-    const updateVisibility = () => {
-      setIsVisible(window.scrollY > 40);
-    };
 
     const handleScroll = () => {
-      updateVisibility();
-    };
 
-    const handleResize = () => {
-      updateVisibility();
     };
-
-    updateVisibility();
     window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
 
   }, []);
 
   return (
     <nav
-      className={`transition-all duration-300 z-50 ${
-        isVisible ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-      }`}
+      className="fixed top-0 w-full  transition-all  z-50 "
+      
     >
+      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between inset-y-0 left-0">
+
+    
       {/* Desktop Links */}
-      <ul className="hidden md:flex fixed top-1/2 left-1/2 -translate-x-[200%] -translate-y-1/2 flex-col gap-4 pr-6  border-white/20">
+        <ul className="hidden md:flex gap-8  ">
           {navLinks.map((link) => (
-            <li key={link.to} className="w-full text-right">
+            <li key={link.to}>
               <Link
                 to={link.to}
                 smooth={true}
                 duration={500}
                 offset={-70}
-                className="inline-block text-gray-300 hover:text-white cursor-pointer 
+                className="text-gray-300 hover:text-white  cursor-pointer 
                 transition-colors duration-200 text-sm uppercase tracking-wider"
                 activeClass="text-white font-semibold border-b-2 border-white pb-1"
                 spy={true}
@@ -81,8 +67,6 @@ const Navbar = () => {
           ))}
       </ul>
 
-      <div className="md:hidden fixed top-0 w-full">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between inset-y-0 left-0">
           {/* Hamburger Button - Mobile */}
         <button
           className="md:hidden flex flex-col gap-1.5 cursor-pointer"
@@ -103,7 +87,7 @@ const Navbar = () => {
           className="h-7 w-auto"
         />
 
-        </div>
+        
       </div>
           
       
@@ -119,13 +103,12 @@ const Navbar = () => {
                 smooth={true}
                 duration={500}
                 offset={-70}
-                className="inline-flex items-center gap-2 text-gray-300 hover:text-white cursor-pointer 
+                className="text-gray-300 hover:text-white cursor-pointer 
                 transition-colors duration-200 text-sm uppercase tracking-wider"
                 activeClass="text-white font-semibold"
                 spy={true}
                 onClick={() => setIsOpen(false)}
               >
-                <link.icon className="text-[0.85rem]" aria-hidden="true" />
                 {link.label}
               </Link>
             </li>

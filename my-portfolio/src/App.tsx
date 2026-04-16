@@ -1,6 +1,5 @@
 import "./App.css";
-import { useEffect, useRef, useState } from "react";
-import { animate } from "animejs";
+import { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./sections/Hero";
 import Services from "./sections/Services";
@@ -13,30 +12,8 @@ import Certificates from "./sections/Certificates";
 import Contact from "./sections/Contact";
 import Footer from "./components/Footer";
 
-const sectionIds = [
-  "hero",
-  "services",
-  "about",
-  "experience",
-  "education",
-  "skills",
-  "portfolio",
-  "certificates",
-  "contact",
-] as const;
-
 function App() {
-  const [activeSectionIndex, setActiveSectionIndex] = useState(0);
-  const activeSectionIndexRef = useRef(0);
-  const isAnimatingRef = useRef(false);
-  const lastTriggerTimeRef = useRef(0);
-  const [isVisible, setIsVisible] = useState(true);
-  const scrollAnimationRef = useRef<ReturnType<typeof animate> | null>(null);
-
   useEffect(() => {
-    const updateVisibility = () => {
-      setIsVisible(window.scrollY > 40);
-    };
     const revealTargets = document.querySelectorAll<HTMLElement>("[data-reveal]");
     if (!revealTargets.length) return;
 
@@ -67,184 +44,134 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const SECTION_SELECTOR = "[data-scroll-section]";
-    const SCROLL_COOLDOWN_MS = 650;
+    const MIN_BG_SCALE = 1;
+    const MAX_BG_SCALE = 1.15;
+    let rafId = 0;
 
-    const desktopMediaQuery = window.matchMedia("(min-width: 1025px)");
-    if (!desktopMediaQuery.matches) {
-      return;
-    }
+    const applyBackgroundScale = () => {
+      rafId = 0;
 
-    const getSections = () =>
-      Array.from(document.querySelectorAll<HTMLElement>(SECTION_SELECTOR));
+      const footer = document.querySelector("footer");
+      if (!footer) return;
 
-    const getClosestSectionIndex = (sections: HTMLElement[]) => {
-      const probeY = window.scrollY + window.innerHeight * 0.35;
-      let closestIndex = 0;
-      let closestDistance = Number.POSITIVE_INFINITY;
+      const footerTop = footer.getBoundingClientRect().top + window.scrollY;
+      const rawProgress = footerTop <= 0 ? 1 : window.scrollY / footerTop;
+      const progress = Math.min(Math.max(rawProgress, 0), 1);
+      const scale = MIN_BG_SCALE + (MAX_BG_SCALE - MIN_BG_SCALE) * progress;
 
-      sections.forEach((section, index) => {
-        const distance = Math.abs(section.offsetTop - probeY);
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closestIndex = index;
-        }
-      });
-
-      return closestIndex;
+      document.documentElement.style.setProperty("--bg-scale", scale.toFixed(3));
     };
 
-    const scrollToSection = (targetIndex: number) => {
-      const sections = getSections();
-      if (!sections.length) return;
-
-      const clampedIndex = Math.min(Math.max(targetIndex, 0), sections.length - 1);
-      const target = sections[clampedIndex];
-      if (!target) return;
-
-      isAnimatingRef.current = true;
-      activeSectionIndexRef.current = clampedIndex;
-      setActiveSectionIndex(clampedIndex);
-      lastTriggerTimeRef.current = Date.now();
-
-      const startY = window.scrollY;
-      const targetY = target.offsetTop;
-
-      if (Math.abs(targetY - startY) < 1) {
-        isAnimatingRef.current = false;
-        return;
-      }
-
-      scrollAnimationRef.current?.cancel();
-
-      const scrollState = { y: startY };
-      scrollAnimationRef.current = animate(scrollState, {
-        y: targetY,
-        duration: 800,
-        ease: "inOutCirc",
-        onUpdate: () => {
-          window.scrollTo({ top: scrollState.y, behavior: "auto" });
-        },
-        onComplete: () => {
-          window.scrollTo({ top: targetY, behavior: "auto" });
-          isAnimatingRef.current = false;
-        },
-      });
+    const onScrollOrResize = () => {
+      if (rafId) return;
+      rafId = window.requestAnimationFrame(applyBackgroundScale);
     };
 
-    const attemptMove = (direction: 1 | -1) => {
-      const now = Date.now();
-      if (isAnimatingRef.current || now - lastTriggerTimeRef.current < SCROLL_COOLDOWN_MS) {
-        return;
-      }
-
-      const sections = getSections();
-      if (!sections.length) return;
-
-      const currentIndex = getClosestSectionIndex(sections);
-      activeSectionIndexRef.current = currentIndex;
-
-      const nextIndex = Math.min(
-        Math.max(activeSectionIndexRef.current + direction, 0),
-        sections.length - 1
-      );
-
-      if (nextIndex === activeSectionIndexRef.current) return;
-      scrollToSection(nextIndex);
-    };
-
-    const onWheel = (event: WheelEvent) => {
-      if (Math.abs(event.deltaY) < 8) return;
-      event.preventDefault();
-      attemptMove(event.deltaY > 0 ? 1 : -1);
-    };
-
-    const onScroll = () => {
-      const sections = getSections();
-      if (!sections.length) return;
-
-      const currentIndex = getClosestSectionIndex(sections);
-      activeSectionIndexRef.current = currentIndex;
-      setActiveSectionIndex(currentIndex);
-    };
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      const targetElement = event.target as HTMLElement | null;
-      const tag = targetElement?.tagName;
-      if (tag === "INPUT" || tag === "TEXTAREA" || targetElement?.isContentEditable) {
-        return;
-      }
-
-      const sections = getSections();
-      if (!sections.length) return;
-
-      if (["ArrowDown", "PageDown", " "].includes(event.key)) {
-        event.preventDefault();
-        attemptMove(1);
-      }
-
-      if (["ArrowUp", "PageUp"].includes(event.key)) {
-        event.preventDefault();
-        attemptMove(-1);
-      }
-
-      if (event.key === "Home") {
-        event.preventDefault();
-        scrollToSection(0);
-      }
-
-      if (event.key === "End") {
-        event.preventDefault();
-        scrollToSection(sections.length - 1);
-      }
-    };
-
-    window.addEventListener("wheel", onWheel, { passive: false });
-    window.addEventListener("keydown", onKeyDown);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
+    applyBackgroundScale();
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize);
 
     return () => {
-      scrollAnimationRef.current?.cancel();
-      window.removeEventListener("wheel", onWheel);
-      window.removeEventListener("keydown", onKeyDown);
-      window.removeEventListener("scroll", onScroll);
+      if (rafId) {
+        window.cancelAnimationFrame(rafId);
+      }
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
+      document.documentElement.style.removeProperty("--bg-scale");
     };
   }, []);
 
-  const scrollToSectionById = (sectionId: (typeof sectionIds)[number]) => {
-    const target = document.getElementById(sectionId);
-    if (!target) return;
+  useEffect(() => {
+    const titleTargets = document.querySelectorAll<HTMLElement>("[data-section-title]");
+    if (!titleTargets.length) return;
+    let rafId = 0;
+    let targetScrollY = window.scrollY;
+    let easedScrollY = targetScrollY;
 
-    const targetIndex = sectionIds.indexOf(sectionId);
-    const isDesktop = window.matchMedia("(min-width: 1025px)").matches;
-    const targetY = target.offsetTop;
+    const getProgress = (virtualTop: number, viewportHeight: number) => {
+      const start = viewportHeight * 0.9;
+      const end = viewportHeight * 0.3;
+      const normalized = (start - virtualTop) / (start - end);
+      return Math.min(Math.max(normalized, 0), 1);
+    };
 
-    activeSectionIndexRef.current = targetIndex;
-    setActiveSectionIndex(targetIndex);
+    const updateTitles = () => {
+      const viewportHeight = window.innerHeight || 1;
 
-    if (!isDesktop) {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-      return;
-    }
+      titleTargets.forEach((target) => {
+        const absoluteTop = target.getBoundingClientRect().top + window.scrollY;
+        const virtualTop = absoluteTop - easedScrollY;
+        const progress = getProgress(virtualTop, viewportHeight);
+        const scale = 1 + (1 - progress) * 2;
+        const opacity = 0.35 + progress * 0.65;
+        const yOffset = (1 - progress) * 28;
 
-    isAnimatingRef.current = true;
-    scrollAnimationRef.current?.cancel();
+        target.style.setProperty("--section-title-scale", scale.toFixed(3));
+        target.style.setProperty("--section-title-opacity", opacity.toFixed(3));
+        target.style.setProperty("--section-title-y", `${yOffset.toFixed(2)}px`);
+      });
+    };
 
-    const scrollState = { y: window.scrollY };
-    scrollAnimationRef.current = animate(scrollState, {
-      y: targetY,
-      duration: 800,
-      ease: "inOutCirc",
-      onUpdate: () => {
-        window.scrollTo({ top: scrollState.y, behavior: "auto" });
-      },
-      onComplete: () => {
-        window.scrollTo({ top: targetY, behavior: "auto" });
-        isAnimatingRef.current = false;
-      },
+    const animate = () => {
+      const delta = targetScrollY - easedScrollY;
+      easedScrollY += delta * 0.12;
+
+      if (Math.abs(delta) < 0.05) {
+        easedScrollY = targetScrollY;
+      }
+
+      updateTitles();
+      rafId = window.requestAnimationFrame(animate);
+    };
+
+    const onScroll = () => {
+      targetScrollY = window.scrollY;
+    };
+
+    const onResize = () => {
+      targetScrollY = window.scrollY;
+      easedScrollY = targetScrollY;
+      updateTitles();
+    };
+
+    titleTargets.forEach((target) => {
+      target.style.setProperty("--section-title-scale", "3");
+      target.style.setProperty("--section-title-opacity", "0.35");
+      target.style.setProperty("--section-title-y", "28px");
     });
-  };
+
+    updateTitles();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onResize);
+    rafId = window.requestAnimationFrame(animate);
+
+    return () => {
+      if (rafId) {
+        window.cancelAnimationFrame(rafId);
+      }
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
+      titleTargets.forEach((target) => {
+        target.style.removeProperty("--section-title-scale");
+        target.style.removeProperty("--section-title-opacity");
+        target.style.removeProperty("--section-title-y");
+      });
+    };
+  }, []);
+
+  const sections = () => {
+    return [
+      /* { id: "hero", label: "Home" }, */
+      { id: "services", label: <Services /> },
+      { id: "about", label: <About /> },
+      { id: "experience", label: <Experience /> },
+      { id: "education", label: <Education /> },
+      { id: "skills", label: <Skills /> },
+      { id: "portfolio", label: <Portfolio /> },
+      { id: "certificates", label: <Certificates /> },
+      { id: "contact", label: <Contact /> },
+    ];
+  }
 
   return (
     <>
@@ -260,101 +187,20 @@ function App() {
 
 
       <main>
+       {sections ().map((section) => (
         <section
-          id="services"
-          data-scroll-section
-          data-bg-section="services"
-          data-reveal
+          key={section.id}
           className="post-hero-step"
         >
-          <div className="post-hero-panel">
-            <Services />
-          </div>
-        </section>
-
-        <section
-          id="about"
+          <div
+          id={section.id}
           data-scroll-section
-          data-bg-section="about"
-          data-reveal
-          className="post-hero-step"
-        >
-          <div className="post-hero-panel">
-            <About />
+          data-bg-section={section.id}
+          data-reveal className="post-hero-panel">
+            {section.label}
           </div>
         </section>
-
-        <section
-          id="experience"
-          data-scroll-section
-          data-bg-section="experience"
-          data-reveal
-          className="post-hero-step"
-        >
-          <div className="post-hero-panel">
-            <Experience />
-          </div>
-        </section>
-
-        <section
-          id="education"
-          data-scroll-section
-          data-bg-section="education"
-          data-reveal
-          className="post-hero-step"
-        >
-          <div className="post-hero-panel">
-            <Education />
-          </div>
-        </section>
-
-        <section
-          id="skills"
-          data-scroll-section
-          data-bg-section="skills"
-          data-reveal
-          className="post-hero-step"
-        >
-          <div className="post-hero-panel">
-            <Skills />
-          </div>
-        </section>
-
-        <section
-          id="portfolio"
-          data-scroll-section
-          data-bg-section="portfolio"
-          data-reveal
-          className="post-hero-step"
-        >
-          <div className="post-hero-panel">
-            <Portfolio />
-          </div>
-        </section>
-
-        <section
-          id="certificates"
-          data-scroll-section
-          data-bg-section="certificates"
-          data-reveal
-          className="post-hero-step"
-        >
-          <div className="post-hero-panel">
-            <Certificates />
-          </div>
-        </section>
-
-        <section
-          id="contact"
-          data-scroll-section
-          data-bg-section="contact"
-          data-reveal
-          className="post-hero-step"
-        >
-          <div className="post-hero-panel">
-            <Contact />
-          </div>
-        </section>
+       ))}
       </main>
 
       <Footer />

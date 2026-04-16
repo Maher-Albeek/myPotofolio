@@ -13,7 +13,10 @@ const About = () => {
           </span>
 
           {/* Section Title */}
-          <h2 className="text-3xl md:text-5xl font-bold text-white uppercase tracking-widest py-4">
+          <h2
+            data-section-title
+            className="text-3xl md:text-5xl font-bold text-white uppercase tracking-widest py-4"
+          >
             About Me
           </h2>
 

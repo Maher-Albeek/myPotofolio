@@ -84,17 +84,6 @@ body {
 @media (min-width: 1025px) {
   html {
     scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
-  }
-
-  body {
-    scroll-snap-type: y mandatory;
-  }
-
-  #hero,
-  .post-hero-step {
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
   }
 }
 
@@ -135,6 +124,12 @@ body {
     transform: none;
     transition: none;
   }
+
+  [data-section-title] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 h1,
@@ -162,6 +157,17 @@ h2 {
     font-size: 20px;
   }
 }
+
+[data-section-title] {
+  --section-title-scale: 3;
+  --section-title-opacity: 0.35;
+  --section-title-y: 28px;
+  transform: translate3d(0, var(--section-title-y), 0) scale(var(--section-title-scale));
+  transform-origin: center center;
+  opacity: var(--section-title-opacity);
+  will-change: transform, opacity;
+}
+
 p {
   margin: 0;
 }

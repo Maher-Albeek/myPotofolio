@@ -152,11 +152,9 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   position: relative;
   z-index: 2;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
 }
 
 .post-hero-panel {
@@ -165,17 +163,17 @@
   width: min(1100px, 100%);
   min-height: calc(100vh - 232px);
   border-radius: 20px 0px 0px 20px;
-  background: #1d151531;
+ /*  background: #1d151531;
   backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px); */
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   padding: 1rem 2rem;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  box-shadow: 0 24px 70px rgba(62, 112, 114, 0.137), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+ /*  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 24px 70px rgba(62, 112, 114, 0.137), inset 0 1px 0 rgba(255, 255, 255, 0.2); */
   isolation: isolate;
 }
 
@@ -183,8 +181,8 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(110, 110, 109, 0.308), rgba(255, 255, 255, 0.02) 45%);
-  pointer-events: none;
+/*   background: linear-gradient(180deg, rgba(110, 110, 109, 0.308), rgba(255, 255, 255, 0.02) 45%);
+ */  pointer-events: none;
   z-index: -1;
 }
 
@@ -205,6 +203,9 @@
   background-repeat: no-repeat;
   background-size: auto 90svh;
   background-image: var(--bg-image-fixed);
+  transform-origin: left top;
+  transform: scale(var(--bg-scale, 1));
+  will-change: transform;
   z-index: 0;
 }
 
