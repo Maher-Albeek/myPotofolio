@@ -1,8 +1,41 @@
 /* From Uiverse.io by joe-watson-sbf */ 
+.service-parallax-item {
+  --enter-x: 0px;
+  opacity: 0;
+  transform: translate3d(
+    calc(var(--enter-x) + var(--cursor-x, 0px)),
+    calc(30px + var(--parallax-y, 0px) + var(--cursor-y, 0px)),
+    0
+  );
+  transition: opacity 0.7s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+}
+
+.service-parallax-item.from-left {
+  --enter-x: -70px;
+}
+
+.service-parallax-item.from-right {
+  --enter-x: 70px;
+}
+
+.service-parallax-item.is-visible {
+  opacity: 1;
+  transform: translate3d(
+    calc(var(--parallax-x, 0px) + var(--cursor-x, 0px)),
+    calc(var(--parallax-y, 0px) + var(--cursor-y, 0px)),
+    0
+  );
+  transition: opacity 0.55s ease, transform 0.2s linear;
+}
+
 .container {
   color: white;
   position: relative;
   font-family: sans-serif;
+  perspective: 900px;
+  animation: card-float 6s ease-in-out infinite;
+  animation-delay: calc(var(--card-index, 0) * 0.12s);
 }
 
 .container::before,
@@ -18,6 +51,10 @@
   height: 6rem;
   top: 20%;
   right: -6%;
+  z-index: 0;
+  filter: blur(1px);
+  animation: orb-fly var(--orb-duration, 5.2s) ease-in-out infinite;
+  animation-delay: var(--orb-delay, 0s);
 }
 
 .container::after {
@@ -38,7 +75,11 @@
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
   border-radius: 0.7rem;
-  transition: all ease 0.3s;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+  position: relative;
+  z-index: 1;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
 }
 
 .container .box {
@@ -47,16 +88,26 @@
   justify-content: space-between;
 }
 
+.container .box .title,
+.container .box div,
+.container .box div span {
+  position: relative;
+  z-index: 4;
+}
+
 .container .box .title {
   font-size: 1rem;
   font-weight: 200;
   letter-spacing: 0.1em;
+  transform: translateZ(10px);
 }
 
 
 .container .box div span {
   font-size: 0.7rem;
   font-weight: 300;
+  transform: translateZ(6px);
+  display: inline-block;
 }
 
 .container .box div span:nth-child(3) {
@@ -67,4 +118,89 @@
 .container .box:hover {
   box-shadow: 0px 0px 20px 1px #ffbb763f;
   border: 1px solid rgba(255, 255, 255, 0.454);
+}
+
+.tilted-card-figure {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+@media (max-width: 640px) {
+  .tilted-card-mobile-alert {
+    display: block;
+  }
+
+  .tilted-card-caption {
+    display: none;
+  }
+}
+
+.tilted-card-inner {
+  position: relative;
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
+
+
+
+.tilted-card-caption {
+  pointer-events: none;
+  position: absolute;
+  left: 0.8rem;
+  top: 0.8rem;
+  border-radius: 4px;
+  background-color: #fff;
+  padding: 4px 10px;
+  font-size: 10px;
+  color: #2d2d2d;
+  opacity: 0;
+  z-index: 5;
+  transition: opacity 0.2s ease;
+}
+
+.container:hover .tilted-card-caption {
+  opacity: 1;
+}
+
+@keyframes card-float {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -8px, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes orb-fly {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.95);
+  }
+
+  25% {
+    transform: translate3d(var(--orb-x1, -18px), var(--orb-y1, -22px), 0) scale(1.05);
+  }
+
+  50% {
+    transform: translate3d(var(--orb-x2, -30px), var(--orb-y2, 12px), 0) scale(0.96);
+  }
+
+  75% {
+    transform: translate3d(var(--orb-x3, 10px), var(--orb-y3, 24px), 0) scale(1.04);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0) scale(0.95);
+  }
 }
