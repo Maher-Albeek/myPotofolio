@@ -204,15 +204,15 @@ const Skills = () => {
   }, []);
 
   return (
-    <div ref={sectionRef} className="w-full max-w-5xl">
+    <div ref={sectionRef} className="w-full max-w-5xl mt-10">
       <h2
         data-section-title
         className="text-3xl md:text-5xl font-bold text-white uppercase tracking-widest"
       >
-        Technische Kompetenzen
+        Skills
       </h2>
       <p className="mt-2 text-gray-400 text-base md:text-lg leading-relaxed">
-        Ubersicht meiner technischen Fahigkeiten und Grundlagen.
+        Übersicht meiner technischen ähigkeiten und Grundlagen.
       </p>
 
       <div className="mt-10 grid gap-6 lg:grid-cols-3">

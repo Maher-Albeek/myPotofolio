@@ -44,51 +44,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const MIN_BG_SCALE = 1;
-    const MAX_BG_SCALE = 1.15;
-    const MAX_BG_SHIFT = -38;
-    let rafId = 0;
-
-    const applyBackgroundMotion = () => {
-      rafId = 0;
-
-      const footer = document.querySelector("footer");
-      if (!footer) return;
-
-      const footerTop = footer.getBoundingClientRect().top + window.scrollY;
-      const rawProgress = footerTop <= 0 ? 1 : window.scrollY / footerTop;
-      const progress = Math.min(Math.max(rawProgress, 0), 1);
-      const scale = MIN_BG_SCALE + (MAX_BG_SCALE - MIN_BG_SCALE) * progress;
-      const opacity = 1 - progress;
-      const shiftX = MAX_BG_SHIFT * progress;
-
-      document.documentElement.style.setProperty("--bg-scale", scale.toFixed(3));
-      document.documentElement.style.setProperty("--bg-opacity", opacity.toFixed(3));
-      document.documentElement.style.setProperty("--bg-shift-x", `${shiftX.toFixed(2)}vw`);
-    };
-
-    const onScrollOrResize = () => {
-      if (rafId) return;
-      rafId = window.requestAnimationFrame(applyBackgroundMotion);
-    };
-
-    applyBackgroundMotion();
-    window.addEventListener("scroll", onScrollOrResize, { passive: true });
-    window.addEventListener("resize", onScrollOrResize);
-
-    return () => {
-      if (rafId) {
-        window.cancelAnimationFrame(rafId);
-      }
-      window.removeEventListener("scroll", onScrollOrResize);
-      window.removeEventListener("resize", onScrollOrResize);
-      document.documentElement.style.removeProperty("--bg-scale");
-      document.documentElement.style.removeProperty("--bg-opacity");
-      document.documentElement.style.removeProperty("--bg-shift-x");
-    };
-  }, []);
-
-  useEffect(() => {
     const titleTargets = document.querySelectorAll<HTMLElement>("[data-section-title]");
     if (!titleTargets.length) return;
     let rafId = 0;
@@ -166,45 +121,6 @@ function App() {
     };
   }, []);
 
-  useEffect(() => {
-    const root = document.documentElement;
-    const rawTarget = getComputedStyle(root).getPropertyValue("--hero-divider-top").trim();
-    const parsedTarget = Number.parseFloat(rawTarget);
-    const targetTop = Number.isFinite(parsedTarget) ? parsedTarget : 200;
-    let rafId = 0;
-
-    const applyDividerPosition = () => {
-      rafId = 0;
-      const hero = document.getElementById("hero");
-      if (!hero) return;
-
-      const heroBottom = hero.getBoundingClientRect().bottom;
-      const dividerY = Math.max(heroBottom, targetTop);
-      const isDividerFixed = heroBottom <= targetTop;
-      root.style.setProperty("--hero-divider-current-y", `${dividerY.toFixed(2)}px`);
-      root.style.setProperty("--hero-mask-opacity", isDividerFixed ? "1" : "0");
-    };
-
-    const onScrollOrResize = () => {
-      if (rafId) return;
-      rafId = window.requestAnimationFrame(applyDividerPosition);
-    };
-
-    applyDividerPosition();
-    window.addEventListener("scroll", onScrollOrResize, { passive: true });
-    window.addEventListener("resize", onScrollOrResize);
-
-    return () => {
-      if (rafId) {
-        window.cancelAnimationFrame(rafId);
-      }
-      window.removeEventListener("scroll", onScrollOrResize);
-      window.removeEventListener("resize", onScrollOrResize);
-      root.style.removeProperty("--hero-divider-current-y");
-      root.style.removeProperty("--hero-mask-opacity");
-    };
-  }, []);
-
   const sections = () => {
     return [
       /* { id: "hero", label: "Home" }, */
@@ -236,7 +152,7 @@ function App() {
        {sections ().map((section) => (
         <section
           key={section.id}
-          className="post-hero-step"
+          className="post-hero-step "
         >
           <div
           id={section.id}
