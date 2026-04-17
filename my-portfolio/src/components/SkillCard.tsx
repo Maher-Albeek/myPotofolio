@@ -107,7 +107,7 @@ const getSkillIcon = (skillName: string): IconType => skillIconMap[skillName] ??
 
 export const skillGroups: SkillGroup[] = [
 	{
-		title: "Programmiersprachen",
+		title: "Programmier- sprachen",
 		skills: [
 			{ name: "Java", level: 82 },
 			{ name: "JavaScript", level: 90 },
@@ -163,7 +163,7 @@ export const skillGroups: SkillGroup[] = [
 		],
 	},
 	{
-		title: "Entwicklungskonzepte",
+		title: "Entwicklungs- konzepte",
 		skills: [
 			{ name: "Client-Server-Architektur", level: 84 },
 			{ name: "Versionskontrolle", level: 89 },
@@ -192,33 +192,112 @@ export const walletThemes = [
 	"266 77% 62%",
 ];
 
+const seededRandom = (seed: number) => {
+	const value = Math.sin(seed * 999.91) * 10000;
+	return value - Math.floor(value);
+};
+
+const getMotionStyle = (index: number, hue: string): StyleWithVars => {
+	const seed = index + 1;
+	const x1 = Math.round(seededRandom(seed + 0.11) * 44 - 34);
+	const y1 = Math.round(seededRandom(seed + 0.21) * 44 - 30);
+	const x2 = Math.round(seededRandom(seed + 0.31) * 50 - 40);
+	const y2 = Math.round(seededRandom(seed + 0.41) * 50 - 22);
+	const x3 = Math.round(seededRandom(seed + 0.51) * 42 - 18);
+	const y3 = Math.round(seededRandom(seed + 0.61) * 52 - 24);
+	const duration = (4.3 + seededRandom(seed + 0.71) * 2.6).toFixed(2);
+	const delay = (-seededRandom(seed + 0.81) * 3.5).toFixed(2);
+	const cursorScale = (0.78 + seededRandom(seed + 0.91) * 0.44).toFixed(3);
+
+	return {
+		"--card-index": index,
+		"--card-hue": hue,
+		"--cursor-scale": cursorScale,
+		"--orb-x1": `${x1}px`,
+		"--orb-y1": `${y1}px`,
+		"--orb-x2": `${x2}px`,
+		"--orb-y2": `${y2}px`,
+		"--orb-x3": `${x3}px`,
+		"--orb-y3": `${y3}px`,
+		"--orb-duration": `${duration}s`,
+		"--orb-delay": `${delay}s`,
+	};
+};
+
 type WalletSkillCardProps = {
 	group: SkillGroup;
 	groupIndex: number;
 	isActive: boolean;
 	onSelect: (index: number) => void;
+	onClose: () => void;
 };
 
-export const WalletSkillCard = ({ group, groupIndex, isActive, onSelect }: WalletSkillCardProps) => (
-	<button
-		type="button"
-		className={`skills-wallet__card ${isActive ? "is-active" : ""}`}
-		onClick={() => onSelect(groupIndex)}
-		aria-pressed={isActive}
-		aria-controls="skills-detail-panel"
-		style={{
-			"--card-index": groupIndex,
-			"--card-hue": walletThemes[groupIndex % walletThemes.length],
-		} as StyleWithVars}
-	>
-		<div className="skills-wallet__card-top">
-			<span className="skills-wallet__badge">Kategorie</span>
-			<span className="skills-wallet__chip" aria-hidden="true" />
+export const WalletSkillCard = ({
+	group,
+	groupIndex,
+	isActive,
+	onSelect,
+	onClose,
+}: WalletSkillCardProps) => {
+	const motionStyle = getMotionStyle(groupIndex, walletThemes[groupIndex % walletThemes.length]);
+
+	return (
+		<article
+			className={`skills-title-card ${isActive ? "is-active" : ""}`}
+			onClick={(event) => {
+				event.stopPropagation();
+				onSelect(groupIndex);
+			}}
+			onKeyDown={(event) => {
+				if (event.key === "Enter" || event.key === " ") {
+					event.preventDefault();
+					onSelect(groupIndex);
+				}
+			}}
+			aria-expanded={isActive}
+			role="button"
+			tabIndex={0}
+			style={motionStyle}
+		>
+		<div className="skills-title-card__inner">
+			<div className="skills-title-card__content">
+				{isActive && (
+					<button
+						type="button"
+						className="skills-title-card__close"
+						aria-label={`Close ${group.title}`}
+						onClick={(event) => {
+							event.stopPropagation();
+							onClose();
+						}}
+					>
+						×
+					</button>
+				)}
+				<span className="skills-title-card__name">{group.title}</span>
+				<span className="skills-title-card__meta">{group.skills.length} Skills</span>
+
+				<div className={`skills-title-card__dropdown ${isActive ? "is-open" : ""}`}>
+					<ul className="skills-title-card__skills-list" aria-label={`${group.title} skills`}>
+						{group.skills.map((skill) => {
+							const SkillIcon = getSkillIcon(skill.name);
+
+							return (
+								<li key={skill.name} className="skills-title-card__skills-item">
+									<span className="skills-title-card__skills-name">
+										<SkillIcon className="skills-wallet__icon" aria-hidden="true" />
+										<span className="skills-title-card__skills-label">{skill.name}</span>
+									</span>
+								</li>
+							);
+						})}
+					</ul>
+				</div>
+			</div>
 		</div>
-		<span className="skills-wallet__card-name">{group.title}</span>
-		<span className="skills-wallet__card-meta">{group.skills.length} Skills</span>
-	</button>
-);
+		</article>
+	);
+};
 
 type SkillDetailCardProps = {
 	skill: SkillItem;

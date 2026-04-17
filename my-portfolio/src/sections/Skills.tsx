@@ -1,41 +1,128 @@
-import { useEffect, useRef, useState } from "react";
-import type { CSSProperties } from "react";
+import { useEffect, useState } from "react";
 import "./Skills.css";
-import { SkillDetailCard, WalletSkillCard, skillGroups, walletThemes } from "../components/SkillCard";
-
-type StyleWithVars = CSSProperties & Record<`--${string}`, string | number>;
+import { WalletSkillCard, skillGroups } from "../components/SkillCard";
 
 const Skills = () => {
-  const sectionRef = useRef<HTMLDivElement | null>(null);
-  const [isInView, setIsInView] = useState(false);
   const [activeGroupIndex, setActiveGroupIndex] = useState<number | null>(null);
 
-  useEffect(() => {
-    const target = sectionRef.current;
+  const handleSelect = (index: number) => {
+    setActiveGroupIndex((current) => (current === index ? null : index));
+  };
 
-    if (!target) {
+  const handleClose = () => {
+    setActiveGroupIndex(null);
+  };
+
+  useEffect(() => {
+    const cards = Array.from(document.querySelectorAll<HTMLButtonElement>(".skills-title-card"));
+
+    if (!cards.length) {
       return;
     }
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.25 }
-    );
+    let rafPending = false;
+    let cursorNormX = 0;
+    let cursorNormY = 0;
+    let pointerX = window.innerWidth / 2;
+    let pointerY = window.innerHeight / 2;
+    let hasPointer = false;
 
-    observer.observe(target);
+    const updateParallax = () => {
+      const cursorMaxX = 12;
+      const cursorMaxY = 10;
+      const maxTiltX = 8;
+      const maxTiltY = 10;
 
-    return () => observer.disconnect();
+      cards.forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        const rawScale = Number.parseFloat(card.style.getPropertyValue("--cursor-scale"));
+        const cursorScale = Number.isFinite(rawScale) ? rawScale : 1;
+
+        const cursorX = cursorNormX * cursorMaxX * cursorScale;
+        const cursorY = cursorNormY * cursorMaxY * cursorScale;
+
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const normalizedTiltX = hasPointer
+          ? Math.max(-1, Math.min(1, (pointerX - centerX) / (rect.width / 2 || 1)))
+          : 0;
+        const normalizedTiltY = hasPointer
+          ? Math.max(-1, Math.min(1, (pointerY - centerY) / (rect.height / 2 || 1)))
+          : 0;
+
+        const tiltY = normalizedTiltX * maxTiltY * cursorScale;
+        const tiltX = -normalizedTiltY * maxTiltX * cursorScale;
+
+        card.style.setProperty("--cursor-x", `${cursorX.toFixed(2)}px`);
+        card.style.setProperty("--cursor-y", `${cursorY.toFixed(2)}px`);
+        card.style.setProperty("--tilt-x", `${tiltX.toFixed(2)}deg`);
+        card.style.setProperty("--tilt-y", `${tiltY.toFixed(2)}deg`);
+      });
+
+      rafPending = false;
+    };
+
+    const requestParallaxUpdate = () => {
+      if (rafPending) {
+        return;
+      }
+
+      rafPending = true;
+      window.requestAnimationFrame(updateParallax);
+    };
+
+    const handlePointerMove = (event: PointerEvent) => {
+      hasPointer = true;
+      pointerX = event.clientX;
+      pointerY = event.clientY;
+
+      const normalizedX = (event.clientX / window.innerWidth) * 2 - 1;
+      const normalizedY = (event.clientY / window.innerHeight) * 2 - 1;
+
+      cursorNormX = Math.max(-1, Math.min(1, normalizedX));
+      cursorNormY = Math.max(-1, Math.min(1, normalizedY));
+      requestParallaxUpdate();
+    };
+
+    const resetPointerInfluence = () => {
+      hasPointer = false;
+      cursorNormX = 0;
+      cursorNormY = 0;
+      requestParallaxUpdate();
+    };
+
+    window.addEventListener("pointermove", handlePointerMove, { passive: true });
+    window.addEventListener("pointerleave", resetPointerInfluence);
+    window.addEventListener("resize", requestParallaxUpdate);
+    requestParallaxUpdate();
+
+    return () => {
+      window.removeEventListener("pointermove", handlePointerMove);
+      window.removeEventListener("pointerleave", resetPointerInfluence);
+      window.removeEventListener("resize", requestParallaxUpdate);
+    };
   }, []);
 
-  const activeGroup = activeGroupIndex !== null ? skillGroups[activeGroupIndex] : null;
+  useEffect(() => {
+    if (activeGroupIndex === null) {
+      return;
+    }
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setActiveGroupIndex(null);
+      }
+    };
+
+    window.addEventListener("keydown", handleEscape);
+
+    return () => {
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [activeGroupIndex]);
 
   return (
-    <div ref={sectionRef} className="w-full justify-start mt-10 skills-section-root">
+    <div className="w-full justify-start mt-10 skills-section-root">
       <h2
         data-section-title
         className="text-3xl md:text-5xl font-bold text-white uppercase tracking-widest"
@@ -46,52 +133,20 @@ const Skills = () => {
         Übersicht meiner technischen Fähigkeiten und Grundlagen.
       </p>
 
-      <div className="skills-wallet-grid mt-10">
-        <article
-          className={`skills-wallet ${isInView ? "is-in-view" : ""}`}
-          style={{
-            "--wallet-hue": walletThemes[0],
-            "--wallet-delay": "0ms",
-          } as StyleWithVars}
-        >
-          <div className="skills-wallet__back" aria-hidden="true" />
-          <div className="skills-wallet__stack">
-            {skillGroups.map((group, groupIndex) => (
-              <WalletSkillCard
-                key={group.title}
-                group={group}
-                groupIndex={groupIndex}
-                isActive={activeGroupIndex === groupIndex}
-                onSelect={setActiveGroupIndex}
-              />
-            ))}
-          </div>
-          <div className="skills-wallet__pocket">
-            <span className="skills-wallet__title">Skills Wallet</span>
-            <span className="skills-wallet__count">Klicke eine Karte</span>
-          </div>
-        </article>
+      <div className={`skills-title-grid mt-10 ${activeGroupIndex !== null ? "has-active" : ""}`}>
+        {skillGroups.map((group, groupIndex) => (
+          <WalletSkillCard
+            key={group.title}
+            group={group}
+            groupIndex={groupIndex}
+            isActive={activeGroupIndex === groupIndex}
+            onSelect={handleSelect}
+            onClose={handleClose}
+          />
+        ))}
       </div>
 
-      {activeGroup ? (
-        <div id="skills-detail-panel" className="skills-detail mt-8" aria-live="polite">
-          <div className="skills-detail__header">
-            <h3 className="skills-detail__title">{activeGroup.title}</h3>
-            <span className="skills-detail__count">{activeGroup.skills.length} Skills</span>
-          </div>
-
-          <div className="skills-detail__grid">
-            {activeGroup.skills.map((skill, skillIndex) => (
-              <SkillDetailCard
-                key={skill.name}
-                skill={skill}
-                skillIndex={skillIndex}
-                isInView={isInView}
-              />
-            ))}
-          </div>
-        </div>
-      ) : null}
+      
     </div>
   );
 };
