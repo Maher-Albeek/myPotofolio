@@ -162,9 +162,15 @@ main {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  padding-inline-end: 15%;
   position: relative;
   z-index: 2;
+}
+@media (max-width: 1024px) {
+  .post-hero-step {
+    padding-inline-end: 0;
+  }
 }
 
 .post-hero-step:first-of-type {
