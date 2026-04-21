@@ -1,6 +1,11 @@
 import "./About.css";
-
+import HeroScrollReveal from "../components/HeroScrollReveal";
 const About = () => {
+   const introText =
+    `Junior Softwareentwickler mit Fokus auf Webentwicklung und Backend-Systeme.
+        Erfahrung in der Entwicklung von Webanwendungen mit PHP, MySQL und REST APIs sowie in der
+              Verarbeitung und Integration von Daten. Grundkenntnisse in modernen Web-Technologien und
+              Interesse an Frameworks wie Laravel und Vue.js.`;
   return (
     <>
       <div className=" about inset-0" aria-hidden="true" >
@@ -19,10 +24,7 @@ const About = () => {
               </div>
             </div>
             <p className="about-description ">
-              Junior Softwareentwickler mit Fokus auf Webentwicklung und Backend-Systeme.
-              Erfahrung in der Entwicklung von Webanwendungen mit PHP, MySQL und REST APIs sowie in der
-              Verarbeitung und Integration von Daten. Grundkenntnisse in modernen Web-Technologien und
-              Interesse an Frameworks wie Laravel und Vue.js.
+              <HeroScrollReveal text={introText} />
             </p>
 
           </div>

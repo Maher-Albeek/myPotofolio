@@ -162,8 +162,8 @@ main {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  padding-inline-end: 15%;
+  justify-content: center;
+ 
   position: relative;
   z-index: 3;
   background: var(--bg);

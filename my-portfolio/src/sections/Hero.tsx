@@ -8,8 +8,6 @@ const HERO_STATS = [
   { label: "Jahre Erfahrung", value: 2 },
 ];
 
-
-
 const Hero = () => {
   const [counts, setCounts] = useState<number[]>(() => HERO_STATS.map(() => 0));
 
@@ -42,8 +40,6 @@ const Hero = () => {
 
   return (
     <>
-    
-
       <section
         id="hero"
         data-scroll-section
@@ -54,13 +50,15 @@ const Hero = () => {
           <div className="relative z-10 text-center w-full max-w-4xl flex flex-col items-center gap-5 sm:gap-6 pt-16 pb-20 sm:pt-8 sm:pb-16">
 
             {/* Name */}
-            <h1
-              className="hero-name text-white flex flex-col items-center gap-4 justify-end"
-            >
-              <span>Maher</span>
-              <span>Albeek</span>
-            </h1>
-
+            <div className="hero-name-wrap">
+              
+              <h1
+                className="hero-name text-white flex flex-col items-center gap-4 justify-end"
+              >
+                <span>Maher</span>
+                <span>Albeek</span>
+              </h1>
+            </div>
             {/* Divider */}
             <div className="w-20 h-0.5 bg-white/50" />
 
@@ -117,7 +115,6 @@ const Hero = () => {
             </Link> */}
 
           </div>
-
           <div className="hidden md:grid grid-cols-1 gap-4 text-white/90 absolute right-6 lg:right-10 top-1/2 -translate-y-1/2 z-20">
             {HERO_STATS.map((stat, index) => (
               <div
@@ -134,9 +131,11 @@ const Hero = () => {
             ))}
           </div>
 
+          
+
       </section>
     </>
-  );};
-
+  );
+};
 
 export default Hero;
