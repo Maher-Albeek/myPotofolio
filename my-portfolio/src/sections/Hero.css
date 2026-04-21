@@ -7,7 +7,32 @@
 
 #hero {
   position: relative;
-  z-index: 5;
+  z-index: 2;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100svh;
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    background-size: auto 90svh;
+    background-image: var(--bg-image-hero);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  &::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(55% 36% at 82% 22%, rgba(255, 130, 20, 0.16), transparent 70%);
+    z-index: 1;
+    pointer-events: none;
+  }
 
   .base,
   .framework,

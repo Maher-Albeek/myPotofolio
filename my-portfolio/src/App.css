@@ -7,7 +7,7 @@
 
 main {
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 .counter {
@@ -165,7 +165,8 @@ main {
   justify-content: flex-end;
   padding-inline-end: 15%;
   position: relative;
-  z-index: 2;
+  z-index: 3;
+  background: var(--bg);
 }
 @media (max-width: 1024px) {
   .post-hero-step {
@@ -179,6 +180,7 @@ main {
 
 .post-hero-panel {
   position: relative;
+  z-index: 1;
  /*  width: min(1100px, 100%); */
   min-height: calc(100vh - var(--post-hero-bottom-gap, 144px));
   border-radius: 20px 0px 0px 20px;
@@ -206,9 +208,9 @@ main {
 }
 
 .fixed-linear-bg {
-  position: fixed;
+  position: absolute;
   inset: 0;
-  height: 100vh;
+  min-height: 100%;
   z-index: 1;
   pointer-events: none;
   overflow: hidden;
