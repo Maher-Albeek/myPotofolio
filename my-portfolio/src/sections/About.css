@@ -22,6 +22,7 @@
 
 .about-description {
   margin-top: 20px;
+  margin-bottom: 30px;
   padding: 0;
   align-items: center;
   justify-content: center;
@@ -52,7 +53,7 @@
 
 .about-image {
     display: block;
-    width: clamp(140px, 24vw,390px);
+    width: clamp(140px, 24vw,490px);
     height: auto;
     transition: transform 0.3s ease;
     object-position: bottom;
