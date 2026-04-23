@@ -1,4 +1,5 @@
 import "./About.css";
+import profilePicture from "../assets/U.png";
 import HeroScrollReveal from "../components/HeroScrollReveal";
 const About = () => {
    const introText =
@@ -17,15 +18,12 @@ Mein Ziel ist es, an großen, bedeutsamen Projekten mitzuwirken — und eines Ta
             </div>
           
             <div className=" flex justify-center cursor-pointer ">
-              <p className="about-description  ">
-                <HeroScrollReveal text={introText} />
-              </p>
+              <HeroScrollReveal text={introText} className="about-description" />
             </div>
 
         </div>
         <div className="about-image-wrap bg-fuchsia-50 rounded-3xl  ">
-          <img className="about-image " src="/images/U.png" alt="Profile Picture" />
-          
+          <img className="about-image " src={profilePicture} alt="Profile Picture" />          
         </div>
       </div>
     </>

@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import profilePicture from "../assets/logo.svg";
+
 import { Link } from "react-scroll";
 import {
   FaHome,
@@ -82,7 +84,7 @@ const Navbar = () => {
         </button>
           {/* Logo */}
           <img
-          src="/images/logo.svg"
+          src={profilePicture}
           alt="Maher Albeek logo"
           className="h-7 w-auto"
         />

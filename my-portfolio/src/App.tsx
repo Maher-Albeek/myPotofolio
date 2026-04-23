@@ -13,6 +13,9 @@ import Certificates from "./sections/Certificates";
 import Contact from "./sections/Contact";
 import Footer from "./components/Footer";
 
+
+
+
 function App() {
   useEffect(() => {
     const revealTargets = document.querySelectorAll<HTMLElement>("[data-reveal]");
@@ -136,6 +139,7 @@ function App() {
     ];
   }
 
+
   return (
     <>
       <Navbar />
@@ -146,8 +150,8 @@ function App() {
       <main>
       
        {sections ().map((section) => (
-        <div>
-          <Title key={section.id} title={section.id} />
+        <div key={section.id}>
+          <Title title={section.id} />
           <section
             key={section.id}
             className="post-hero-step "

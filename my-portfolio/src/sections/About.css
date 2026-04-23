@@ -12,6 +12,9 @@
 
 .about {
  border-radius: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 1.5rem;
   backdrop-filter: blur(20px);
   transition: all 0.3s;
@@ -23,12 +26,15 @@
 .about-description {
   margin-top: 20px;
   margin-bottom: 30px;
+  margin-inline: auto;
   padding: 0;
-  align-items: center;
-  justify-content: center;
-  width: 95%;
+  width: min(95%, 72ch);
   color: #2c2c2cb3;
-  display: flex;
+  display: block;
+  white-space: normal;
+  word-break: break-word;
+  text-align: justify;
+  padding: 0px 20px 0px 20px;
 
  /* font-family: "Elms Sans", sans-serif;
   font-optical-sizing: auto;
@@ -64,6 +70,7 @@
   .about-layout {
     flex-direction: column;
     align-items: center;
+    width: 100%;
   }
 
   .about {

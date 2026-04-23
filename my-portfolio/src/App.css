@@ -320,6 +320,7 @@ main {
     padding: 0;
     align-items: stretch;
     justify-content: stretch;
+    
   }
 
   .post-hero-panel {
@@ -334,6 +335,7 @@ main {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     background: transparent;
+    
   }
 
   .post-hero-panel::before {

@@ -1,27 +1,26 @@
 import TextPressure from '../components/TextPressure';
-
-// Note:
-// Make sure the font you're using supports all the variable properties. 
-// React Bits does not take responsibility for the fonts used
+import './Tiltle.css';
 
 
 
 const Title = ({ title }: { title: string }) => {
+    
     return (
         <div
-            className='flex w-full items-center justify-center'
-            style={{ position: 'relative', minHeight: 'clamp(64px, 8vw, 150px)', height: '100%' }}
+            className='title-bg-pattern flex w-full items-center justify-center'
+            style={{ position: 'relative', minHeight: 'clamp(64px, 8vw, 150px)', 
+                height: '100%', width: '100%' }}
         >
             <TextPressure
                 text={title}
                 flex={false}
                 alpha={false}
-                stroke={false}
+                stroke={true}
                 width={true}
                 weight
                 italic
                 textColor="#ffffff"
-                strokeColor="#5227FF"
+                strokeColor="#ff730066"
                 minFontSize={24}
                 maxFontSize={84}
             />
