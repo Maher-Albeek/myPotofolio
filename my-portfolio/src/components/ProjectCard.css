@@ -153,12 +153,9 @@
 .card__body {
   display: flex;
   flex-direction: column;
-  height: 80%;
+  height: auto;
   padding: 20px;
-  border-radius: 18px;
-  background: linear-gradient(170deg, #9199a369 0%, #10182449 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.33);
+
 }
 
 .card__title {

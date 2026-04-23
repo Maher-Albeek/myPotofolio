@@ -1,6 +1,7 @@
 import "./Portfolio.css";
 import { useState } from "react";
 import ProjectCard from "../components/ProjectCard";
+import fotografiePage from "../assets/fotografie.png";
 
 
 const projects = [
@@ -10,7 +11,7 @@ const projects = [
     description:
       "Full-stack photography site with Admin-CMS, CRUD APIs, Auth, AVIF pipeline",
     demoLink: "https://www.maher-albeek.com/",
-    Image: "https://shot.screenshotapi.net/v3/screenshot?token=8S8ZSX2-1714NZ3-M991JYT-TY863BW&fresh=true&url=https%3A%2F%2Fwww.maher-albeek.com%2F&output=image&file_type=png&no_cookie_banners=true&wait_for_event=load",
+    Image: fotografiePage,
   },
   {
     title: "Booking System",
