@@ -1,6 +1,7 @@
 import "./App.css";
 import { useEffect } from "react";
 import Navbar from "./components/Navbar";
+import Title from "./sections/Tiltle";
 import Hero from "./sections/Hero";
 import Services from "./sections/Services";
 import About from "./sections/About";
@@ -124,14 +125,14 @@ function App() {
   const sections = () => {
     return [
       /* { id: "hero", label: "Home" }, */
-      { id: "services", label: <Services /> },
-      { id: "about", label: <About /> },
-      { id: "experience", label: <Experience /> },
-      { id: "education", label: <Education /> },
-      { id: "skills", label: <Skills /> },
-      { id: "portfolio", label: <Portfolio /> },
-      { id: "certificates", label: <Certificates /> },
-      { id: "contact", label: <Contact /> },
+      { id: "services", bgColor: "--bg-hell", label: <Services /> },
+      { id: "about", bgColor: "--bg", label: <About /> },
+      { id: "experience", bgColor: "--bg-hell", label: <Experience /> },
+      { id: "education", bgColor: "--bg", label: <Education /> },
+      { id: "skills", bgColor: "--bg-hell", label: <Skills /> },
+      { id: "portfolio", bgColor: "--bg", label: <Portfolio /> },
+      { id: "certificates", bgColor: "--bg-hell", label: <Certificates /> },
+      { id: "contact", bgColor: "--bg", label: <Contact /> },
     ];
   }
 
@@ -143,19 +144,24 @@ function App() {
       <Hero />
 
       <main>
+      
        {sections ().map((section) => (
-        <section
-          key={section.id}
-          className="post-hero-step "
-        >
-          <div
-          id={section.id}
-          data-scroll-section
-          data-bg-section={section.id}
-          data-reveal className="post-hero-panel">
-            {section.label}
-          </div>
-        </section>
+        <div>
+          <Title key={section.id} title={section.id} />
+          <section
+            key={section.id}
+            className="post-hero-step "
+            /* style={{ background: `var(${section.bgColor})` }} */
+          >
+            <div
+            id={section.id}
+            data-scroll-section
+            data-bg-section={section.id}
+            data-reveal className="post-hero-panel">
+              {section.label}
+            </div>
+          </section>
+        </div>
        ))}
       </main>
 

@@ -61,7 +61,7 @@ const Navbar = () => {
                 {link.label}
               </Link>
 
-              <link.icon className="inline-block ml-2 text-[1.2rem] text-white/70 align-middle" aria-hidden="true" />
+              {/* <link.icon className="inline-block ml-2 text-[1.2rem] text-white/70 align-middle" aria-hidden="true" /> */}
 
             </li>
           ))}
