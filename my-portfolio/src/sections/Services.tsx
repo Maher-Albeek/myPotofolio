@@ -6,12 +6,7 @@ const Services = () => {
     < >
         <div className="absolute inset-0" aria-hidden="true" />
         <div className="relative z-10">
-          <h2
-            data-section-title
-            className="text-3xl md:text-5xl font-bold text-white uppercase tracking-widest"
-          >
-            Services
-          </h2><br />
+         <br />
           <p className="text-gray-400 text-base md:text-lg leading-relaxed">I offer a range of services to help you achieve your goals:</p>
           <ul className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full md:w-max md:ml-auto">
             <ServiceCards />

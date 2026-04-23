@@ -36,12 +36,7 @@ const educationItems = [
 const Education = () => {
   return (
     <div className="w-full max-w-5xl">
-      <h2
-        data-section-title
-        className="text-3xl md:text-5xl font-bold text-white uppercase tracking-widest"
-      >
-        Bildungsweg
-      </h2>
+    
       <div className="timeline mt-10">
         {educationItems.map((item) => (
           <article

@@ -32,12 +32,7 @@ const projects = [
 const Portfolio = () => {
   return (
     <div className="w-full max-w-6xl">
-      <h2
-        data-section-title
-        className="text-3xl md:text-5xl font-bold text-white uppercase tracking-widest"
-      >
-        Portfolio
-      </h2>
+   
       <p className="text-gray-400 text-base md:text-lg leading-relaxed">
         Here are some of my projects:
       </p>

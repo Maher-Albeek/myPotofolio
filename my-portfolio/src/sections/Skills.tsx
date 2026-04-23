@@ -123,12 +123,7 @@ const Skills = () => {
 
   return (
     <div className="w-full justify-start mt-10 skills-section-root">
-      <h2
-        data-section-title
-        className="text-3xl md:text-5xl font-bold text-white uppercase tracking-widest"
-      >
-        Skills
-      </h2>
+    
       <p className="mt-2 text-gray-400 text-base md:text-lg leading-relaxed">
         Übersicht meiner technischen Fähigkeiten und Grundlagen.
       </p>

@@ -26,12 +26,7 @@ const experiences = [
 const Experience = () => {
   return (
     <div className="w-full max-w-5xl">
-      <h2
-        data-section-title
-        className="text-3xl md:text-5xl font-bold text-white uppercase tracking-widest"
-      >
-        Berufserfahrung
-      </h2>
+  
       <div className="timeline mt-10">
         {experiences.map((experience) => (
           <article
