@@ -9,8 +9,8 @@ type HeroScrollRevealProps = {
 
 const HeroScrollReveal = ({
 	text,
-	accentClassName = "text-orange-500",
-	hiddenClassName = "text-gray-700",
+	accentClassName = "text-gray-900",
+	hiddenClassName = "text-gray-700/0",
 	className = "text-gray-400 text-base md:text-lg leading-relaxed",
 }: HeroScrollRevealProps) => {
 	const words = useMemo<string[]>(() => text.trim().split(/\s+/), [text]);

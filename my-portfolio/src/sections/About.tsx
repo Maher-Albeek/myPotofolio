@@ -10,26 +10,24 @@ Nach meiner abgeschlossenen Umschulung zum Fachinformatiker für Anwendungsentwi
 Mein Ziel ist es, an großen, bedeutsamen Projekten mitzuwirken — und eines Tages eigene Ideen als vollständige Produkte umzusetzen.`;
   return (
     <>
-      <div className=" bg-fuchsia-50 about inset-0" aria-hidden="true" >
-          <div className="mr-2">
-            <span className="text-xs uppercase tracking-[0.3em] text-gray-900/60">Who I Am</span>
-            <p className="font-bold text-6xl text-gray-900/90 group-hover:text-white">About Me</p>
-          </div>
-        
-          <div className=" flex justify-center cursor-pointer ">
-            <p className="about-description  ">
-              <HeroScrollReveal text={introText} />
-            </p>
-
-            <div className="about-image-wrap">
-              <img className="about-image  mask-b-from-20% mask-b-to-85%" src="./public/images/U.png" alt="Profile Picture" />
-              
+      <div className="about-layout">
+        <div className=" bg-fuchsia-50 about inset-0" aria-hidden="true" >
+            <div className="mr-2 mt-2">
+              <span className="text-xl uppercase tracking-[0.3em] text-gray-900/60">Who I Am</span>
             </div>
-            
-          </div>
+          
+            <div className=" flex justify-center cursor-pointer ">
+              <p className="about-description  ">
+                <HeroScrollReveal text={introText} />
+              </p>
+            </div>
 
         </div>
-     
+        <div className="about-image-wrap bg-fuchsia-50 rounded-3xl  ">
+          <img className="about-image " src="/images/U.png" alt="Profile Picture" />
+          
+        </div>
+      </div>
     </>
   );
 };

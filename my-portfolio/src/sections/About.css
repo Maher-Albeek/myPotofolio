@@ -1,39 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&family=Playwrite+NZ+Guides&display=swap');
+
+.about-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 80%;
+  margin: 0 auto;
+  gap: 3rem;
+}
+
 .about {
  border-radius: 1.5rem;
   gap: 1.5rem;
   backdrop-filter: blur(20px);
   transition: all 0.3s;
   justify-content: center;
-  width: 80%;
+  width: 70%;
+   
 }
 
 .about-description {
+  margin-top: 20px;
   padding: 0;
   align-items: center;
-  width: 60%;
+  justify-content: center;
+  width: 95%;
   color: #2c2c2cb3;
   display: flex;
+
+ /* font-family: "Elms Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;   */ 
+   font-family: "Playwrite NZ Guides", cursive;
+  font-weight: 400;
+  font-style: normal;
  
 }
 
 .about-image-wrap {
   position: relative;
   overflow: hidden;
-  flex-wrap: wrap;
-  float: left;
-  width: auto;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
   
   
 }
 
 .about-image {
-  display: block;
-  width: clamp(140px, 28vw,420px);
-  height: auto;
-  transition: transform 0.3s ease;
+    display: block;
+    width: clamp(140px, 24vw,390px);
+    height: auto;
+    transition: transform 0.3s ease;
+    object-position: bottom;
+    
 }
 
 @media (max-width: 768px) {
+  .about-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about {
+    width: 100%;
+  }
+
+  .about-image-wrap {
+    width: 100%;
+    justify-content: center;
+  }
+
   #about.post-hero-step {
     background: linear-gradient(180deg, #1a1020 0%, #251530 100%);
   }
