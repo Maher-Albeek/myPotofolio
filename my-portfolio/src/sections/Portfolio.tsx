@@ -1,4 +1,7 @@
 import "./Portfolio.css";
+import { useState } from "react";
+import ProjectCard from "../components/ProjectCard";
+
 
 const projects = [
   {
@@ -6,7 +9,8 @@ const projects = [
     stack: "Next.js, React, TypeScript, Tailwind, MySQL, REST API",
     description:
       "Full-stack photography site with Admin-CMS, CRUD APIs, Auth, AVIF pipeline",
-    demoLink: "https://example.com/fotografie-website",
+    demoLink: "https://www.maher-albeek.com/",
+    Image: "https://shot.screenshotapi.net/v3/screenshot?token=8S8ZSX2-1714NZ3-M991JYT-TY863BW&fresh=true&url=https%3A%2F%2Fwww.maher-albeek.com%2F&output=image&file_type=png&no_cookie_banners=true&wait_for_event=load",
   },
   {
     title: "Booking System",
@@ -14,48 +18,63 @@ const projects = [
     description:
       "Vehicle booking system with REST API, DTOs, JPA, transaction locking",
     demoLink: "https://example.com/booking-system",
+    Image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1400&q=80",
   },
   {
-    title: "Cyber Physical System",
-    stack: "Python, Raspberry Pi, Arduino",
-    description: "Embedded system for hardware-software integration",
-    demoLink: "https://example.com/cyber-physical-system",
-  },
-  {
-    title: "Cyber Physical System",
-    stack: "Python, Raspberry Pi, Arduino",
-    description: "Embedded system for hardware-software integration",
-    demoLink: "https://example.com/cyber-physical-system-2",
+    title: "Design System Dashboard",
+    stack: "React, TypeScript, Tailwind, REST API",
+    description:
+      "Admin dashboard with reusable UI components, analytics widgets, and role-based views",
+    demoLink: "https://example.com/design-dashboard",
+    Image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80",
   },
 ];
 
 const Portfolio = () => {
+  const [activeProjectIndex, setActiveProjectIndex] = useState(0);
+  const projectCount = projects.length;
+  const activeProject = projects[activeProjectIndex];
+
+  const showPreviousProject = () => {
+    setActiveProjectIndex((prev) => (prev - 1 + projectCount) % projectCount);
+  };
+
+  const showNextProject = () => {
+    setActiveProjectIndex((prev) => (prev + 1) % projectCount);
+  };
+
   return (
     <div className="w-full max-w-6xl">
-   
       <p className="text-gray-400 text-base md:text-lg leading-relaxed">
         Here are some of my projects:
       </p>
 
-      <div className="mt-10 grid gap-6 lg:grid-cols-3">
-        {projects.map((project, index) => (
-          <article key={`${project.title}-${index}`} className="info-card project-card text-left">
-            <span className="info-card__eyebrow">Project</span>
-            <h3 className="mt-3 text-2xl font-semibold text-white">{project.title}</h3>
-            <p className="mt-4 text-sm uppercase tracking-[0.22em] text-white/55">
-              {project.stack}
-            </p>
-            <p className="mt-6 text-gray-300 leading-relaxed">{project.description}</p>
-            <a
-              href={project.demoLink}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-8 inline-flex items-center rounded-md border border-cyan-300/70 px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em] text-cyan-200 transition hover:border-cyan-200 hover:text-white"
-            >
-              View Demo
-            </a>
-          </article>
-        ))}
+      <div className="mt-10 flex items-center justify-between gap-4">
+        <button
+          type="button"
+          onClick={showPreviousProject}
+          aria-label="Show previous project"
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-500/50 bg-slate-900/70 text-slate-200 transition hover:border-slate-300 hover:bg-slate-800"
+        >
+          <span aria-hidden="true">&#8592;</span>
+        </button>
+
+        <span className="text-sm text-slate-300">
+          {activeProjectIndex + 1} / {projectCount}
+        </span>
+
+        <button
+          type="button"
+          onClick={showNextProject}
+          aria-label="Show next project"
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-500/50 bg-slate-900/70 text-slate-200 transition hover:border-slate-300 hover:bg-slate-800"
+        >
+          <span aria-hidden="true">&#8594;</span>
+        </button>
+      </div>
+
+      <div className="mt-8">
+        <ProjectCard key={`${activeProject.title}-${activeProjectIndex}`} {...activeProject} />
       </div>
     </div>
   );
