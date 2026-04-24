@@ -40,7 +40,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className="fixed top-0 w-full  transition-all  z-50 "
+      className=" top-0 w-full  transition-all  z-50 "
       
     >
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between inset-y-0 left-0">
