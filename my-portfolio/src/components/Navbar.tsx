@@ -28,6 +28,8 @@ const navLinks = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const toggleMenu = () => setIsOpen((prev) => !prev);
+
   useEffect(() => {
 
     const handleScroll = () => {
@@ -40,14 +42,21 @@ const Navbar = () => {
 
   return (
     <nav
-      className=" top-0 w-full  transition-all  z-50 "
+      className=" top-0 w-full  transition-all fixed  z-50 "
       
     >
-      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between inset-y-0 left-0">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between inset-y-0 left-0">
+          <img
+            src={profilePicture}
+            alt="Maher Albeek logo"
+            className={`h-7 w-auto transition-transform duration-300 hover:scale-110 hover:rotate-12 `}
+          /> 
+        
 
-    
-      {/* Desktop Links */}
-        <ul className="hidden md:flex gap-8  ">
+        {/* Desktop Links */}
+        <ul className={` md:flex justify-center gap-8 transition-all duration-300 ease-out 
+         
+        `}>
           {navLinks.map((link) => (
             <li key={link.to}>
               <Link
@@ -55,10 +64,11 @@ const Navbar = () => {
                 smooth={true}
                 duration={500}
                 offset={-70}
-                className="text-gray-300 hover:text-white  cursor-pointer 
+                className="text-gray-300 hover:text-whitecursor-pointer 
                 transition-colors duration-200 text-sm uppercase tracking-wider"
                 activeClass="text-white font-semibold border-b-2 border-white pb-1"
                 spy={true}
+                onClick={() => setIsOpen(false)}
               >
                 {link.label}
               </Link>
@@ -69,10 +79,10 @@ const Navbar = () => {
           ))}
       </ul>
 
-          {/* Hamburger Button - Mobile */}
-        <button
+       
+           <button
           className="md:hidden flex flex-col gap-1.5 cursor-pointer"
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={toggleMenu}
           aria-label="Toggle Menu"
         >
           <span className={`block w-6 h-0.5 bg-white transition-all duration-300 
@@ -82,22 +92,18 @@ const Navbar = () => {
           <span className={`block w-6 h-0.5 bg-white transition-all duration-300 
             ${isOpen ? "-rotate-45 -translate-y-2" : ""}`} />
         </button>
-          {/* Logo */}
-          <img
-          src={profilePicture}
-          alt="Maher Albeek logo"
-          className="h-7 w-auto"
-        />
+       
 
         
       </div>
-          
+             {/* Hamburger Button - Mobile */}
+      
       
 
       {/* Mobile Menu */}
-      <div className={`md:hidden transition-all duration-300 overflow-hidden
-        ${isOpen ? "max-h-96 pb-4" : "max-h-0"}`}>
-        <ul className="flex flex-col items-center gap-4 bg-gray-900">
+      <div className={`md:hidden overflow-hidden transition-all duration-300 ease-out
+        ${isOpen ? "max-h-96 pb-4 opacity-100 translate-y-0" : "max-h-0 pb-0 opacity-0 -translate-y-2 pointer-events-none"}`}>
+        <ul className="flex flex-col items-center gap-4 bg-gray-900/20 backdrop-blur-sm rounded-lg mx-4 transition-opacity duration-300">
           {navLinks.map((link) => (
             <li key={link.to}>
               <Link
