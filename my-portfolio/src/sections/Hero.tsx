@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import "./Hero.css";
 
 const HERO_STATS = [
-  { label: "Projekte", value: 40 },
-  { label: "Techniken", value: 15 },
+  { label: "Projekte", value: 39 },
+  { label: "Skills", value: 35 },
   { label: "Jahre Erfahrung", value: 2 },
 ];
 
