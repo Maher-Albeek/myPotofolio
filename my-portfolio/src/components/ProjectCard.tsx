@@ -1,5 +1,7 @@
 import "./ProjectCard.css";
 import { FiGlobe } from "react-icons/fi";
+import { FaGithub } from "react-icons/fa";
+import { HiOutlinePlayCircle } from "react-icons/hi2";
 import { FaAngular, FaJava, FaReact } from "react-icons/fa";
 import {
   SiMysql,
@@ -90,7 +92,7 @@ const ProjectCard = ({
 
                 <div className="card__overlay">
                   <a className="card__action" href={demoLink} target="_blank" rel="noreferrer">
-                    Live
+                    <HiOutlinePlayCircle aria-hidden="true" />
                   </a>
                   {githubLink ? (
                     <a
@@ -99,7 +101,7 @@ const ProjectCard = ({
                       target="_blank"
                       rel="noreferrer"
                     >
-                      GitHub
+                      <FaGithub aria-hidden="true" />
                     </a>
                   ) : null}
                 </div>

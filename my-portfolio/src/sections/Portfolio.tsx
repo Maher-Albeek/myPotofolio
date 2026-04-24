@@ -11,6 +11,7 @@ const projects = [
     description:
       "Full-stack photography site with Admin-CMS, CRUD APIs, Auth, AVIF pipeline",
     demoLink: "https://www.maher-albeek.com/",
+    githubLink: "https://github.com/Maher-Albeek/Photograpy-Website.git",
     Image: fotografiePage,
   },
   {
@@ -55,7 +56,7 @@ const Portfolio = () => {
           type="button"
           onClick={showPreviousProject}
           aria-label="Show previous project"
-          className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-500/50 bg-slate-900/70 text-slate-200 transition hover:border-slate-300 hover:bg-slate-800"
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-500/50  text-slate-200 transition hover:border-slate-300"
         >
           <span aria-hidden="true">&#8592;</span>
         </button>
@@ -68,7 +69,7 @@ const Portfolio = () => {
           type="button"
           onClick={showNextProject}
           aria-label="Show next project"
-          className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-500/50 bg-slate-900/70 text-slate-200 transition hover:border-slate-300 hover:bg-slate-800"
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-500/50 text-slate-200 transition hover:border-slate-300"
         >
           <span aria-hidden="true">&#8594;</span>
         </button>

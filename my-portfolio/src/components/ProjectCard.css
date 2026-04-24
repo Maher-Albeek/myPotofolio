@@ -76,12 +76,12 @@
   border: 0;
   display: block;
   object-fit: cover;
-  transform: scale(1);
+  transform: scale(1.01);
   transition: transform 400ms ease;
 }
 
 .card:hover .card__media {
-  transform: scale(1.06);
+  transform: scale(1);
 }
 
 .card__overlay {
@@ -124,7 +124,10 @@
 }
 
 .card__action {
-  padding: 8px 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 8px;
   border-radius: 999px;
   background: #d6d6d6;
   color: #101824;
@@ -133,6 +136,11 @@
   letter-spacing: 0.01em;
   text-decoration: none;
   transition: transform 180ms ease, background-color 180ms ease;
+}
+
+.card__action svg {
+  font-size: 26px;
+  flex-shrink: 0;
 }
 
 .card__action:hover {
@@ -192,7 +200,7 @@
   width: 54px;
   height: 54px;
   border-radius: 10px;
-  background: var(--chip-bg);
+  background:linear-gradient(rgba(222, 222, 222, 0.322), rgba(238, 127, 0, 0.199));
   color: #e5edfb;
   display: inline-flex;
   align-items: center;
