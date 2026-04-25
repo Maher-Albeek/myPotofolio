@@ -1,5 +1,5 @@
 import "./App.css";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Intro from "./components/Intro";
 import Title from "./sections/Tiltle";
@@ -15,31 +15,6 @@ import Contact from "./sections/Contact";
 import Footer from "./components/Footer";
 
 function App() {
-  const [showIntro, setShowIntro] = useState(true);
-
-  useEffect(() => {
-    const sessionTokenKey = "portfolio:intro-session-token";
-    const seenSessionTokenKey = "portfolio:intro-seen-session";
-
-    const existingToken = sessionStorage.getItem(sessionTokenKey);
-    const sessionToken = existingToken ?? `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
-
-    if (!existingToken) {
-      sessionStorage.setItem(sessionTokenKey, sessionToken);
-    }
-
-    const seenForSession = localStorage.getItem(seenSessionTokenKey) === sessionToken;
-    setShowIntro(!seenForSession);
-  }, []);
-
-  const handleIntroFinish = useCallback(() => {
-    const sessionToken = sessionStorage.getItem("portfolio:intro-session-token");
-    if (sessionToken) {
-      localStorage.setItem("portfolio:intro-seen-session", sessionToken);
-    }
-    setShowIntro(false);
-  }, []);
-
   useEffect(() => {
     if (showIntro) return;
 
@@ -169,18 +144,6 @@ function App() {
 
   return (
     <>
-      {showIntro && (
-        <Intro
-          onFinish={handleIntroFinish}
-          name="Maher Albeek"
-          title="Software Developer"
-          durationMs={3000}
-          showSkip
-        />
-      )}
-
-      {!showIntro && (
-        <>
       <Navbar />
 
       <Hero />
