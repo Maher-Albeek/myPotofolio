@@ -1,5 +1,6 @@
 import "./App.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { FaArrowUp } from "react-icons/fa";
 import Navbar from "./components/Navbar";
 import Title from "./sections/Tiltle";
 import Hero from "./sections/Hero";
@@ -17,6 +18,21 @@ import Footer from "./components/Footer";
 
 
 function App() {
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setShowBackToTop(window.scrollY > 320);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
   useEffect(() => {
     const revealTargets = document.querySelectorAll<HTMLElement>("[data-reveal]");
     if (!revealTargets.length) return;
@@ -142,6 +158,15 @@ function App() {
 
   return (
     <>
+      <button
+        type="button"
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        className={`back-to-top ${showBackToTop ? "is-visible" : ""}`}
+        aria-label="Go back to top"
+      >
+        <FaArrowUp aria-hidden="true" />
+        <span className="back-to-top__tooltip">Go back to top</span>
+      </button>
       <Navbar />
       
 
