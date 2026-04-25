@@ -1,6 +1,7 @@
 import "./App.css";
-import { useEffect } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Navbar from "./components/Navbar";
+import Intro from "./components/Intro";
 import Title from "./sections/Tiltle";
 import Hero from "./sections/Hero";
 import Services from "./sections/Services";
@@ -13,11 +14,35 @@ import Certificates from "./sections/Certificates";
 import Contact from "./sections/Contact";
 import Footer from "./components/Footer";
 
-
-
-
 function App() {
+  const [showIntro, setShowIntro] = useState(true);
+
   useEffect(() => {
+    const sessionTokenKey = "portfolio:intro-session-token";
+    const seenSessionTokenKey = "portfolio:intro-seen-session";
+
+    const existingToken = sessionStorage.getItem(sessionTokenKey);
+    const sessionToken = existingToken ?? `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+
+    if (!existingToken) {
+      sessionStorage.setItem(sessionTokenKey, sessionToken);
+    }
+
+    const seenForSession = localStorage.getItem(seenSessionTokenKey) === sessionToken;
+    setShowIntro(!seenForSession);
+  }, []);
+
+  const handleIntroFinish = useCallback(() => {
+    const sessionToken = sessionStorage.getItem("portfolio:intro-session-token");
+    if (sessionToken) {
+      localStorage.setItem("portfolio:intro-seen-session", sessionToken);
+    }
+    setShowIntro(false);
+  }, []);
+
+  useEffect(() => {
+    if (showIntro) return;
+
     const revealTargets = document.querySelectorAll<HTMLElement>("[data-reveal]");
     if (!revealTargets.length) return;
 
@@ -45,9 +70,11 @@ function App() {
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [showIntro]);
 
   useEffect(() => {
+    if (showIntro) return;
+
     const titleTargets = document.querySelectorAll<HTMLElement>("[data-section-title]");
     if (!titleTargets.length) return;
     let rafId = 0;
@@ -123,10 +150,10 @@ function App() {
         target.style.removeProperty("--section-title-y");
       });
     };
-  }, []);
+  }, [showIntro]);
 
-  const sections = () => {
-    return [
+  const sections = useMemo(
+    () => [
       /* { id: "hero", label: "Home" }, */
       { id: "services", bgColor: "--bg-hell", label: <Services /> },
       { id: "about", bgColor: "--bg", label: <About /> },
@@ -136,20 +163,30 @@ function App() {
       { id: "portfolio", bgColor: "--bg", label: <Portfolio /> },
       { id: "certificates", bgColor: "--bg-hell", label: <Certificates /> },
       { id: "contact", bgColor: "--bg", label: <Contact /> },
-    ];
-  }
-
+    ],
+    []
+  );
 
   return (
     <>
+      {showIntro && (
+        <Intro
+          onFinish={handleIntroFinish}
+          name="Maher Albeek"
+          title="Software Developer"
+          durationMs={3000}
+          showSkip
+        />
+      )}
+
+      {!showIntro && (
+        <>
       <Navbar />
-      
 
       <Hero />
 
       <main>
-      
-       {sections ().map((section) => (
+        {sections.map((section) => (
         <div key={section.id}>
           <Title title={section.id} />
           <section
@@ -166,10 +203,12 @@ function App() {
             </div>
           </section>
         </div>
-       ))}
+        ))}
       </main>
 
       <Footer />
+        </>
+      )}
     </>
   );
 }
