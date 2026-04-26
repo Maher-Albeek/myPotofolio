@@ -160,6 +160,7 @@ main {
 
 .post-hero-step {
   min-height: 100vh;
+  max-height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
