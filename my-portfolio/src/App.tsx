@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Navbar from "./components/Navbar";
 import Intro from "./components/Intro";
 import Title from "./sections/Tiltle";
@@ -15,6 +15,8 @@ import Contact from "./sections/Contact";
 import Footer from "./components/Footer";
 
 function App() {
+  const [showIntro, setShowIntro] = useState(true);
+
   useEffect(() => {
     if (showIntro) return;
 
@@ -144,34 +146,35 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      {showIntro && <Intro onFinish={() => setShowIntro(false)} />}
 
+      <Navbar />
       <Hero />
 
       <main>
         {sections.map((section) => (
-        <div key={section.id}>
-          <Title title={section.id} />
-          <section
-            key={section.id}
-            className="post-hero-step "
-            /* style={{ background: `var(${section.bgColor})` }} */
-          >
-            <div
-            id={section.id}
-            data-scroll-section
-            data-bg-section={section.id}
-            data-reveal className="post-hero-panel">
-              {section.label}
-            </div>
-          </section>
-        </div>
+          <div key={section.id}>
+            <Title title={section.id} />
+            <section
+              key={section.id}
+              className="post-hero-step "
+              /* style={{ background: `var(${section.bgColor})` }} */
+            >
+              <div
+                id={section.id}
+                data-scroll-section
+                data-bg-section={section.id}
+                data-reveal
+                className="post-hero-panel"
+              >
+                {section.label}
+              </div>
+            </section>
+          </div>
         ))}
       </main>
 
       <Footer />
-        </>
-      )}
     </>
   );
 }

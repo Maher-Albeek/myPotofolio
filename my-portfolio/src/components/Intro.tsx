@@ -48,8 +48,8 @@ function Intro({
   return (
     <div
       className={[
-        "fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden",
-        "bg-gradient-to-b from-slate-950 via-zinc-900 to-black",
+        "fixed inset-0 z-9999 flex items-center justify-center overflow-hidden",
+        "bg-linear-to-b from-slate-950 via-zinc-900 to-black",
         "transition-opacity ease-in-out",
         isExiting ? "opacity-0" : "opacity-100",
       ].join(" ")}
@@ -85,7 +85,7 @@ function Intro({
         <h1
           className={[
             "mt-4 text-3xl font-light tracking-[0.06em] text-zinc-100 sm:text-5xl",
-            "transition-all duration-1000 ease-out [transition-delay:120ms]",
+            "transition-all duration-1000 ease-out delay-120",
             isTextVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
           ].join(" ")}
         >
@@ -95,7 +95,7 @@ function Intro({
         <p
           className={[
             "mt-3 text-sm tracking-[0.18em] text-zinc-400 sm:text-base",
-            "transition-all duration-1000 ease-out [transition-delay:200ms]",
+            "transition-all duration-1000 ease-out delay-200",
             isTextVisible ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0",
           ].join(" ")}
         >

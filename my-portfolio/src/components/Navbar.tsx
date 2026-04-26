@@ -351,7 +351,7 @@ const Navbar = () => {
 
       <div
         className={`overflow-hidden border-t border-white/10 bg-slate-950/95 backdrop-blur-xl transition-all duration-300 md:hidden ${
-          mobileOpen ? "max-h-[420px] opacity-100" : "max-h-0 opacity-0"
+          mobileOpen ? "max-h-105 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <div className="space-y-1 px-4 py-4">
