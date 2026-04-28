@@ -152,7 +152,7 @@ function App() {
   const sections = useMemo(
     () => [
       /* { id: "hero", label: "Home" }, */
-      { id: "services", justify: "center", label: <Services /> },
+   
       { id: "about", justify: "center", label: <About /> },
       { id: "experience", justify: "end", label: <Experience /> },
       { id: "education", justify: "end", label: <Education /> },
