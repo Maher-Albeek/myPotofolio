@@ -16,7 +16,7 @@ const Title = ({ title }: { title: string }) => {
                 flex={false}
                 alpha={false}
                 stroke={true}
-                width={true}
+                width={false}
                 weight
                 italic
                 textColor="#ffffff"

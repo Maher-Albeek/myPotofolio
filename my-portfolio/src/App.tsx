@@ -152,7 +152,7 @@ function App() {
   const sections = useMemo(
     () => [
       /* { id: "hero", label: "Home" }, */
-      /* { id: "services", bgColor: "--bg-hell", label: <Services /> }, */
+      { id: "services", bgColor: "--bg-hell", label: <Services /> },
       { id: "about", bgColor: "--bg", label: <About /> },
       { id: "experience", bgColor: "--bg-hell", label: <Experience /> },
       { id: "education", bgColor: "--bg", label: <Education /> },
@@ -187,8 +187,8 @@ function App() {
             <Title title={section.id} />
             <section
               key={section.id}
-              className="post-hero-step "
-              /* style={{ background: `var(${section.bgColor})` }} */
+              className={`post-hero-step `}
+              style={{ justifyContent: `${section.justify}` }}
             >
               <div
                 id={section.id}
