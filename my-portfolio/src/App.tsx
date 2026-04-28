@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import Intro from "./components/Intro";
 import Title from "./sections/Tiltle";
 import Hero from "./sections/Hero";
-import Services from "./sections/Services";
+/* import Services from "./sections/Services"; */
 import About from "./sections/About";
 import Experience from "./sections/Experience";
 import Education from "./sections/Education";
