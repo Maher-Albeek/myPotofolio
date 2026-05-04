@@ -74,7 +74,7 @@ const Footer = () => {
         {/* Divider */}
         <div className="w-full border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-gray-600">
           <p>© {currentYear} Maher Albeek. All rights reserved.</p>
-          <p>Built with React · TypeScript · Tailwind CSS · Supported by GitHub Copilot</p>
+          <p>Built with React · TypeScript · Tailwind CSS · Supported by GitHub Copilot · Some components inspired by <a href="https://reactbits.dev" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400 transition-colors duration-200">React Bits</a></p>
         </div>
 
       </div>
