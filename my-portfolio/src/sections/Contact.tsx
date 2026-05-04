@@ -1,7 +1,7 @@
 import type { IconType } from "react-icons";
 import { FaLinkedinIn, FaXing } from "react-icons/fa6";
 import { FiGithub, FiMail, FiMapPin, FiPhoneCall } from "react-icons/fi";
-import profileImage from "../assets/fotografie.png";
+import profileImage from "../assets/conact.png";
 import "./Contact.css";
 
 type ContactItem = {
