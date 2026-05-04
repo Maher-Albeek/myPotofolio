@@ -15,17 +15,13 @@
     position: fixed;
     inset: 0;
     width: 100vw;
-    height: 100vh;
     height: 100svh;
     background-position: left bottom;
     background-repeat: no-repeat;
-    background-size: auto 90vh;
     background-size: auto 90svh;
     background-image: var(--bg-image-hero);
     z-index: 0;
     pointer-events: none;
-    /* iOS Safari: fixed positioning on pseudo-elements is unreliable; keep as fixed for desktop */
-    will-change: transform;
   }
 
   &::after {

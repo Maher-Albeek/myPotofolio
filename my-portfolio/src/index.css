@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Asimovian&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -61,7 +62,6 @@
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
-  min-height: 100vh;
   min-height: 100svh;
   display: flex;
   flex-direction: column;
@@ -72,13 +72,10 @@
 
 body {
   margin: 0;
-  min-height: 100vh;
   min-height: 100svh;
   position: relative;
   background-color: #0a0a0f;
   z-index: 1;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior-y: none;
 }
 
 html,

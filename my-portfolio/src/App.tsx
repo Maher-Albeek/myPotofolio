@@ -1,20 +1,18 @@
 import "./App.css";
-import { lazy, Suspense, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { FaArrowUp } from "react-icons/fa";
 import Navbar from "./components/Navbar";
 import Intro from "./components/Intro";
 import Title from "./sections/Tiltle";
 import Hero from "./sections/Hero";
 /* import Services from "./sections/Services"; */
-
-// Below-fold sections: loaded lazily after initial paint
-const About = lazy(() => import("./sections/About"));
-const Experience = lazy(() => import("./sections/Experience"));
-const Education = lazy(() => import("./sections/Education"));
-const Skills = lazy(() => import("./sections/Skills"));
-const Portfolio = lazy(() => import("./sections/Portfolio"));
-const Certificates = lazy(() => import("./sections/Certificates"));
-const Contact = lazy(() => import("./sections/Contact"));
+import About from "./sections/About";
+import Experience from "./sections/Experience";
+import Education from "./sections/Education";
+import Skills from "./sections/Skills";
+import Portfolio from "./sections/Portfolio";
+import Certificates from "./sections/Certificates";
+import Contact from "./sections/Contact";
 import Footer from "./components/Footer";
 
 function App() {
@@ -184,28 +182,26 @@ function App() {
       <Hero />
 
       <main>
-        <Suspense fallback={null}>
-          {sections.map((section) => (
-            <div key={section.id}>
-              <Title title={section.id} />
-              <section
-                key={section.id}
-                className={`post-hero-step `}
-                style={{ justifyContent: `${section.justify}` }}
+        {sections.map((section) => (
+          <div key={section.id}>
+            <Title title={section.id} />
+            <section
+              key={section.id}
+              className={`post-hero-step `}
+              style={{ justifyContent: `${section.justify}` }}
+            >
+              <div
+                id={section.id}
+                data-scroll-section
+                data-bg-section={section.id}
+                data-reveal
+                className="post-hero-panel"
               >
-                <div
-                  id={section.id}
-                  data-scroll-section
-                  data-bg-section={section.id}
-                  data-reveal
-                  className="post-hero-panel"
-                >
-                  {section.label}
-                </div>
-              </section>
-            </div>
-          ))}
-        </Suspense>
+                {section.label}
+              </div>
+            </section>
+          </div>
+        ))}
       </main>
 
       <Footer />

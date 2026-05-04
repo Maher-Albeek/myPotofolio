@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&family=Playwrite+NZ+Guides&display=swap');
+
 .about-layout {
   display: flex;
   flex-direction: row;
@@ -27,7 +29,7 @@
   margin-inline: auto;
   padding: 0;
   width: min(95%, 72ch);
-  color: var(--text);
+  color: #2c2c2cb3;
   display: block;
   white-space: normal;
   word-break: break-word;

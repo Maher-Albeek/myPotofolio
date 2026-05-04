@@ -21,7 +21,7 @@ import React from "react";
 const ScrollIndicator: React.FC = () => {
   return (
     <div className="w-[34px] h-[55px] flex items-center justify-center">
-      <div className="w-[3px] h-[35px] px-[15px] py-[10px] border-2 border-white rounded-[25px] opacity-75 box-content flex justify-center">
+      <div className="w-[3px] h-[20px] px-[10px] py-[10px] border-2 border-white rounded-[25px] opacity-75 box-content flex justify-center">
         <div className="w-[3px] h-[10px] bg-white rounded-[25%] animate-scroll" />
       </div>
     </div>
