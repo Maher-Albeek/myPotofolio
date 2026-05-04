@@ -160,6 +160,8 @@ export const skillGroups: SkillGroup[] = [
 			{ name: "CSV/XML Datenverarbeitung", level: 74 },
 			{ name: "Reporting & Datenvisualisierung", level: 70 },
 			{ name: "Adobe", level: 72 },
+			{ name: "Figma", level: 75 },
+			{ name: "Canva", level: 78 },
 		],
 	},
 	{

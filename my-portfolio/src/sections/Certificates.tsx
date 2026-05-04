@@ -61,6 +61,14 @@ const certificates: Certificate[] = [
     type: "text",
     color: "#b0b0b0",
   },
+  {
+    title: "Telc B1 Deutsch",
+    date: "2017",
+    image:  "TELC" ,
+    certificateUrl: b2Pdf,
+    type: "text",
+    color: "#9ca3af",
+  },
 ];
 
 const Certificates = () => {

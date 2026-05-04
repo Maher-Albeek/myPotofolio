@@ -30,6 +30,14 @@ const projects = [
     demoLink: "https://example.com/design-dashboard",
     Image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80",
   },
+  {
+    title: "Cyber Physical System",
+    stack: "Python, Raspberry Pi, Arduino Uno",
+    description:
+      "Embedded systems project integrating hardware and software for IoT applications",
+    demoLink: "https://example.com/cyber-physical",
+    Image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1400&q=80",
+  },
 ];
 
 const Portfolio = () => {

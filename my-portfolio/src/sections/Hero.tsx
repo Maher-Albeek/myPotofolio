@@ -2,11 +2,33 @@ import { TypeAnimation } from "react-type-animation";
 import { useEffect, useState } from "react";
 import "./Hero.css";
 
+const LANGUAGES = [
+  { name: "Arabisch", level: "Muttersprache" },
+  { name: "Kurdisch", level: "Muttersprache" },
+  { name: "Deutsch", level: "Fließend" },
+  { name: "Englisch", level: "Fließend" },
+  { name: "Türkisch", level: "Fließend" },
+];
+
 const HERO_STATS = [
   { label: "Projekte", value: 39 },
   { label: "Skills", value: 35 },
   { label: "Jahre Erfahrung", value: 2 },
 ];
+
+import React from "react";
+
+const ScrollIndicator: React.FC = () => {
+  return (
+    <div className="w-[34px] h-[55px] flex items-center justify-center">
+      <div className="w-[3px] h-[35px] px-[15px] py-[10px] border-2 border-white rounded-[25px] opacity-75 box-content flex justify-center">
+        <div className="w-[3px] h-[10px] bg-white rounded-[25%] animate-scroll" />
+      </div>
+    </div>
+  );
+};
+
+
 
 const Hero = () => {
   const [counts, setCounts] = useState<number[]>(() => HERO_STATS.map(() => 0));
@@ -130,8 +152,31 @@ const Hero = () => {
               </div>
             ))}
           </div>
+          {/* Scroll Indicator */}
+          <div className="absolute bottom-28 left-1/2 -translate-x-1/2 z-20">
+            <ScrollIndicator />
+          </div>
 
-          
+          {/* Languages Marquee */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 w-[min(480px,90vw)]">
+          <div className="hero-languages-marquee-wrap overflow-hidden w-full">
+            <div className="hero-languages-marquee flex items-center gap-10">
+              {[...LANGUAGES, ...LANGUAGES].map((lang, i) => (
+                <div key={i} className="flex items-center gap-10 shrink-0">
+                  <div className="text-center">
+                    <span className="block text-white/90 text-xs sm:text-sm font-medium tracking-widest uppercase whitespace-nowrap">
+                      {lang.name}
+                    </span>
+                    <span className="block text-white/45 text-[10px] sm:text-xs tracking-[0.15em] uppercase mt-0.5 whitespace-nowrap">
+                      {lang.level}
+                    </span>
+                  </div>
+                  <span className="w-px h-6 bg-white/20" />
+                </div>
+              ))}
+            </div>
+          </div>
+          </div>
 
       </section>
     </>

@@ -139,3 +139,49 @@
     animation: none;
   }
 }
+
+/* Languages marquee */
+.hero-languages-marquee-wrap {
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 12%,
+    black 88%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 12%,
+    black 88%,
+    transparent 100%
+  );
+}
+
+.hero-languages-marquee {
+  display: flex;
+  width: max-content;
+  animation: langMarquee 18s linear infinite;
+}
+
+@keyframes langMarquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes scrollDot {
+  0%   { transform: translateY(0);    opacity: 1; }
+  80%  { transform: translateY(14px); opacity: 0; }
+  100% { transform: translateY(14px); opacity: 0; }
+}
+
+.animate-scroll {
+  animation: scrollDot 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-languages-marquee {
+    animation: none;
+    justify-content: center;
+  }
+}
