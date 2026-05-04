@@ -6,6 +6,29 @@
   align-items: stretch;
 }
 
+@media (max-width: 768px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-layout__left {
+    min-height: 280px;
+    grid-template-rows: auto auto;
+  }
+
+  .contact-photo-wrap {
+    max-height: 260px;
+  }
+
+  .contact-social {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .contact-title {
+    font-size: clamp(1.4rem, 7vw, 1.9rem);
+  }
+}
+
 .contact-layout__left {
   display: grid;
   grid-template-rows: 4fr 1fr;
