@@ -188,10 +188,11 @@ function App() {
             <section
               key={section.id}
               className={`post-hero-step `}
-              style={{ justifyContent: `${section.justify}` }}
+              
             >
               <div
                 id={section.id}
+                style={{ justifyContent: `${section.justify}` }}
                 data-scroll-section
                 data-bg-section={section.id}
                 data-reveal
