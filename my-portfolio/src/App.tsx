@@ -188,6 +188,7 @@ function App() {
             <section
               key={section.id}
               className={`post-hero-step `}
+              style={{ justifyContent: `${section.justify}` }}
               
             >
               <div

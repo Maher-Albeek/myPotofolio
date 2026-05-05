@@ -82,6 +82,7 @@
   .certificates-grid {
     flex-wrap: wrap;
     height: auto;
+    justify-content: center;
   }
 
   .certificate-modal {
