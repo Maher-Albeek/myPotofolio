@@ -295,6 +295,9 @@ export const WalletSkillCard = ({
 						})}
 					</ul>
 				</div>
+				<span className="skills-title-card__see-skills">
+					{isActive ? "skills opened" : "press to open skills"}
+				</span>
 			</div>
 		</div>
 		</article>

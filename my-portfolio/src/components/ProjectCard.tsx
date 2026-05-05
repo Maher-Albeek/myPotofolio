@@ -9,6 +9,9 @@ import {
   SiSpringboot,
   SiTailwindcss,
   SiTypescript,
+  SiPython,
+  SiRaspberrypi,
+  SiArduino,
 } from "react-icons/si";
 
 const techIcons = {
@@ -21,6 +24,9 @@ const techIcons = {
   java: FaJava,
   "spring boot": SiSpringboot,
   angular: FaAngular,
+  python: SiPython,
+  "raspberry pi": SiRaspberrypi,
+  "arduino uno": SiArduino,
 };
 
 const normalizeTech = (value: string) => value.trim().toLowerCase();
