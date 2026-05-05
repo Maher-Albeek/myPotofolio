@@ -152,6 +152,25 @@ const Hero = () => {
               </div>
             ))}
           </div>
+
+          <div className="md:hidden absolute bottom-46 left-1/2 -translate-x-1/2 z-20 w-[min(92vw,420px)]">
+            <div className="flex items-center justify-center gap-2 text-white/90">
+              {HERO_STATS.map((stat, index) => (
+                <div
+                  key={`mobile-${stat.label}`}
+                  className="border border-white/20 bg-black/20 backdrop-blur-sm rounded-full w-24 h-24 p-2 flex flex-col items-center justify-center text-center"
+                >
+                  <span className="block text-lg font-semibold text-white leading-none">
+                    + {counts[index]}
+                  </span>
+                  <span className="block mt-1 text-[10px] uppercase tracking-[0.15em] text-white/75 leading-tight px-1">
+                    {stat.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Scroll Indicator */}
           <div className="absolute bottom-28 left-1/2 -translate-x-1/2 z-20">
             <ScrollIndicator />
