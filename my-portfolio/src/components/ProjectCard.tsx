@@ -34,7 +34,7 @@ const normalizeTech = (value: string) => value.trim().toLowerCase();
 type ProjectCardProps = {
   title: string;
   description: string;
-  demoLink: string;
+  demoLink?: string;
   stack: string;
   Image: string;
   githubLink?: string;
@@ -50,6 +50,9 @@ const ProjectCard = ({
   githubLink,
   previewMode = "image",
 }: ProjectCardProps) => {
+  const hasDemoLink = Boolean(demoLink?.trim());
+  const hasGithubLink = Boolean(githubLink?.trim());
+
   const stackItems = stack
     .split(",")
     .map((item) => item.trim())
@@ -85,7 +88,7 @@ const ProjectCard = ({
               </div>
 
               <div className="card__screen">
-                {previewMode === "iframe" ? (
+                {previewMode === "iframe" && hasDemoLink ? (
                   <iframe
                     className="card__media"
                     src={demoLink}
@@ -97,10 +100,12 @@ const ProjectCard = ({
                 )}
 
                 <div className="card__overlay">
-                  <a className="card__action" href={demoLink} target="_blank" rel="noreferrer">
-                    <HiOutlinePlayCircle aria-hidden="true" />
-                  </a>
-                  {githubLink ? (
+                  {hasDemoLink ? (
+                    <a className="card__action" href={demoLink} target="_blank" rel="noreferrer">
+                      <HiOutlinePlayCircle aria-hidden="true" />
+                    </a>
+                  ) : null}
+                  {hasGithubLink ? (
                     <a
                       className="card__action card__action--ghost"
                       href={githubLink}

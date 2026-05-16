@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect, useMemo, useState } from "react";
+import { type CSSProperties, useEffect, useMemo, useState } from "react";
 import { FaArrowUp } from "react-icons/fa";
 import Navbar from "./components/Navbar";
 import Intro from "./components/Intro";
@@ -18,15 +18,28 @@ import Footer from "./components/Footer";
 function App() {
   const [showIntro, setShowIntro] = useState(true);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     if (showIntro) {
       setShowBackToTop(false);
+      setScrollProgress(0);
       return;
     }
 
     const onScroll = () => {
       setShowBackToTop(window.scrollY > 320);
+
+      const maxScrollable =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+      if (maxScrollable <= 0) {
+        setScrollProgress(0);
+        return;
+      }
+
+      const progress = Math.min(Math.max(window.scrollY / maxScrollable, 0), 1);
+      setScrollProgress(progress);
     };
 
     onScroll();
@@ -164,6 +177,10 @@ function App() {
     []
   );
 
+  const backToTopStyle = {
+    "--scroll-progress": `${(scrollProgress * 100).toFixed(2)}%`,
+  } as CSSProperties;
+
   return (
     <>
       {showIntro && <Intro onFinish={() => setShowIntro(false)} />}
@@ -173,6 +190,7 @@ function App() {
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         className={`back-to-top ${showBackToTop ? "is-visible" : ""}`}
         aria-label="Go back to top"
+        style={backToTopStyle}
       >
         <FaArrowUp aria-hidden="true" />
         <span className="back-to-top__tooltip">Go back to top</span>

@@ -10,34 +10,27 @@ const projects = [
     stack: "Next.js, React, TypeScript, Tailwind, MySQL, REST API",
     description:
       "Full-stack photography site with Admin-CMS, CRUD APIs, Auth, AVIF pipeline",
-    demoLink: "https://www.maher-albeek.com/",
-    githubLink: "https://github.com/Maher-Albeek/Photograpy-Website.git",
+    demoLink: "https://fotografie.maher-albeek.com/",
+    githubLink: "https://github.com/Maher-Albeek/Photograpy-Website",
     Image: fotografiePage,
   },
   {
-    title: "Booking System",
+    title: "Auto Booking System",
     stack: "Java, Spring Boot, MySQL, Angular",
     description:
       "Vehicle booking system with REST API, DTOs, JPA, transaction locking",
-    demoLink: "https://example.com/booking-system",
+    githubLink: "https://github.com/Maher-Albeek/booking-system",
     Image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1400&q=80",
   },
   {
-    title: "Design System Dashboard",
+    title: "Barbershop-Booking-Website",
     stack: "React, TypeScript, Tailwind, REST API",
     description:
       "Admin dashboard with reusable UI components, analytics widgets, and role-based views",
-    demoLink: "https://example.com/design-dashboard",
+    githubLink: "https://github.com/Maher-Albeek/Barbershop-Booking-Website-Template",
     Image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80",
   },
-  {
-    title: "Cyber Physical System",
-    stack: "Python, Raspberry Pi, Arduino Uno",
-    description:
-      "Embedded systems project integrating hardware and software for IoT applications",
-    demoLink: "https://example.com/cyber-physical",
-    Image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1400&q=80",
-  },
+ 
 ];
 
 const Portfolio = () => {
