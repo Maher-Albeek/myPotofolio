@@ -103,7 +103,7 @@ const skillIconMap: Record<string, IconType> = {
 	ChatGPT: FaRobot,
 };
 
-const getSkillIcon = (skillName: string): IconType => skillIconMap[skillName] ?? FaCode;
+export const getSkillIcon = (skillName: string): IconType => skillIconMap[skillName] ?? FaCode;
 
 export const skillGroups: SkillGroup[] = [
 	{

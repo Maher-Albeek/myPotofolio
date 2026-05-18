@@ -1,0 +1,197 @@
+@import url("https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap");
+
+.intro-code-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(34, 211, 238, 0.16), transparent 45%),
+    radial-gradient(circle at 88% 74%, rgba(56, 189, 248, 0.14), transparent 42%),
+    linear-gradient(180deg, rgba(2, 6, 23, 0.92), rgba(0, 0, 0, 0.9));
+}
+
+.intro-code-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    rgba(148, 163, 184, 0.05) 1px,
+    transparent 1px
+  );
+  background-size: 100% 24px;
+  mix-blend-mode: screen;
+  opacity: 0.35;
+}
+
+.intro-code-column {
+  position: absolute;
+  top: -120%;
+  width: min(22vw, 260px);
+  margin: 0;
+  padding: 16px 14px;
+  border: 1px solid rgba(56, 189, 248, 0.16);
+  border-radius: 10px;
+  font-family: "JetBrains Mono", "Fira Code", "Consolas", monospace;
+  font-size: clamp(10px, 0.9vw, 12px);
+  line-height: 1.45;
+  color: rgba(186, 230, 253, 0.62);
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.34),
+    rgba(2, 6, 23, 0.2)
+  );
+  box-shadow: 0 0 30px rgba(6, 182, 212, 0.08);
+  text-shadow: 0 0 12px rgba(125, 211, 252, 0.22);
+  white-space: pre;
+  animation-name: intro-code-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.intro-code-scan {
+  position: absolute;
+  inset: -20% 0;
+  background: linear-gradient(
+    180deg,
+    transparent 15%,
+    rgba(56, 189, 248, 0.08) 50%,
+    transparent 85%
+  );
+  animation: intro-scan-sweep 4.5s ease-in-out infinite;
+}
+
+.intro-skill-cloud {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+  z-index: 1;
+  perspective: 1000px;
+}
+
+.intro-skill-cloud__item {
+  position: absolute;
+  color: rgba(186, 230, 253, 0.9);
+  opacity: 0;
+  transform: translate3d(-50%, -50%, 0) scale(0.1);
+  animation-name: intro-skill-fade-loop;
+  animation-duration: var(--duration, 6.2s);
+  animation-delay: var(--delay, 0s);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+  contain: layout paint;
+}
+
+.intro-skill-cloud__icon {
+  font-size: clamp(18px, 2.1vw, 30px);
+  transform: translateZ(0);
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.35);
+}
+
+.intro-name-title {
+  font-family: "Bruno Ace SC", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@keyframes intro-code-fall {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 230%, 0);
+  }
+}
+
+@keyframes intro-scan-sweep {
+  0% {
+    transform: translateY(-30%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.65;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(30%);
+    opacity: 0;
+  }
+}
+
+@keyframes intro-skill-fade-loop {
+  0% {
+    opacity: 0;
+    transform: translate3d(
+        calc(-50% - (var(--flight-x) * 0.14)),
+        calc(-50% - (var(--flight-y) * 0.14)),
+        0
+      )
+      scale(calc(var(--base-scale, 1) * 0.22));
+  }
+  20% {
+    opacity: 0.38;
+    transform: translate3d(
+        calc(-50% + (var(--flight-x) * 0.16)),
+        calc(-50% + (var(--flight-y) * 0.16)),
+        0
+      )
+      scale(calc(var(--base-scale, 1) * 0.56));
+  }
+  52% {
+    opacity: 0.9;
+    transform: translate3d(
+        calc(-50% + (var(--flight-x) * 0.44)),
+        calc(-50% + (var(--flight-y) * 0.44)),
+        0
+      )
+      scale(calc(var(--base-scale, 1) * 1.02));
+  }
+  80% {
+    opacity: 0.46;
+    transform: translate3d(
+        calc(-50% + (var(--flight-x) * 0.8)),
+        calc(-50% + (var(--flight-y) * 0.8)),
+        0
+      )
+      scale(calc(var(--base-scale, 1) * 1.68));
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(
+        calc(-50% + (var(--flight-x) * 1.06)),
+        calc(-50% + (var(--flight-y) * 1.06)),
+        0
+      )
+      scale(calc(var(--base-scale, 1) * 2.14));
+  }
+}
+
+@media (max-width: 900px) {
+  .intro-code-column {
+    width: min(36vw, 220px);
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 560px) {
+  .intro-code-column {
+    width: min(42vw, 190px);
+    padding: 12px 10px;
+    line-height: 1.35;
+  }
+
+  .intro-skill-cloud__icon {
+    font-size: clamp(16px, 5.7vw, 24px);
+  }
+}
