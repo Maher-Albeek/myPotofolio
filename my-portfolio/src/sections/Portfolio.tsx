@@ -2,6 +2,8 @@ import "./Portfolio.css";
 import { useState } from "react";
 import ProjectCard from "../components/ProjectCard";
 import fotografiePage from "../assets/fotografie.png";
+import barbershopPage from "../assets/barbershop.png";
+import bookingsystemPage from "../assets/bookingsystem.png";
 
 
 const projects = [
@@ -20,7 +22,7 @@ const projects = [
     description:
       "Vehicle booking system with REST API, DTOs, JPA, transaction locking",
     githubLink: "https://github.com/Maher-Albeek/booking-system",
-    Image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1400&q=80",
+    Image: bookingsystemPage,
   },
   {
     title: "Barbershop-Booking-Website",
@@ -28,7 +30,7 @@ const projects = [
     description:
       "Admin dashboard with reusable UI components, analytics widgets, and role-based views",
     githubLink: "https://github.com/Maher-Albeek/Barbershop-Booking-Website-Template",
-    Image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80",
+    Image: barbershopPage,
   },
  
 ];
