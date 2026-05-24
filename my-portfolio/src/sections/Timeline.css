@@ -86,7 +86,7 @@
   width: 0.35rem;
   height: 0.35rem;
   border-radius: 999px;
-  background: rgba(212, 160, 36, 0.9);
+  background: rgba(253, 101, 0, 0.88);;
 }
 
 .timeline-slider__pagination {
@@ -117,7 +117,7 @@
   position: relative;
   border: 0;
   background: transparent;
-  color: rgba(212, 160, 36, 0.88);
+  color: rgba(253, 101, 0, 0.88);
   font-size: 1.9rem;
   font-style: italic;
   font-weight: 300;
@@ -136,7 +136,7 @@
   width: 0.42rem;
   height: 0.42rem;
   border-radius: 50%;
-  background: #d4a024;
+  background: rgba(253, 101, 0, 0.88);;
   transform: translateY(-50%) scale(0);
   transition: transform 0.2s ease;
 }
@@ -158,7 +158,7 @@
   height: 1.75rem;
   border: 0;
   background: transparent;
-  color: #d4a024;
+  color: rgba(253, 101, 0, 0.88);;
   font-size: 1.35rem;
   line-height: 1;
   cursor: pointer;

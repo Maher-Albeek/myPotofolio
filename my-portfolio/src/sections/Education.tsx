@@ -170,7 +170,7 @@ const Education = () => {
                 key={`title-${activeIndex}-${slideDirection}`}
                 text={activeEducation.title}
                 tag="h3"
-                className="timeline-title mt-3 mb-3 text-3xl md:text-5xl font-semibold text-white"
+                className="timeline-title mt-3 mb-3 text-3xl md:text-5xl font-semibold text-white text-align-end"
                 shuffleDirection={shuffleDirection}
                 duration={0.6}
                 animationMode="evenodd"

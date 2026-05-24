@@ -142,7 +142,7 @@ const Experience = () => {
                 key={`period-${activeIndex}-${slideDirection}`}
                 text={activeExperience.period}
                 tag="span"
-                className="info-card__eyebrow "
+                className="info-card__eyebrow  "
                 textAlign="end"
                 shuffleDirection={shuffleDirection}
                 duration={0.42}
