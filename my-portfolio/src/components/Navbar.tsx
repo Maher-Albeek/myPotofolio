@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
-import profilePicture from "../assets/logo.svg";
 import resumeFile from "../assets/CV_de.pdf";
 import GlassSurface from './GlassSurface'
 
