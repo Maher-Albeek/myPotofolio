@@ -1,14 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import profilePicture from "../assets/logo.svg";
-import resumeFile from "../assets/CV.pdf";
-
+import resumeFile from "../assets/CV_de.pdf";
 import GlassSurface from './GlassSurface'
-
-
-
-
-
 
 
 const mainNavItems = [
@@ -21,9 +15,6 @@ const mainNavItems = [
   { key: "certificates", label: "Certificates", sectionId: "certificates" },
   { key: "contact", label: "Contact", sectionId: "contact" },
 ];
-
-
-
 
 
 const NAV_OFFSET = 88;
@@ -99,24 +90,7 @@ const Navbar = () => {
       <div
         className="mx-auto flex h-20 w-full items-center justify-between px-4 sm:px-6 lg:px-8 md:justify-center"
       >
-        {/* logo */}
-        <motion.button
-          type="button"
-          onClick={() => scrollToSection("hero")}
-          initial={false}
-        
-          transition={{ type: "spring", stiffness: 220, damping: 28, mass: 0.75 }}
-          className={`group flex items-center gap-3 overflow-hidden md:absolute md:left-4 lg:left-8`}
-          style={{ willChange: "transform, opacity" }}
-          aria-label="Go to Home"
-        >
-          <img
-            src={profilePicture}
-            alt="Developer logo"
-            className="h-8 w-auto transition-transform duration-300 group-hover:scale-105"
-          />
-          
-        </motion.button>
+     
         <GlassSurface 
           width={900} 
           height={"auto"}
