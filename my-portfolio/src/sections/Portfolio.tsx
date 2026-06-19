@@ -4,6 +4,7 @@ import ProjectCard from "../components/ProjectCard";
 import fotografiePage from "../assets/fotografie.png";
 import barbershopPage from "../assets/barbershop.png";
 import bookingsystemPage from "../assets/bookingsystem.png";
+import hausGartenPage from "../assets/hausGartenPage.png";
 
 
 const projects = [
@@ -31,6 +32,14 @@ const projects = [
       "Admin dashboard with reusable UI components, analytics widgets, and role-based views",
     githubLink: "https://github.com/Maher-Albeek/Barbershop-Booking-Website-Template",
     Image: barbershopPage,
+  },
+  {
+    title: "Abdullah Haus & Garten Service",
+    stack: "Vue 3, TypeScript, Tailwind, Pinia, MySQL, Netlify Functions",
+    description:
+      "Business website for a home and garden service with editable website content, gallery uploads, admin dashboard, authentication, and database-backed content management",
+    demoLink: "https://fastidious-froyo-8f1e71.netlify.app/",
+    Image: hausGartenPage,
   },
  
 ];

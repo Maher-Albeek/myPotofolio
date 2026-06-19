@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
-import resumeFile from "../assets/CV_de.pdf";
+import resumeFileDE from "../assets/CV_de.pdf";
+import resumeFileEN from "../assets/CV_en.pdf"; // Assuming an English CV file exists
 import GlassSurface from './GlassSurface'
 
 
@@ -17,7 +18,8 @@ const mainNavItems = [
 
 
 const NAV_OFFSET = 88;
-const RESUME_PATH = resumeFile;
+const RESUME_DE_PATH = resumeFileDE;
+const RESUME_EN_PATH = resumeFileEN; // Define the path for the English CV
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -129,23 +131,37 @@ const Navbar = () => {
             })}
           </ul>
         </GlassSurface>
-        <motion.a
-          href={RESUME_PATH}
-          download="maher_albeek_lebenslauf.pdf"
-          aria-label="Resume"
-          initial={false}
-      
-          transition={{ type: "spring", stiffness: 220, damping: 28, mass: 0.75 }}
-          className={`group hidden items-center gap-2 justify-center overflow-hidden rounded-full border border-orange-500/40 px-3 py-2.5 text-orange-100 hover:border-orange-400 hover:bg-orange-300/20 hover:text-white md:absolute md:right-4 md:inline-flex lg:right-8 
-        
-          `}
-          style={{ willChange: "transform, opacity" }}
-        >
-          <svg className="h-5 w-5 text-orange-100 transition-colors duration-300 group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v10m0 0l-4-4m4 4l4-4M5 19h14" />
-          </svg>
-          <span className="text-sm font-semibold">Resume</span>
-        </motion.a>
+        {/* Desktop Resume Buttons */}
+        <div className="hidden md:flex md:absolute md:right-4 lg:right-8 items-center gap-2">
+          <motion.a
+            href={RESUME_DE_PATH}
+            download="maher_albeek_lebenslauf.pdf"
+            aria-label="German Resume"
+            initial={false}
+            transition={{ type: "spring", stiffness: 220, damping: 28, mass: 0.75 }}
+            className={`group inline-flex items-center gap-2 justify-center overflow-hidden rounded-full border border-orange-500/40 px-3 py-2.5 text-orange-100 hover:border-orange-400 hover:bg-orange-300/20 hover:text-white`}
+            style={{ willChange: "transform, opacity" }}
+          >
+            <svg className="h-5 w-5 text-orange-100 transition-colors duration-300 group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v10m0 0l-4-4m4 4l4-4M5 19h14" />
+            </svg>
+            <span className="text-sm font-semibold">DE CV</span>
+          </motion.a>
+          <motion.a
+            href={RESUME_EN_PATH}
+            download="maher_albeek_resume.pdf"
+            aria-label="English Resume"
+            initial={false}
+            transition={{ type: "spring", stiffness: 220, damping: 28, mass: 0.75 }}
+            className={`group inline-flex items-center gap-2 justify-center overflow-hidden rounded-full border border-blue-500/40 px-3 py-2.5 text-blue-100 hover:border-blue-400 hover:bg-blue-300/20 hover:text-white`}
+            style={{ willChange: "transform, opacity" }}
+          >
+            <svg className="h-5 w-5 text-blue-100 transition-colors duration-300 group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v10m0 0l-4-4m4 4l4-4M5 19h14" />
+            </svg>
+            <span className="text-sm font-semibold">EN CV</span>
+          </motion.a>
+        </div>
 
         <button
           type="button"
@@ -188,7 +204,7 @@ const Navbar = () => {
           })}
           {/* Resume */}
           <a
-            href={RESUME_PATH}
+            href={RESUME_DE_PATH}
             download="maher_albeek_lebenslauf.pdf"
             aria-label="Resume"
             className="group mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-orange-300/40 px-3 py-2 text-sm font-semibold text-orange-100 transition-colors hover:bg-orange-300/20 hover:text-white"
@@ -200,6 +216,20 @@ const Navbar = () => {
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v10m0 0l-4-4m4 4l4-4M5 19h14" />
             </svg>
             <span>Resume</span>
+          </a>
+          <a
+            href={RESUME_EN_PATH}
+            download="maher_albeek_resume.pdf"
+            aria-label="English Resume"
+            className="group mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-blue-300/40 px-3 py-2 text-sm font-semibold text-blue-100 transition-colors hover:bg-blue-300/20 hover:text-white"
+            onClick={() => {
+              setMobileOpen(false);
+            }}
+          >
+            <svg className="h-5 w-5 text-blue-100 transition-colors duration-300 group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v10m0 0l-4-4m4 4l4-4M5 19h14" />
+            </svg>
+            <span>EN CV</span>
           </a>
         </div>
       </div>
