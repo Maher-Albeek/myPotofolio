@@ -184,8 +184,63 @@
   line-height: 1.5;
 }
 
-.card__stack {
+.card__metrics {
   order: 3;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(64px, 1fr));
+  gap: 12px;
+  margin-top: 22px;
+  margin-bottom: 14px;
+}
+
+.card__metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  text-align: center;
+}
+
+.card__metric-ring {
+  --score: 0;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: conic-gradient(#ee7f00 calc(var(--score) * 1%), rgba(255, 255, 255, 0.12) 0);
+  color: #ff9f38;
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1;
+  position: relative;
+}
+
+.card__metric-ring::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border-radius: inherit;
+  background: #202020;
+}
+
+.card__metric-ring span {
+  position: relative;
+  z-index: 1;
+}
+
+.card__metric-label {
+  color: #f0f3f8;
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.card__stack {
+  order: 4;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -245,5 +300,9 @@
 
   .card__monitor-base {
     width: 130px;
+  }
+
+  .card__metrics {
+    grid-template-columns: repeat(2, minmax(86px, 1fr));
   }
 }

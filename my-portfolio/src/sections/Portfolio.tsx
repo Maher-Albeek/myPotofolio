@@ -4,15 +4,20 @@ import ProjectCard from "../components/ProjectCard";
 import fotografiePage from "../assets/fotografie.png";
 import barbershopPage from "../assets/barbershop.png";
 import bookingsystemPage from "../assets/bookingsystem.png";
-import hausGartenPage from "../assets/hausGartenPage.png";
+import hausGartenPage from "../assets/hausGartenHPage.png";
 
 
 const projects = [
   {
     title: "Fotografie Website",
     stack: "Next.js, React, TypeScript, Tailwind, MySQL, REST API",
-    description:
-      "Full-stack photography site with Admin-CMS, CRUD APIs, Auth, AVIF pipeline",
+    description:"Full-stack photography site with Admin-CMS, CRUD APIs, Auth, AVIF pipeline",
+    metrics: [
+      { label: "Leistung", value: 98 },
+      { label: "Barrierefreiheit", value: 100 },
+      { label: "Best Practices", value: 100 },
+      { label: "SEO", value: 100 },
+    ],
     demoLink: "https://fotografie.maher-albeek.com/",
     githubLink: "https://github.com/Maher-Albeek/Photograpy-Website",
     Image: fotografiePage,
@@ -35,9 +40,15 @@ const projects = [
   },
   {
     title: "Abdullah Haus & Garten Service",
-    stack: "Vue 3, TypeScript, Tailwind, Pinia, MySQL, Netlify Functions",
+    stack: "Vue 3, TypeScript, Tailwind, MySQL",
     description:
       "Business website for a home and garden service with editable website content, gallery uploads, admin dashboard, authentication, and database-backed content management",
+    metrics: [
+      { label: "Leistung", value: 98 },
+      { label: "Barrierefreiheit", value: 95 },
+      { label: "Best Practices", value: 100 },
+      { label: "SEO", value: 92 },
+    ],
     demoLink: "https://fastidious-froyo-8f1e71.netlify.app/",
     Image: hausGartenPage,
   },
