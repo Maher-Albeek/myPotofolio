@@ -1,7 +1,7 @@
 # Maher Albeek — Software Developer Portfolio
 
 <p align="center">
-  <img src="src/assets/1.png" alt="Maher Albeek" width="100%" />
+  <img src="src/assets/1.png" alt="Maher Albeek" width="280" />
 </p>
 
 <p align="center">
