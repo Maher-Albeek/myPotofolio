@@ -50,6 +50,7 @@ const projects = [
       { label: "SEO", value: 92 },
     ],
     demoLink: "https://fastidious-froyo-8f1e71.netlify.app/",
+    githubLink:"https://github.com/Maher-Albeek/abdullahHaus-gartenService/tree/main/ahgHausGartenService",
     Image: hausGartenPage,
   },
  
