@@ -1,7 +1,7 @@
 # Maher Albeek — Software Developer Portfolio
 
 <p align="center">
-  <img src="src/assets/hero-bg.png" alt="Maher Albeek portfolio hero" width="100%" />
+  <img src="src/assets/1.png" alt="Maher Albeek" width="100%" />
 </p>
 
 <p align="center">
@@ -43,80 +43,29 @@ This portfolio presents my work as a software developer with a focus on modern w
 
 ### Full-stack photography platform
 
-<img src="src/assets/fotografie.png" alt="Full-stack photography website preview" width="100%" />
-
 **Next.js · React · TypeScript · Tailwind CSS · MySQL · REST API**
 
 Photography platform with an admin CMS, authenticated CRUD workflows, image handling, and an AVIF media pipeline.
 
-[Live demo](https://fotografie.maher-albeek.com/) · [Source code](https://github.com/Maher-Albeek/Photograpy-Website)
-
 ### Vehicle booking system
-
-<img src="src/assets/bookingsystem.png" alt="Vehicle booking system preview" width="100%" />
 
 **Java · Spring Boot · Angular · MySQL**
 
 Booking application built around a REST API, DTO-based boundaries, JPA persistence, and transaction locking.
 
-[Source code](https://github.com/Maher-Albeek/booking-system)
-
 ### Home and garden service platform
-
-<img src="src/assets/hausGartenHPage.png" alt="Abdullah Haus and Garten service website preview" width="100%" />
 
 **Vue 3 · TypeScript · Tailwind CSS · MySQL**
 
 Business website with editable content, gallery uploads, an admin dashboard, authentication, and database-backed content management.
 
-[Live demo](https://fastidious-froyo-8f1e71.netlify.app/)
-
 ### Barbershop booking interface
-
-<img src="src/assets/barbershop.png" alt="Barbershop booking website preview" width="100%" />
 
 **React · TypeScript · Tailwind CSS · REST API**
 
 Reusable booking and admin interface with analytics widgets and role-oriented dashboard views.
 
-[Source code](https://github.com/Maher-Albeek/Barbershop-Booking-Website-Template)
-
 ## Engineering highlights
-
-### Accessible, motion-aware animation
-
-The hero counters use `requestAnimationFrame` for smooth updates and immediately show their final values when the operating system requests reduced motion.
-
-```tsx
-useEffect(() => {
-  const reduceMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
-
-  if (reduceMotion) {
-    setCounts(HERO_STATS.map((stat) => stat.value));
-    return;
-  }
-
-  const durationMs = 1600;
-  const start = performance.now();
-  let animationFrame = 0;
-
-  const tick = (now: number) => {
-    const progress = Math.min((now - start) / durationMs, 1);
-    const easedProgress = 1 - Math.pow(1 - progress, 3);
-
-    setCounts(
-      HERO_STATS.map((stat) => Math.round(stat.value * easedProgress))
-    );
-
-    if (progress < 1) animationFrame = requestAnimationFrame(tick);
-  };
-
-  animationFrame = requestAnimationFrame(tick);
-  return () => cancelAnimationFrame(animationFrame);
-}, []);
-```
 
 ### Efficient scroll reveal orchestration
 
@@ -163,27 +112,6 @@ const stackItems = stack
   .filter(Boolean);
 
 const Icon = techIcons[normalizeTech(item) as keyof typeof techIcons];
-```
-
-### Keyboard-friendly interactive cards
-
-Skill cards support mouse, Enter, and Space activation and expose their expanded state to assistive technology.
-
-```tsx
-<article
-  role="button"
-  tabIndex={0}
-  aria-expanded={isActive}
-  onClick={() => onSelect(groupIndex)}
-  onKeyDown={(event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      onSelect(groupIndex);
-    }
-  }}
->
-  {/* skill group content */}
-</article>
 ```
 
 ## Application structure
