@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import resumeFileDE from "../assets/CV_de.pdf";
-import resumeFileEN from "../assets/CV_en.pdf"; // Assuming an English CV file exists
+import resumeFileEN from "../assets/CV_en.pdf";
 import GlassSurface from './GlassSurface'
 
 
@@ -19,7 +19,20 @@ const mainNavItems = [
 
 const NAV_OFFSET = 88;
 const RESUME_DE_PATH = resumeFileDE;
-const RESUME_EN_PATH = resumeFileEN; // Define the path for the English CV
+const RESUME_EN_PATH = resumeFileEN;
+
+const resumeVersions = [
+  {
+    label: "Deutsch",
+    href: RESUME_DE_PATH,
+    filename: "maher_albeek_lebenslauf.pdf",
+  },
+  {
+    label: "English",
+    href: RESUME_EN_PATH,
+    filename: "maher_albeek_resume.pdf",
+  },
+];
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -131,37 +144,33 @@ const Navbar = () => {
             })}
           </ul>
         </GlassSurface>
-        {/* Desktop Resume Buttons */}
-        <div className="hidden md:flex md:absolute md:right-4 lg:right-8 items-center gap-2">
-          <motion.a
-            href={RESUME_DE_PATH}
-            download="maher_albeek_lebenslauf.pdf"
-            aria-label="German Resume"
-            initial={false}
-            transition={{ type: "spring", stiffness: 220, damping: 28, mass: 0.75 }}
-            className={`group inline-flex items-center gap-2 justify-center overflow-hidden rounded-full border border-orange-500/40 px-3 py-2.5 text-orange-100 hover:border-orange-400 hover:bg-orange-300/20 hover:text-white`}
-            style={{ willChange: "transform, opacity" }}
-          >
-            <svg className="h-5 w-5 text-orange-100 transition-colors duration-300 group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+        {/* Desktop Resume Dropdown */}
+        <motion.details
+          initial={false}
+          className="group absolute right-4 hidden md:block lg:right-8"
+        >
+          <summary className="flex cursor-pointer list-none items-center justify-center gap-2 rounded-full border border-orange-500/40 px-3 py-2.5 text-orange-100 transition-colors hover:border-orange-400 hover:bg-orange-300/20 hover:text-white [&::-webkit-details-marker]:hidden">
+            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v10m0 0l-4-4m4 4l4-4M5 19h14" />
             </svg>
-            <span className="text-sm font-semibold">DE CV</span>
-          </motion.a>
-          <motion.a
-            href={RESUME_EN_PATH}
-            download="maher_albeek_resume.pdf"
-            aria-label="English Resume"
-            initial={false}
-            transition={{ type: "spring", stiffness: 220, damping: 28, mass: 0.75 }}
-            className={`group inline-flex items-center gap-2 justify-center overflow-hidden rounded-full border border-blue-500/40 px-3 py-2.5 text-blue-100 hover:border-blue-400 hover:bg-blue-300/20 hover:text-white`}
-            style={{ willChange: "transform, opacity" }}
-          >
-            <svg className="h-5 w-5 text-blue-100 transition-colors duration-300 group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v10m0 0l-4-4m4 4l4-4M5 19h14" />
+            <span className="text-sm font-semibold">CV</span>
+            <svg className="h-4 w-4 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="m6 9 6 6 6-6" />
             </svg>
-            <span className="text-sm font-semibold">EN CV</span>
-          </motion.a>
-        </div>
+          </summary>
+          <div className="absolute right-0 mt-2 min-w-44 overflow-hidden rounded-2xl border border-white/15 bg-slate-950/95 p-1.5 shadow-xl backdrop-blur-xl">
+            {resumeVersions.map((version) => (
+              <a
+                key={version.label}
+                href={version.href}
+                download={version.filename}
+                className="block rounded-xl px-3 py-2 text-sm font-medium text-slate-200 transition-colors hover:bg-white/10 hover:text-white"
+              >
+                {version.label}
+              </a>
+            ))}
+          </div>
+        </motion.details>
 
         <button
           type="button"
@@ -202,35 +211,31 @@ const Navbar = () => {
               </button>
             );
           })}
-          {/* Resume */}
-          <a
-            href={RESUME_DE_PATH}
-            download="maher_albeek_lebenslauf.pdf"
-            aria-label="Resume"
-            className="group mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-orange-300/40 px-3 py-2 text-sm font-semibold text-orange-100 transition-colors hover:bg-orange-300/20 hover:text-white"
-            onClick={() => {
-              setMobileOpen(false);
-            }}
-          >
-            <svg className="h-5 w-5 text-orange-100 transition-colors duration-300 group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v10m0 0l-4-4m4 4l4-4M5 19h14" />
-            </svg>
-            <span>Resume</span>
-          </a>
-          <a
-            href={RESUME_EN_PATH}
-            download="maher_albeek_resume.pdf"
-            aria-label="English Resume"
-            className="group mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-blue-300/40 px-3 py-2 text-sm font-semibold text-blue-100 transition-colors hover:bg-blue-300/20 hover:text-white"
-            onClick={() => {
-              setMobileOpen(false);
-            }}
-          >
-            <svg className="h-5 w-5 text-blue-100 transition-colors duration-300 group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v10m0 0l-4-4m4 4l4-4M5 19h14" />
-            </svg>
-            <span>EN CV</span>
-          </a>
+          {/* Mobile Resume Dropdown */}
+          <details className="group mt-2">
+            <summary className="flex w-full cursor-pointer list-none items-center justify-center gap-2 rounded-xl border border-orange-300/40 px-3 py-2 text-sm font-semibold text-orange-100 transition-colors hover:bg-orange-300/20 hover:text-white [&::-webkit-details-marker]:hidden">
+              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v10m0 0l-4-4m4 4l4-4M5 19h14" />
+              </svg>
+              <span>Download CV</span>
+              <svg className="h-4 w-4 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="m6 9 6 6 6-6" />
+              </svg>
+            </summary>
+            <div className="mt-1.5 grid grid-cols-2 gap-1.5">
+              {resumeVersions.map((version) => (
+                <a
+                  key={version.label}
+                  href={version.href}
+                  download={version.filename}
+                  className="rounded-xl bg-white/5 px-3 py-2 text-center text-sm font-medium text-slate-200 transition-colors hover:bg-white/10 hover:text-white"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {version.label}
+                </a>
+              ))}
+            </div>
+          </details>
         </div>
       </div>
     </nav>
